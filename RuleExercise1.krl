@@ -1,4 +1,4 @@
-r
+
 ruleset a1299x176 {
     meta {
         name "notify example"
