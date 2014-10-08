@@ -11,6 +11,6 @@ ruleset a1299x176 {
         select when pageview ".*" setting ()
         // Display notification that will not fade.
         notify("Hello World", "This is a sample rule.1") with sticky = true;
-        notify("Hello World", "This is a sample rule.2") with sticky = true;
+        notify("Hello World", "This is a sample rule.2") with sticky = true and position ="bottom-left";
     }
 }
