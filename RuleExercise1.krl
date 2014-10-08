@@ -11,7 +11,7 @@ ruleset a1299x176 {
     rule first_rule {
         select when pageview ".*" setting ()
         // Display notification that will not fade.
-        notify("Hello World", "I think!") with sticky = true;
-        notify("therefore", "I am!") with sticky = true;
+        notify("Hello World", "I think!");
+        notify("therefore", "I am!");
     }
 }
