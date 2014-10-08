@@ -1,3 +1,4 @@
+
 ruleset a1299x176 {
     meta {
         name "notify example"
@@ -10,7 +11,6 @@ ruleset a1299x176 {
     rule first_rule {
         select when pageview ".*" setting ()
         // Display notification that will not fade.
-        notify("Hello World", "This is a sample rule.1") with sticky = true;
-      //  notify("Hello World", "bottom-left.2") with sticky = true and position = :"bottom-left";
+        notify("Hello World", "This is a sample rule.") with sticky = true;
     }
 }
