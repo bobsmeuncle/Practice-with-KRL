@@ -2,7 +2,7 @@
 ruleset a1299x176 {
     meta {
         name "notify example"
-        author "nathan cerny"
+        author "Adam Burdett"
         logging off
     }
     dispatch {
@@ -11,7 +11,7 @@ ruleset a1299x176 {
     rule first_rule {
         select when pageview ".*" setting ()
         // Display notification that will not fade.
-        notify("Hello", "This notice 1") with sticky = true;
+        notify("Hello World", "This is a sample rule.") with sticky = true;
        // notify("Hello World", "This is notice 2") with sticky = true;
     }
     //Add a second rule that places a third notification box on the page. 
