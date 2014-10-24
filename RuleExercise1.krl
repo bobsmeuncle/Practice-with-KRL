@@ -25,7 +25,7 @@ ruleset a1299x176 {
           welcome = "hello " + (pagequery) 
         }
         {//Display notification that will not fade.
-          notify(greating) with sticky = true;
+          notify("third") with sticky = true;
         }
     }
 }
