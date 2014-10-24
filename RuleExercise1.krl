@@ -22,7 +22,6 @@ ruleset a1299x176 {
         pre {
           pagequery = page:url ("query");
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello " + pagequery ;
-          welcome = "hello " + pagequery;
         }
         {//Display notification that will not fade.
           notify("Greating",greating) with sticky = true;
