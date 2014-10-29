@@ -42,12 +42,13 @@ ruleset a1299x176 {
         pre{
 
         }
-          if (ent:pageCount > 0) then
+          if (ent:pageCount <6 0) then
                       notify("fired count", ent:pageCount) with sticky = true;
             
         fired{
-          //ent:pageCount += 1 from 1; // from 1 ???
-          set ent:pageCount 1;
+          ent:pageCount += 1 from 1; // from 1 ???
+        } else{
+          clear ent:pageCount;
         }
     }
 }
