@@ -42,7 +42,7 @@ ruleset a1299x176 {
         pre{
 
         }
-          if (ent:pageCount < 5) then{
+          if (true) then{
                       notify("fired count", ent:pageCount) with sticky = true;
                       }
         fired{
