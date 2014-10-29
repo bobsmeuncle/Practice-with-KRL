@@ -10,9 +10,9 @@ ruleset a1299x176 {
     }
     rule first_rule {
         select when pageview ".*" setting ()
-        // Display notification that will not fade.
+        
         pre{}
-        {
+        {// Display notification that will not fade.
           notify("Hello World", "I think!") with sticky = true;
           notify("therefore", "I am!") with sticky = true;
         }
@@ -31,6 +31,22 @@ ruleset a1299x176 {
         }
         {//Display notification that will not fade.
           notify("Greating",greating) with sticky = true;
+        }
+    }
+    //Write a rule that counts the number of times it has fired and stops showing 
+    //its notification after five times for any given user. Display the count in 
+    //the notification. 
+    rule third_rule {
+        select when pageview ".*" setting ()
+        
+        pre{
+
+        }
+          if (ent:pageCount > 5) then{
+                      notify("fired count", ent:pageCount) with sticky = true;
+                      }
+        fired{
+          ent:pageCount += 1 from 1; // from 1 ???
         }
     }
 }
