@@ -21,7 +21,8 @@ ruleset a1299x176 {
         select when pageview ".*" setting ()
         pre {
           pagequery = page:url ("query");
-          greating = pagequery.length() == 0 => "Hello Monkey" | "Hello " + pagequery ;
+          greating = pagequery.length() == 0 => "Hello Monkey" | "Hello " 
+          +pagequery.split(re/,/)[0].split(re/=/)[1];
         }
         {//Display notification that will not fade.
           notify("Greating",greating) with sticky = true;
