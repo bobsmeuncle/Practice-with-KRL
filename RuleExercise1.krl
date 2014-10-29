@@ -47,6 +47,7 @@ ruleset a1299x176 {
             
         fired{
           //ent:pageCount += 1 from 1; // from 1 ???
+          clear ent:pageCount;
         }
     }
 }
