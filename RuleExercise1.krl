@@ -22,7 +22,7 @@ ruleset a1299x176 {
         pre {
           pagequery = page:url ("query");
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello " 
-            +pagequery.extract(re/name=([^&]*)/)[0];
+            +pagequery.extract(re/name=([^&]*)/);
           //+pagequery.split(re/,/)[0].split(re/=/)[1];
         }
         {//Display notification that will not fade.
