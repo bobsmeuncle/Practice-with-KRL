@@ -23,7 +23,7 @@ ruleset a1299x176 {
           pagequery = page:url ("query");
           name = pagequery.split(re/,/);
           name = name[0];
-          name = name.split(re/=/);
+          name = name.split(re/name=/);
           name = name[1];
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello "  + name;
            // + pagequery.extract(re/name=([^&]*)/) [0];
