@@ -23,7 +23,7 @@ ruleset a1299x176 {
           pagequery = page:url ("query");
           name = pagequery.split(re/,/);
           name = name[0];
-          name = name.split(re/name=/);
+          name = name.split(re/=/);
           name = name[1];
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello "  + name;
            // + pagequery.extract(re/name=([^&]*)/) [0];
@@ -40,15 +40,15 @@ ruleset a1299x176 {
         select when pageview ".*" setting ()
         
         pre{
-            count = app:pageCount;
+
         }
-          if (count< 6 ) then
-                      notify("fired count", count) with sticky = true;
+          if (ent:pageCount < 6 ) then
+                      notify("fired count", ent:pageCount) with sticky = true;
             
         fired{
-          app:pageCount += 1 from 1; // from 1 ???
+          ent:pageCount += 1 from 1; // from 1 ???
         } else{
-          clear app:pageCount;
+          clear ent:pageCount;
         }
     }
 }
