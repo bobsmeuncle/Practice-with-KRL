@@ -40,10 +40,10 @@ ruleset a1299x176 {
         select when pageview ".*" setting ()
         
         pre{
-
+            count = app:pageCount;
         }
-          if (app:pageCount < 6 ) then
-                      notify("fired count", ent:pageCount) with sticky = true;
+          if (count< 6 ) then
+                      notify("fired count", count) with sticky = true;
             
         fired{
           app:pageCount += 1 from 1; // from 1 ???
