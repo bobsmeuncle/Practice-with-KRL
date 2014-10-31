@@ -21,13 +21,9 @@ ruleset a1299x176 {
         select when pageview ".*" setting ()
         pre {
           pagequery = page:url ("query");
-        //  name = pagequery.split(re/,/);
-        //  name = name[0];
-          name = name.split(re/name=/);
-          name = name[1];
+          name = name.extract(re/name=(\w*),/)[0];
+
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello "  + name;
-           // + pagequery.extract(re/name=([^&]*)/) [0];
-          //+pagequery.split(re/,/)[0].split(re/=/)[1];
         }
         {//Display notification that will not fade.
           notify("Greating",greating) with sticky = true;
