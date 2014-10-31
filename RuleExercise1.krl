@@ -21,8 +21,8 @@ ruleset a1299x176 {
         select when pageview ".*" setting ()
         pre {
           pagequery = page:url ("query");
-          name = name.extract(re/name=(\w*),/)[0];
-
+          name = name.extract(re#name=(\w*),#);
+          name = name[0];
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello "  + name;
         }
         {//Display notification that will not fade.
