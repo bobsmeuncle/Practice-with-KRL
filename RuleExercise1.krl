@@ -21,8 +21,8 @@ ruleset a1299x176 {
         select when pageview ".*" setting ()
         pre {
           pagequery = page:url ("query");
-          name = pagequery.split(re/,/);
-          name = name[0];
+        //  name = pagequery.split(re/,/);
+        //  name = name[0];
           name = name.split(re/name=/);
           name = name[1];
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello "  + name;
