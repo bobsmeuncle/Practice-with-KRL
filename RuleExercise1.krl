@@ -54,10 +54,11 @@ ruleset a1299x176 {
         pre{
           pagequery = page:url ("query");
         }
-          {
             if (pagequery.match(re/clear/)) then
-              notify("parameter", "clear") with sticky = true;
-           } 
+              notify("parameter", "clear") with sticky = true; 
+          fired{
+            clear ent:pageCount;
+          }
 
     }
 }
