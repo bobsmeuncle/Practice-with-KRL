@@ -40,7 +40,7 @@ ruleset a1299x176 {
 
         }
           if (ent:pageCount < 6 ) then
-                      notify("fired count", ent:pageCount) with sticky = true;
+            notify("fired count", ent:pageCount) with sticky = true;
             
         fired{
           ent:pageCount += 1 from 1; // from 1 ???
@@ -52,10 +52,11 @@ ruleset a1299x176 {
         select when pageview ".*" setting ()
         
         pre{
-            path = page:url ("path");
+          pagequery = page:url ("query");
         }
           {
-          notify("parameter", path) with sticky = true;
+            if (pagequery.match(re/clear/)) then
+              notify("parameter", "clear") with sticky = true;
            } 
 
     }
