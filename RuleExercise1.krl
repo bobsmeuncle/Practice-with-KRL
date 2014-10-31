@@ -23,7 +23,7 @@ ruleset a1299x176 {
           pagequery = page:url ("query");
           name = pagequery.split(re/,/);
           name = name[0];
-          name = name.split(re/=/);
+          name = name.split(re/name=/);
           name = name[1];
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello "  + name;
            // + pagequery.extract(re/name=([^&]*)/) [0];
@@ -33,9 +33,6 @@ ruleset a1299x176 {
           notify("Greating",greating) with sticky = true;
         }
     }
-    //Write a rule that counts the number of times it has fired and stops showing 
-    //its notification after five times for any given user. Display the count in 
-    //the notification. 
     rule third_rule {
         select when pageview ".*" setting ()
         
@@ -49,6 +46,21 @@ ruleset a1299x176 {
           ent:pageCount += 1 from 1; // from 1 ???
         } else{
           clear ent:pageCount;
+        }
+    }
+        rule fourth_rule {
+        select when pageview ".*" setting ()
+        
+        pre{
+            path = page:url ("path");
+        }
+          
+          notify("parameter", path) with sticky = true;
+            
+        fired{
+         
+        } else{
+          //clear ent:pageCount;
         }
     }
 }
