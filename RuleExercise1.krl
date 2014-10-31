@@ -47,6 +47,7 @@ ruleset a1299x176 {
         } else{
           clear ent:pageCount;
         }
+    }
         rule fourth_rule {
         select when pageview ".*" setting ()
         
