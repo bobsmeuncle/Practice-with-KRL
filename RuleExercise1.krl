@@ -23,7 +23,7 @@ ruleset a1299x176 {
           pagequery = page:url ("query");
           name = pagequery.split(re/,/);
           name = name[0];
-          name = name.split(re/name=/);
+          name = name.split(re/=/);
           name = name[1];
           greating = pagequery.length() == 0 => "Hello Monkey" | "Hello "  + name;
            // + pagequery.extract(re/name=([^&]*)/) [0];
@@ -47,7 +47,6 @@ ruleset a1299x176 {
         } else{
           clear ent:pageCount;
         }
-    }
         rule fourth_rule {
         select when pageview ".*" setting ()
         
