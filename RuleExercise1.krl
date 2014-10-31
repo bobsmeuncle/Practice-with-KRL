@@ -54,13 +54,9 @@ ruleset a1299x176 {
         pre{
             path = page:url ("path");
         }
-          
+          {
           notify("parameter", path) with sticky = true;
-            
-        fired{
-         
-        } else{
-          //clear ent:pageCount;
-        }
+           } 
+
     }
 }
