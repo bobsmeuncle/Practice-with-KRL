@@ -1,4 +1,4 @@
-ruleset a1299x176 {
+ruleset ch7example {
     meta {
         name "chapter 7 example"
         author "adam "
