@@ -9,6 +9,10 @@ ruleset a1299x176 {
     }
     rule clear_name{
         select when pageview re#\?reset#
+        pre{}
+        emit << 
+            console.log('clear name rule');
+        >>;
         always {
             clear ent:username;
             last
@@ -48,21 +52,17 @@ ruleset a1299x176 {
         pre{
             username = event:attr("first")+" "+event:attr("last");
         }
-//        replace_inner("#my_div", "Hello #{username}");
+        replace_inner("#my_div", "Hello #{username}");
         fired {
             set ent:username username;
         }
     }
     rule replace_with_name {
         select when web pageview ".*"
-            or web submit "#my_form"
+//            or web submit "#my_form"
         pre {
-         //   username = current ent:username;
-            username = event:attr("first")+" "+event:attr("last");
+            username = current ent:username;
         }
         replace_inner("#my_div", "Hello #{username}");
-        fired{
-            set ent:username username;
-        }
     }
 }
