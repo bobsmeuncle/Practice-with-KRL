@@ -57,7 +57,8 @@ ruleset a1299x176 {
         select when web pageview ".*"
             or web submit "#my_form"
         pre {
-            username = current ent:username;
+         //   username = current ent:username;
+            username = event:attr("first")+" "+event:attr("last");
         }
         replace_inner("#my_div", "Hello #{username}");
     }
