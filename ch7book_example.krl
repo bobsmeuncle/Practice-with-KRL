@@ -4,9 +4,6 @@ ruleset ch7example {
         author "adam "
         logging off
     }
-    dispatch {
-        // domain "exampley.com"
-    }
     rule clear_name{
         select when pageview re#\?reset#
         pre{}

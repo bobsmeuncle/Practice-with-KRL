@@ -5,9 +5,6 @@ ruleset a1299x176 {
         author "adam "
         logging off
     }
-    dispatch {
-        // domain "exampley.com"
-    }
     rule first_rule {
         select when pageview ".*" setting ()
         

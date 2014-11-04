@@ -4,9 +4,6 @@ ruleset a1299x176 {
         author "adam "
         logging off
     }
-    dispatch {
-        // domain "exampley.com"
-    }
     rule show_form
      {
         select when pageview ".*" setting ()
