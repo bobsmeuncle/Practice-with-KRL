@@ -42,9 +42,9 @@ ruleset a1299x176 {
             append("#my_div", a_form);
             watch("#my_form", "submit");
         }
-        fired{
-            last;
-        }
+       // fired{
+        //    last;
+       // }
     }
     //respond_submit is dead code now
     rule respond_submit {
