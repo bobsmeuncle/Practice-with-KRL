@@ -61,5 +61,8 @@ ruleset a1299x176 {
             username = event:attr("first")+" "+event:attr("last");
         }
         replace_inner("#my_div", "Hello #{username}");
+        fired{
+            set ent:username username;
+        }
     }
 }
