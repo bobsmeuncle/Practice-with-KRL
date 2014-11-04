@@ -27,8 +27,8 @@ ruleset a1299x176 {
         pre{
             a_form = <<
             <form id="my_form" onsubmit="return false">
-            First name: <input type="text" name="first"/><br>
-            Last name: <input type="text" name="last"/><br>
+            First name: <input type="text" name="first"/> 
+            <br> Last name: <input type="text" name="last"/> <br>
             <input type="submit" vallue="submit"/>
             </form>
             >>;
