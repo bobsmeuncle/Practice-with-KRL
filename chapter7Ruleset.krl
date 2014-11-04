@@ -13,7 +13,7 @@ ruleset a1299x176 {
 
         pre{}
         emit << 
-    		console.log('injected javascript');
+    		console.log('hello adam, injected javascript');
 		>>;
         {// Display notification that will not fade.
           notify("Hello World", "I think!") with sticky = true;
