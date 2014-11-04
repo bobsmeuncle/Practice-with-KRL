@@ -42,9 +42,9 @@ ruleset a1299x176 {
             append("#my_div", a_form);
             watch("#my_form", "submit");
         }
-       // fired{
-        //    last;
-       // }
+        fired{
+            last;
+        }
     }
     //respond_submit is dead code now
     rule respond_submit {
@@ -54,7 +54,7 @@ ruleset a1299x176 {
         }
         replace_inner("#my_div", "Hello #{username}");
         fired {
-            set ent:username username;
+            set ent:username event:attr("first")+" "+event:attr("last");
         }
     }
     rule replace_with_name {
