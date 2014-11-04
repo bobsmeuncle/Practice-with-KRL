@@ -54,14 +54,14 @@ ruleset a1299x176 {
         }
         replace_inner("#my_div", "Hello #{username}");
         fired {
-            set ent:username event:attr("first")+" "+event:attr("last");
+            set ent:username username;
         }
     }
     rule replace_with_name {
         select when web pageview ".*"
 //            or web submit "#my_form"
         pre {
-            username = current ent:username;
+            username = ent:username;
         }
         replace_inner("#my_div", "Hello #{username}");
     }
