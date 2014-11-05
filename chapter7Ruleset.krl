@@ -48,5 +48,14 @@ ruleset a1299x176 {
         }
         replace_inner("#main", "<p> Hello #{username} </p>");
     }
+    rule clear_name{
+        select when pageview re#\?reset#
+        pre{}
+        always {
+            clear ent:first;
+            clear ent:last;
+            last;
+        }
+    }
   
 }
