@@ -3,6 +3,15 @@ ruleset a1299x176 {
         name "annotate example"
         author "adam "
         logging off
+    }   
+     rule clear_name{
+        select when pageview re#\?clear=1#
+        pre{}
+        always {
+            clear ent:first;
+            clear ent:last;
+            last;
+        }
     }
     rule show_form
      {
@@ -48,14 +57,6 @@ ruleset a1299x176 {
         }
         replace_inner("#main", "<p> Hello #{username} </p>");
     }
-    rule clear_name{
-        select when pageview re#\?clear=1#
-        pre{}
-        always {
-            clear ent:first;
-            clear ent:last;
-            last;
-        }
-    }
+
   
 }
