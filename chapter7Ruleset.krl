@@ -46,7 +46,7 @@ ruleset a1299x176 {
         pre {
             username = ent:first +" "+ ent:last;
         }
-        replace_inner("#my_div", "Hello #{username}");
+        replace_inner("#main", "<p> Hello #{username} </p>");
     }
   
 }
