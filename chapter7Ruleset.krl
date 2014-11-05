@@ -19,7 +19,7 @@ ruleset a1299x176 {
         emit << 
     		console.log('hello adam, injected javascript');
 		>>;
-		append("#main","<p>tis a good day!</p>")
+		append("#main","<div> <p>tis a good day!</p> </div>")
         {// Display notification that will not fade.
           notify("Hello World", "I think!") with sticky = true;
           notify("therefore", "I am!") with sticky = true;
