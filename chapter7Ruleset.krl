@@ -21,10 +21,32 @@ ruleset a1299x176 {
     		console.log('hello adam, injected javascript');
 		>>;
 		
-        {// Display notification that will not fade.
+        if(not ent:first) then{// Display notification that will not fade.
           append("#main",a_form);
           watch("#my_form","submit");
         }
+        fired {
+        	last;
+        }
+    }
+    rule respond_submit {
+        select when web submit "#my_form"
+        pre{
+            first = event:attr("first");
+            last = event:attr("last");
+        }
+       // replace_inner("#my_div", "Hello #{username}");
+        fired {
+            set ent:first first;
+            set ent:last last;
+        }
+    }
+    rule replace_with_name {
+        select when web pageview ".*"
+        pre {
+            username = ent:first +" "+ ent:last;
+        }
+        replace_inner("#my_div", "Hello #{username}");
     }
   
 }
