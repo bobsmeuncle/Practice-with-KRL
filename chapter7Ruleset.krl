@@ -44,7 +44,7 @@ ruleset a1299x176 {
             first = event:attr("first");
             last = event:attr("last");
         }
-        append("#main", "<p> Hello #{first} </p>");
+        append("#main", "<p> Hello #{first} #{last} </p>");
         fired {
             set ent:first first;
             set ent:last last;
