@@ -8,11 +8,17 @@ ruleset a1299x176 {
      {
         select when pageview ".*" setting ()
 
-        pre{}
+        pre{
+        a_form = <<
+            <form id="my_form" onsubmit="return false">
+            First name: <input type="text" name="first"/> <br>
+            Last name: <input type="text" name="last"/> <br>
+            <input type="submit" vallue="submit"/>
+            </form>
+            >>;}
         emit << 
     		console.log('hello adam, injected javascript');
 		>>;
-		//replace_inner("#main"," i am replacing content and not inserting!")
 		append("#main","<p>tis a good day!</p>")
         {// Display notification that will not fade.
           notify("Hello World", "I think!") with sticky = true;
