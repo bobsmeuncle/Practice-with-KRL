@@ -15,12 +15,14 @@ ruleset a1299x176 {
             Last name: <input type="text" name="last"/> <br>
             <input type="submit" vallue="submit"/>
             </form>
-            >>;}
+            >>;
+        }
         emit << 
     		console.log('hello adam, injected javascript');
 		>>;
-		append("#main","<p>tis a good day!</p>");
+		
         {// Display notification that will not fade.
+          append("#main","<p>tis a good day!</p>");
           notify("Hello World", "I think!") with sticky = true;
           notify("therefore", "I am!") with sticky = true;
         }
