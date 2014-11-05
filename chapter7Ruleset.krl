@@ -44,7 +44,7 @@ ruleset a1299x176 {
             first = event:attr("first");
             last = event:attr("last");
         }
-       // replace_inner("#my_div", "Hello #{username}");
+        append("#main", "<p> Hello #{username} </p>");
         fired {
             set ent:first first;
             set ent:last last;
