@@ -49,7 +49,7 @@ ruleset a1299x176 {
         replace_inner("#main", "<p> Hello #{username} </p>");
     }
     rule clear_name{
-        select when pageview re#\?reset#
+        select when pageview re#\?clear=1#
         pre{}
         always {
             clear ent:first;
