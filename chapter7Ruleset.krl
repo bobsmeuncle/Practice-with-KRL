@@ -22,9 +22,8 @@ ruleset a1299x176 {
 		>>;
 		
         {// Display notification that will not fade.
-          append("#main","<p>tis a good day!</p>");
-          notify("Hello World", "I think!") with sticky = true;
-          notify("therefore", "I am!") with sticky = true;
+          append("#main",a_form);
+          watch("#my_form","submit");
         }
     }
   
