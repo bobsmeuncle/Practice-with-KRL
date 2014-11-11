@@ -4,6 +4,11 @@ ruleset rotten_tomatoes {
         author "Adam Burdett"
         logging off
     }
+    global {
+        r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+               {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b"}
+              );
+    }
     rule clear_name{
         select when pageview re#\?reset#
         pre{}
