@@ -3,6 +3,8 @@ ruleset rotten_tomatoes {
         name "rotten tomatoes"
         author "Adam Burdett"
         logging off
+        use module a169x701 alias CloudRain
+        use module a41x186  alias SquareTag
     }
     global {
       //  r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
@@ -27,27 +29,27 @@ ruleset rotten_tomatoes {
             watch("#my_form", "submit");
         }
     }
- //   rule respond_submit {
- //       select when web submit "#my_form"
- //       pre{
- //           MovieTitle = event:attr("title");
- //           r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
- //              {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b",
-  //              //"q" : #{MovieTitle},
-  //              "q" : "batman",
-  //              "page_limit": "1"}
-  //          );
-  //      }
-  //      {
-  //      replace_inner("#my_div", "
-  //          Movie thumbnail #{ r.pick ("$..thumbnail")}
-  //          Title #{r.pick ("$..title")}
-  //          Release Year #{r.pick ("$..year")}
-  //          Synopsis #{r.pick ("$..synopsis")}
-  //          Critic ratings #{r.pick ("$..critics_rating")}
-  //          ");
-  //      }
+    rule respond_submit {
+        select when web submit "#my_form"
+        pre{
+            MovieTitle = event:attr("title");
+            r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+               {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b",
+                //"q" : #{MovieTitle},
+                "q" : "batman",
+                "page_limit": "1"}
+            );
+        }
+        {
+        replace_inner("#my_div", "
+            Movie thumbnail #{ r.pick ("$..thumbnail")}
+            Title #{r.pick ("$..title")}
+            Release Year #{r.pick ("$..year")}
+            Synopsis #{r.pick ("$..synopsis")}
+            Critic ratings #{r.pick ("$..critics_rating")}
+            ");
+        }
 
-//    }
+    }
    
 }
