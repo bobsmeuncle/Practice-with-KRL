@@ -34,7 +34,7 @@ ruleset rotten_tomatoes {
             watch("#my_form", "submit");
         }
     }
-    rule respond_submit {
+ //   rule respond_submit {
         select when web submit "#my_form"
         pre{
             MovieTitle = event:attr("title");
@@ -47,14 +47,14 @@ ruleset rotten_tomatoes {
         }
         {
         replace_inner("#my_div", "
-            Movie thumbnail #{ r.pick("$..thumbnail")}
-            Title #{r.pick("$..title")}
-            Release Year #{r.pick("$..year")}
-            Synopsis #{r.pick("$..synopsis")}
-            Critic ratings #{r.pick("$..critics_rating")}
+            Movie thumbnail #{ r.pick ("$..thumbnail")}
+            Title #{r.pick ("$..title")}
+            Release Year #{r.pick ("$..year")}
+            Synopsis #{r.pick ("$..synopsis")}
+            Critic ratings #{r.pick ("$..critics_rating")}
             ");
         }
 
-    }
+//    }
    
 }
