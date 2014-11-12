@@ -42,11 +42,11 @@ ruleset rotten_tomatoes {
         }
         {
         replace_inner("#main", "
-            Movie thumbnail #{ r.pick ('$..thumbnail')}
-            Title #{r.pick ('$..title')}
-            Release Year #{r.pick ('$..year')}
-            Synopsis #{r.pick ('$..synopsis')}
-            Critic ratings #{r.pick ('$..critics_rating')}
+            Movie thumbnail #{ r.pick ('$..thumbnail').decode()}
+            Title #{r.pick ('$..title').decode()}
+            Release Year #{r.pick ('$..year').decode()}
+            Synopsis #{r.pick ('$..synopsis').decode()}
+            Critic ratings #{r.pick ('$..critics_rating').decode()}
             ");
         }
 
