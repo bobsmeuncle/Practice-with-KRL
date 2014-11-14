@@ -48,7 +48,7 @@ ruleset rotten_tomatoes {
             output5 = "Critic ratings: " + movieResults.pick ("$..critics_rating").decode();
         }
         {
-        append("#main", "<p> #{output}</p>");
+        append("#main", "<p> #{ output + output2 + output3 + output4 + output5 }</p>");
         }
     }
    
