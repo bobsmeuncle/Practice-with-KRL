@@ -46,9 +46,12 @@ ruleset rotten_tomatoes {
             output3 = "Release Year: " + movieResults.pick ("$..year");
             output4 = "Synopsis: " + movieResults.pick ("$..synopsis");
             output5 = "Critic ratings: " + movieResults.pick ("$..critics_rating");
+
+            output6 = movieResults.pick("$.total") == 0 => "Error "+ MovieTitle | output + output2 + 
+                    output3 + output4 + output5;
         }
         {
-        append("#main", "<p> #{ output + output2 + output3 + output4 + output5 }</p>");
+        append("#main", "<p> #{ output6 }</p>");
         }
     }
    
