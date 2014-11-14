@@ -39,17 +39,15 @@ ruleset rotten_tomatoes {
                 "q" : "batman",
                 "page_limit": "1"}
             );
+            output = "Movie thumbnail: " +  r.pick ("$..thumbnail").decode();
+            output2 = "Title: " +r.pick ("$..title").decode();
+            output3 = "Release Year: " + r.pick ("$..year").decode();
+            output4 = "Synopsis: " + r.pick ("$..synopsis").decode();
+            output5 = "Critic ratings: " + r.pick ("$..critics_rating").decode();
         }
         {
-        replace_inner("#main", "
-            Movie thumbnail #{ r.pick ('$..thumbnail').decode()}
-            Title #{r.pick ('$..title').decode()}
-            Release Year #{r.pick ('$..year').decode()}
-            Synopsis #{r.pick ('$..synopsis').decode()}
-            Critic ratings #{r.pick ('$..critics_rating').decode()}
-            ");
+        replace_inner("#main", output);
         }
-
     }
    
 }
