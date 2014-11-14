@@ -41,11 +41,11 @@ ruleset rotten_tomatoes {
             MovieTitle = event:attr("title");
             movieResults = api(MovieTitle);
            
-            output = "Movie thumbnail: " +  r.pick ("$..thumbnail");
-            output2 = "Title: " +r.pick ("$..title").decode();
-            output3 = "Release Year: " + r.pick ("$..year").decode();
-            output4 = "Synopsis: " + r.pick ("$..synopsis").decode();
-            output5 = "Critic ratings: " + r.pick ("$..critics_rating").decode();
+            output = "Movie thumbnail: " +  movieResults.pick ("$..thumbnail");
+            output2 = "Title: " +movieResults.pick ("$..title").decode();
+            output3 = "Release Year: " + movieResults.pick ("$..year").decode();
+            output4 = "Synopsis: " + movieResults.pick ("$..synopsis").decode();
+            output5 = "Critic ratings: " + movieResults.pick ("$..critics_rating").decode();
         }
         {
         replace_inner("#main", output);
