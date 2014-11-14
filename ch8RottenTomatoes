@@ -7,9 +7,15 @@ ruleset rotten_tomatoes {
         use module a41x186  alias SquareTag
     }
     global {
-      //  r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
-      //         {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b"}
-      //        );
+        api = function(MovieTitle) {
+                val = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+               {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b",
+                //"q" : MovieTitle,
+                "q" : "batman",
+                "page_limit": "1"});
+                returnJson = val.pick("$.content").decode();
+                returnJson
+            }
     }
    
     rule send_form{
@@ -33,12 +39,8 @@ ruleset rotten_tomatoes {
         select when web submit "#my_form"
         pre{
             MovieTitle = event:attr("title");
-            r = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
-               {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b",
-                //"q" : #{MovieTitle},
-                "q" : "batman",
-                "page_limit": "1"}
-            );
+            movieResults = api(MovieTitle);
+           
             output = "Movie thumbnail: " +  r.pick ("$..thumbnail");
             output2 = "Title: " +r.pick ("$..title").decode();
             output3 = "Release Year: " + r.pick ("$..year").decode();
