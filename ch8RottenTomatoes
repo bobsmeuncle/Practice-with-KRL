@@ -10,8 +10,8 @@ ruleset rotten_tomatoes {
         api = function(MovieTitle) {
                 val = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
                {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b",
-                //"q" : MovieTitle,
-                "q" : "batman",
+                "q" : MovieTitle,
+                //"q" : "batman",
                 "page_limit": "1"});
                 returnJson = val.pick("$.content").decode();
                 returnJson
@@ -48,7 +48,7 @@ ruleset rotten_tomatoes {
             output5 = "Critic ratings: " + movieResults.pick ("$..critics_rating");
         }
         {
-        append("#main", "<p> #{ output +"\n"+ output2 + output3 + output4 + output5 }</p>");
+        append("#main", "<p> #{ output + output2 + output3 + output4 + output5 }</p>");
         }
     }
    
