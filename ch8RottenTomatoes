@@ -39,7 +39,7 @@ ruleset rotten_tomatoes {
                 "q" : "batman",
                 "page_limit": "1"}
             );
-            output = "Movie thumbnail: " +  r.pick ("$..thumbnail[0]").decode();
+            output = "Movie thumbnail: " +  r.pick ("$..thumbnail");
             output2 = "Title: " +r.pick ("$..title").decode();
             output3 = "Release Year: " + r.pick ("$..year").decode();
             output4 = "Synopsis: " + r.pick ("$..synopsis").decode();
