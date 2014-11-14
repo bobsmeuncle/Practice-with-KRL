@@ -42,10 +42,10 @@ ruleset rotten_tomatoes {
             movieResults = api(MovieTitle);
            
             output = "Movie thumbnail: " +  movieResults.pick ("$..thumbnail");
-            output2 = "Title: " +movieResults.pick ("$..title").decode();
-            output3 = "Release Year: " + movieResults.pick ("$..year").decode();
-            output4 = "Synopsis: " + movieResults.pick ("$..synopsis").decode();
-            output5 = "Critic ratings: " + movieResults.pick ("$..critics_rating").decode();
+            output2 = "Title: " +movieResults.pick ("$..title");
+            output3 = "Release Year: " + movieResults.pick ("$..year");
+            output4 = "Synopsis: " + movieResults.pick ("$..synopsis");
+            output5 = "Critic ratings: " + movieResults.pick ("$..critics_rating");
         }
         {
         append("#main", "<p> #{ output + output2 + output3 + output4 + output5 }</p>");
