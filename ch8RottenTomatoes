@@ -11,8 +11,8 @@ ruleset rotten_tomatoes {
                 val = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
                {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b",
                 //"q" : MovieTitle,
-                "q" : batman,
-                "page_limit": 1});
+                "q" : "batman",
+                "page_limit": "1"});
                 returnJson = val.pick("$.content").decode();
                 returnJson
             }
