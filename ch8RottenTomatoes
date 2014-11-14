@@ -11,8 +11,8 @@ ruleset rotten_tomatoes {
                 val = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
                {"apikey" : "mfuu3urxbr3xjxrrq8tkxw7b",
                 //"q" : MovieTitle,
-                "q" : "batman",
-                "page_limit": "1"});
+                "q" : batman,
+                "page_limit": 1});
                 returnJson = val.pick("$.content").decode();
                 returnJson
             }
@@ -41,7 +41,7 @@ ruleset rotten_tomatoes {
             MovieTitle = event:attr("title");
             movieResults = api(MovieTitle);
            
-            output = "Movie thumbnail: " +  movieResults.pick ("$..thumbnail").decode();
+            output = "Movie thumbnail: " +  movieResults.pick ("$..thumbnail");
             output2 = "Title: " +movieResults.pick ("$..title").decode();
             output3 = "Release Year: " + movieResults.pick ("$..year").decode();
             output4 = "Synopsis: " + movieResults.pick ("$..synopsis").decode();
