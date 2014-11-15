@@ -41,7 +41,7 @@ ruleset rotten_tomatoes {
             MovieTitle = event:attr("title");
             movieResults = api(MovieTitle);
            
-            output = "Movie thumbnail: " +  movieResults.pick ("$..thumbnail")+"<br>";
+            output = "Movie thumbnail: " +"<img src="+  movieResults.pick ("$..thumbnail")+">"+"<br>";
             output2 = "Title: " +movieResults.pick ("$..title")+"<br>";
             output3 = "Release Year: " + movieResults.pick ("$..year")+"<br>";
             output4 = "Synopsis: " + movieResults.pick ("$..synopsis")+"<br>";
