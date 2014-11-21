@@ -27,28 +27,13 @@ ruleset FourSquareCheckin {
 			venue = data.pick("$..venue");
 			city = data.pick("$..city");
 			shout = data.pick("$..shout");
-			date = data.pick("$..createdAt");
-			location = venue.pick("$..location");
-			lat = location.pick("$..lat");
-			long = location.pick("$..lng");
 		}
-		{
-			send_directive("A FS Checkin") with checkin = "Im Here";
-		}
-		fired{
+		always{
 			set ent:venue venue;
 			set ent:city city;
 			set ent:shout shout;
 			set ent:createdAt createdAt;
-			set ent:data event:attr("checkin").as("str");
-			set ent:lat lat;
-			set ent:lng long;
-			set ent:fired venue;
 
-			raise pds event new_location_data for b505289x4
-			with key = "fs_checkin"
-			//	and value = "Is It Working";
-			and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : createdAt, "lat" : lat , "long" : long};
 		}
 	}
 
@@ -59,14 +44,12 @@ ruleset FourSquareCheckin {
 			city = ent:city.as("str");
 			shout = ent:shout.as("str");
 			createdAt = ent:createdAt.as("str");
-			data = ent:working.as("str");
 			html = <<
 			<h1>Checkin Data:</h1>
 			<b>I Was At: </b> #{venue}<br/>
 			<b>In: </b> #{city}<br/>
 			<b>Yelling: </b> #{shout}<br/>
 			<b>On: </b> #{createdAt}<br/>
-			<b>Works: </b> #{data}<br/>
 			<b> End of Data. </b>
 			<br/>
 			>>;
