@@ -28,7 +28,10 @@ ruleset FourSquareCheckin {
 			city = data.pick("$..city");
 			shout = data.pick("$..shout");
 		}
-		always{
+		{
+			send_directive("A FS Checkin") with checkin = "Im Here";
+		}
+		fired{
 			set ent:venue venue;
 			set ent:city city;
 			set ent:shout shout;
