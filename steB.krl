@@ -18,8 +18,8 @@ ruleset B {
 			callback_evt = event:attr("callback_evt");
 			}{
 				notify("Catch_Remote_Event",
-					"Received from remote Ruleset!");
-				notify("Now Raise Callback","rid: #{callback_rid} name: #{callback_evt}");
+					"Received from remote Ruleset!") with sticky = true;
+				notify("Now Raise Callback","rid: #{callback_rid} name: #{callback_evt}") with sticky = true;
 				raise_event(event_callback)
 				with app_id = callback_rid;
 			}

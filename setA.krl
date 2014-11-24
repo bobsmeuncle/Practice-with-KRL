@@ -15,7 +15,7 @@ ruleset A {
 		select when pageview ".*"
 		{
 			notify("Kynetx Event Walkabout",
-				"Raise_Event_To_Remote_Ruleset");
+				"Raise_Event_To_Remote_Ruleset") with sticky = true;
 			raise_event("event_remote_ruleset")
 			with app_id = "b506607x8"
 			and parameters = {
@@ -26,6 +26,6 @@ ruleset A {
 	}
 	rule Catch_Event_Callback{
 		select when web Catch_Event_Callback
-		notify("Catch_Event_Callback","Received Callback Event!")
+		notify("Catch_Event_Callback","Received Callback Event!") with sticky = true
 	}
 }
