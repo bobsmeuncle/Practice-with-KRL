@@ -26,6 +26,6 @@ ruleset A {
 	}
 	rule Catch_Event_Callback{
 		select when web Catch_Event_Callback
-		notify("Catch_Event_Callback","Received Callback Event!") with sticky = true
+		notify("Catch_Event_Callback","Received Callback Event!") with sticky = true;
 	}
 }
