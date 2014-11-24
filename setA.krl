@@ -17,7 +17,7 @@ ruleset A {
 			notify("Kynetx Event Walkabout",
 				"Raise_Event_To_Remote_Ruleset") with sticky = true;
 			raise_event("event_remote_ruleset")
-			with app_id = "b506607x8"
+			with app_id = b506607x8
 			and parameters = {
 				"callback_rid" : "b506607x7" ,
 				"callback_evt" : "event_callback"
