@@ -15,16 +15,17 @@ ruleset rasberryPie {
 		use module a41x186  alias SquareTag
 	}
 
-	global {
-
-	}
-
 	rule process_button_press{
 		select when pie button
+		send_directive("blink your light") with blinks = "5";
 
-//send_directive("blink your light") with blinks = "5";
-		send_directive("A FS Checkin") with checkin = "Im Here";
 
 	}
+	rule displayMEWOrking{
+		select when pageview ".*" {
+			notify("Working?" , ent:city.as("str"));
+			notify("fired?" , ent:fired);
+		}
 
+	}
 }
