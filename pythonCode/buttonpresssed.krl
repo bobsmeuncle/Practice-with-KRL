@@ -21,13 +21,7 @@ ruleset rasberryPie {
 
 	rule process_button_press{
 		select when pie buttonPressed
-
-		pre{
-			
-		}
-		{
-			send_directive("blink your light") with blinks = 5;
-		}
+				send_directive("blink your light") with blinks = 5;
 
 	}
 
