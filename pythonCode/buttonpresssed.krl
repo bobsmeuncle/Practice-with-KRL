@@ -26,7 +26,7 @@ ruleset rasberryPie {
 			
 		}
 		{
-			send_directive("blink your light") with blinks = math:random(4);
+			send_directive("blink your light") with blinks = 5;
 		}
 
 	}
