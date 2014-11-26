@@ -18,7 +18,12 @@ ruleset FourSquareCheckin {
 	global {
 
 	}
+	rule process_button_press{
+		select when foursquare button
+		send_directive("blink your light") with blinks = "5";
 
+
+	}
 	rule process_fs_checkin{
 		select when foursquare checkin
 
