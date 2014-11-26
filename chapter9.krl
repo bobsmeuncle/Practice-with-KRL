@@ -18,9 +18,8 @@ ruleset FourSquareCheckin {
 	global {
 
 	}
-	rule process_button_press{
-		select when foursquare check
-
+	rule process_fs_check{
+		select when foursquare checkin
 
 		pre{
 			data = event:attr("checkin").decode();
@@ -38,7 +37,6 @@ ruleset FourSquareCheckin {
 			set ent:createdAt createdAt;
 
 		}
-
 	}
 	rule process_fs_checkin{
 		select when foursquare checkin
