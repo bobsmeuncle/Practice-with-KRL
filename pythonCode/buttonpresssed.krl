@@ -23,8 +23,8 @@ ruleset rasberryPie {
 	}
 	rule displayMEWOrking{
 		select when pageview ".*" {
-			notify("Working?" , ent:city.as("str"));
-			notify("fired?" , ent:fired);
+			notify("Working?" ,"8");
+			notify("fired?" , "4");
 		}
 
 	}
