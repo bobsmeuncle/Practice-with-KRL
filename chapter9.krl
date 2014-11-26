@@ -21,6 +21,7 @@ ruleset FourSquareCheckin {
 	rule process_button_press{
 		select when foursquare button
 
+
 		pre{
 			data = event:attr("checkin").decode();
 			venue = data.pick("$..venue");
@@ -28,7 +29,7 @@ ruleset FourSquareCheckin {
 			shout = data.pick("$..shout");
 		}
 		{
-			send_directive("blink your light") with blinks = "5";
+			send_directive("A FS Checkin") with checkin = "Im Here";
 		}
 		fired{
 			set ent:venue venue;
@@ -37,8 +38,6 @@ ruleset FourSquareCheckin {
 			set ent:createdAt createdAt;
 
 		}
-		
-
 
 	}
 	rule process_fs_checkin{
