@@ -1,6 +1,6 @@
 //Name:Foursquare Checkins
 //ID:FC64E88C-6F51-11E4-8766-859FE71C24E1
-///http://cs.kobj.net/sky/event/FC64E88C-6F51-11E4-8766-859FE71C24E1/123/pie/buttonPressed
+///http://cs.kobj.net/sky/event/FC64E88C-6F51-11E4-8766-859FE71C24E1/123/pie/button
 
 ruleset rasberryPie {
 	meta {  
@@ -20,7 +20,7 @@ ruleset rasberryPie {
 	}
 
 	rule process_button_press{
-		select when pie buttonPressed
+		select when pie button
 
 //send_directive("blink your light") with blinks = "5";
 		send_directive("A FS Checkin") with checkin = "Im Here";
