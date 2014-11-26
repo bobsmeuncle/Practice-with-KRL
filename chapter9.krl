@@ -19,7 +19,7 @@ ruleset FourSquareCheckin {
 
 	}
 	rule process_button_press{
-		select when foursquare button
+		select when foursquare check
 
 
 		pre{
