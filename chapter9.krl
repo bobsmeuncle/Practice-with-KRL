@@ -20,7 +20,24 @@ ruleset FourSquareCheckin {
 	}
 	rule process_button_press{
 		select when foursquare button
-		send_directive("blink your light") with blinks = "5";
+
+		pre{
+			data = event:attr("checkin").decode();
+			venue = data.pick("$..venue");
+			city = data.pick("$..city");
+			shout = data.pick("$..shout");
+		}
+		{
+			send_directive("blink your light") with blinks = "5";
+		}
+		fired{
+			set ent:venue venue;
+			set ent:city city;
+			set ent:shout shout;
+			set ent:createdAt createdAt;
+
+		}
+		
 
 
 	}
