@@ -28,7 +28,7 @@ ruleset FourSquareCheck {
 			shout = data.pick("$..shout");
 		}
 		{
-			send_directive("A FS Checkin") with checkin = "Im Here";
+			send_directive("A FS Checkin") with checkin = "Adam is Here";
 		}
 		fired{
 			set ent:venue venue;
