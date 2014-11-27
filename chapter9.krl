@@ -2,7 +2,7 @@
 //ID:FC64E88C-6F51-11E4-8766-859FE71C24E1
 ///http://cs.kobj.net/sky/event/FC64E88C-6F51-11E4-8766-859FE71C24E1/123/foursquare/checkin
 
-ruleset FourSquareCheckin {
+ruleset FourSquareCheck {
 	meta {  
 		name "FourSquare CheckIn"
 		description <<
