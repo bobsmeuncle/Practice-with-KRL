@@ -4,7 +4,7 @@ ruleset StockChecker {
 		description <<
 		Twilio Stock Checker Exercise.
 		>>
-		author "adam burdett"
+		author ""
 		logging on
 	}
 
