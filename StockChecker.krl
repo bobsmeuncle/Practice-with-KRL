@@ -24,6 +24,7 @@ ruleset StockChecker {
 		select when pageview ".*" {
 			notify("Working?" ,stockmessage()) with sticky = true;
 		}
+	}
 	rule twilioCallstart {
 		select when twilio callstart 
 		pre {
