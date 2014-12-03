@@ -5,7 +5,7 @@ ruleset StockChecker {
 		Twilio Stock Checker Exercise.
 		>>
 		author "adam burdett"
-//		logging on
+		logging on
 	}
 
 	global {
