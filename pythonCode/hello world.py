@@ -1,9 +1,9 @@
 
 import requests
 
-r = requests.post('http://cs.kobj.net/sky/event/FC64E88C-6F51-11E4-8766-859FE71C24E1/123/foursquare/checkin')
+#r = requests.post('http://cs.kobj.net/sky/event/D8193B5E-4B2F-11E4-8C99-9CD33A8D136F/123/foursquare/check')
 
-#r = requests.post('http://cs.kobj.net/sky/event/FC64E88C-6F51-11E4-8766-859FE71C24E1/123/pie/button')
+r = requests.post('http://cs.kobj.net/sky/event/D8193B5E-4B2F-11E4-8C99-9CD33A8D136F/123/pie/button')
 
 print r.text
 print r.status_code

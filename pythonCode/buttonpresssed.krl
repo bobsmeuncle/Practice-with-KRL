@@ -17,14 +17,16 @@ ruleset rasberryPie {
 
 	rule process_button_press{
 		select when pie button
-		send_directive("blink your light") with blinks = "5";
+		{
+			send_directive("blink your light") with blinks = "5";
+		}
 
 
 	}
 	rule displayMEWOrking{
 		select when pageview ".*" {
 			notify("Working?" ,"8");
-			notify("fired?" , "4");
+			notify("fired?" , "5");
 		}
 
 	}
