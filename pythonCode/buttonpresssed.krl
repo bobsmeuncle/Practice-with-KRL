@@ -4,10 +4,13 @@ ruleset rasberryPie {
 	meta {  
 		name "FourSquare CheckIn"
 		description <<
-		button on pie pressed.
+		Checkin In With Foursquare
 		>>
 		author "adam burdett"
-		logging on
+		logging off
+
+		use module a169x701 alias CloudRain
+		use module a41x186  alias SquareTag
 	}
 
 	rule process_button_press{
