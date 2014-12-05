@@ -9,10 +9,7 @@ ruleset rasberryPie {
 		button on pie pressed.
 		>>
 		author "adam burdett"
-		logging off
-
-		use module a169x701 alias CloudRain
-		use module a41x186  alias SquareTag
+		logging on
 	}
 
 	rule process_button_press{
@@ -21,26 +18,7 @@ ruleset rasberryPie {
 			send_directive("blink your light") with blinks = "5";
 		}
 	}
-	rule process_fs_check{
-		select when foursquare checkin
 
-		pre{
-			data = event:attr("checkin").decode();
-			venue = data.pick("$..venue");
-			city = data.pick("$..city");
-			shout = data.pick("$..shout");
-		}
-		{
-			send_directive("A pie Checkin") with checkin = "Adam is Here";
-		}
-		fired{
-			set ent:venue venue;
-			set ent:city city;
-			set ent:shout shout;
-			set ent:createdAt createdAt;
-
-		}
-	}
 	rule displayMEWOrking{
 		select when pageview ".*" {
 			notify("Working?" ,"8");
