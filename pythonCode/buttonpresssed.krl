@@ -13,7 +13,7 @@ ruleset rasberryPie {
 		use module a41x186  alias SquareTag
 	}
 
-	rule process_button_press{
+	rule button_press{
 		select when foursquare check
 		//select when raspberrypie button
 		pre{
@@ -29,7 +29,7 @@ ruleset rasberryPie {
 
 	rule displayMEWOrking{
 		select when pageview ".*" {
-			notify("Working?" ,"8");
+			notify("Working?" ,"9");
 			notify("fired?" ,ent:adam);
 		}
 
