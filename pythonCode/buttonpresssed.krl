@@ -2,7 +2,7 @@
 
 ruleset rasberryPie {
 	meta {  
-		name "button pressed on pie"
+		name "FourSquare CheckIn"
 		description <<
 		button on pie pressed.
 		>>
