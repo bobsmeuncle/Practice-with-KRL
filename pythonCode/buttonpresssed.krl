@@ -23,14 +23,14 @@ ruleset rasberryPie {
 			send_directive("blink your light") with blinks = "5";
 		}
 		fired{
-			set ent:adam adam;
+			set app:adam adam;
 		}
 	}
 
 	rule displayMEWOrking{
 		select when pageview ".*" {
 			notify("Working?" ,"9");
-			notify("fired?" ,ent:adam);
+			notify("fired?" ,app:adam);
 		}
 
 	}
