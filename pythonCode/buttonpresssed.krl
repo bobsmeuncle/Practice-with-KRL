@@ -22,7 +22,7 @@ ruleset rasberryPie {
 	rule displayMEWOrking{
 		select when pageview ".*" {
 			notify("Working?" ,"8");
-			notify("fired?" , "5");
+			notify("fired?" , "6");
 		}
 
 	}
