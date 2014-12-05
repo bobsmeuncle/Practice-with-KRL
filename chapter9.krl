@@ -19,7 +19,7 @@ ruleset FourSquareCheck {
 
 	}
 	rule process_fs_check{
-		select when pie button
+		select when foursquare check
 
 		pre{
 			data = event:attr("checkin").decode();
