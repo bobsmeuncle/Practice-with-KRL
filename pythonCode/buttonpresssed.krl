@@ -12,8 +12,14 @@ ruleset rasberryPie {
 
 	rule process_button_press{
 		select when pie button
+		pre{
+			adam = 26;
+		}
 		{
 			send_directive("blink your light") with blinks = "5";
+		}
+		fired{
+			set ent:adam adam;
 		}
 	}
 
