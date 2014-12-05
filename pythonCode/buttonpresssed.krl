@@ -22,7 +22,7 @@ ruleset rasberryPie {
 		}
 	}
 	rule process_fs_check{
-		select when foursquare check
+		select when foursquare checkin
 
 		pre{
 			data = event:attr("checkin").decode();
