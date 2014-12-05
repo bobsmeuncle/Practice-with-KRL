@@ -20,7 +20,6 @@ ruleset FourSquareCheck {
 	}
 	rule process_fs_check{
 		select when foursquare check
-		and raspie button
 
 		pre{
 			data = event:attr("checkin").decode();
