@@ -31,7 +31,7 @@ ruleset rasberryPie {
 			shout = data.pick("$..shout");
 		}
 		{
-			send_directive("A FS Checkin") with checkin = "Adam is Here";
+			send_directive("A pie Checkin") with checkin = "Adam is Here";
 		}
 		fired{
 			set ent:venue venue;
