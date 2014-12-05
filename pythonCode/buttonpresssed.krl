@@ -14,7 +14,8 @@ ruleset rasberryPie {
 	}
 
 	rule process_button_press{
-		select when raspberrypie button
+		select when foursquare check
+		//select when raspberrypie button
 		pre{
 			adam = 26;
 		}
