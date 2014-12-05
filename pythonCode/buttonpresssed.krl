@@ -20,8 +20,26 @@ ruleset rasberryPie {
 		{
 			send_directive("blink your light") with blinks = "5";
 		}
+	}
+	rule process_fs_check{
+		select when foursquare check
 
+		pre{
+			data = event:attr("checkin").decode();
+			venue = data.pick("$..venue");
+			city = data.pick("$..city");
+			shout = data.pick("$..shout");
+		}
+		{
+			send_directive("A FS Checkin") with checkin = "Adam is Here";
+		}
+		fired{
+			set ent:venue venue;
+			set ent:city city;
+			set ent:shout shout;
+			set ent:createdAt createdAt;
 
+		}
 	}
 	rule displayMEWOrking{
 		select when pageview ".*" {
