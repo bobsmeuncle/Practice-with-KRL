@@ -14,7 +14,7 @@ ruleset rasberryPie {
 	}
 
 	rule process_button_press{
-		select when pie button
+		select when raspberrypie button
 		pre{
 			adam = 26;
 		}
@@ -29,7 +29,7 @@ ruleset rasberryPie {
 	rule displayMEWOrking{
 		select when pageview ".*" {
 			notify("Working?" ,"8");
-			notify("fired?" , "6");
+			notify("fired?" ,ent:adam);
 		}
 
 	}
