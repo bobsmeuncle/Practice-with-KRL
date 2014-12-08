@@ -17,7 +17,7 @@ ruleset rasberryPie {
 		select when raspberrypie button
 
 		{
-			send_directive("blink your light") with blinks = "5";
+			send_directive("blink your light") with blinks = math:random(4);
 		}
 
 	}
