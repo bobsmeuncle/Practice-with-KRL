@@ -2,9 +2,9 @@
 
 ruleset rasberryPie {
 	meta {  
-		name "FourSquare CheckIn"
+		name "raspberrypie"
 		description <<
-		Checkin In With Foursquare
+		raspberrypie rule sets.
 		>>
 		author "adam burdett"
 		logging off
@@ -14,23 +14,18 @@ ruleset rasberryPie {
 	}
 
 	rule button_press{
-		select when foursquare check
-		//select when raspberrypie button
-		pre{
-			adam = 26;
-		}
+		select when raspberrypie button
+
 		{
 			send_directive("blink your light") with blinks = "5";
 		}
-		fired{
-			set app:adam adam;
-		}
+
 	}
 
 	rule displayMEWOrking{
 		select when pageview ".*" {
-			notify("Working?" ,"9");
-			notify("fired?" ,app:adam);
+			notify("version" ,"9");
+
 		}
 
 	}
