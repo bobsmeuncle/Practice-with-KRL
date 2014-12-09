@@ -14,12 +14,11 @@ ruleset StockChecker {
               {"s" : "%40%5EDJI,fb",
                "f" : "l1",
                "e" : ".csv"});
-   				val
-    //           fbstock = val.pick("$.content").decode();
-   //            return = fbstock < 38 => 
-   //            	"Fail! Facebook's latest stock price of #{fbstock} dollars is still below it's IPO price!" |
-    //           	"Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!";
-   //            return
+               fbstock = val.pick("$.content").decode();
+               return = fbstock < 38 => 
+               	"Fail! Facebook's latest stock price of #{fbstock} dollars is still below it's IPO price!" |
+               	"Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!";
+               return
             }
 	}
 	rule displayMEWOrking{
