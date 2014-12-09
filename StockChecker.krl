@@ -10,7 +10,7 @@ ruleset StockChecker {
 
 	global {
 		stockmessage = function() {
-               val = http:get("http://download.finance.yahoo.com/d/quotes.csv?s=%40%5EDJI,fb&f=l1&e=.csv",
+               val = http:get("http://download.finance.yahoo.com/d/quotes.csv",
               {"s" : "%40%5EDJI,fb",
                "f" : "l1",
                "e" : ".csv"});
