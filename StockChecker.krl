@@ -20,7 +20,7 @@ ruleset StockChecker {
 //               	"Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!";
 //               return
 				fbstock
-            };
+            }
 	}
 	rule displayMEWOrking{
 		select when pageview ".*" {
