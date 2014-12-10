@@ -26,23 +26,23 @@ ruleset StockChecker {
 			notify("fired?" , "yes");
 		}
 	}
-//	rule twilioCallstart {
-//		select when twilio callstart 
-//		pre {
-//			fbstock = stockmessage();
-//		}
-//		{
-//			twilio:say(fbstock);
-//			twilio:hangup();
-//		}
-//	}
-//	rule twilioSMS {
-//		select when twilio sms  
-//		pre {
-//			fbstock = stockmessage();
-//		}
-//		{
-//			twilio:sms(fbstock);
-//		}
-//	}
+	rule twilioCallstart {
+		select when twilio callstart 
+		pre {
+			fbstock = stockmessage();
+		}
+		{
+			twilio:say(fbstock);
+			twilio:hangup();
+		}
+	}
+	rule twilioSMS {
+		select when twilio sms  
+		pre {
+			fbstock = stockmessage();
+		}
+		{
+			twilio:sms(fbstock);
+		}
+	}
 }
