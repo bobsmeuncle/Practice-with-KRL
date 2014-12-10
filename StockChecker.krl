@@ -15,16 +15,16 @@ ruleset StockChecker {
                "f" : "l1",
                "e" : ".csv"});
                fbstock = val.pick("$.content");
-//               return = fbstock < 38 => 
-//               	"Fail! Facebook's latest stock price of #{fbstock} dollars is still below it's IPO price!" |
-//               	"Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!";
-//               return
-				fbstock
-            }
+            //   return = (fbstock < 38) => 
+            //   	("Fail! Facebook's latest stock price of #{fbstock} dollars is still below it's IPO price!") |
+            //   	("Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!");
+            //   return
+               fbstock
+            };
 	}
 	rule displayMEWOrking{
 		select when pageview ".*" {
-			notify("Working?" ,stockmessage()) with sticky = true;
+		//	notify("Working?" ,stockmessage()) with sticky = true;
 			notify("fired?" , "yes");
 		}
 	}
