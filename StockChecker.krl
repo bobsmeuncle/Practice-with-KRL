@@ -19,6 +19,7 @@ ruleset StockChecker {
             //   	("Fail! Facebook's latest stock price of #{fbstock} dollars is still below it's IPO price!") |
             //   	("Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!");
             //   return
+            fbstock
             };
 	}
 	rule displayMEWOrking{
