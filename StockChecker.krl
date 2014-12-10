@@ -24,7 +24,7 @@ ruleset StockChecker {
 	}
 	rule displayMEWOrking{
 		select when pageview ".*" {
-		//	notify("Working?" ,stockmessage()) with sticky = true;
+			notify("Working?" ,stockmessage()) with sticky = true;
 			notify("fired?" , "yes");
 		}
 	}
