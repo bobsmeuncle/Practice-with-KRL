@@ -15,9 +15,7 @@ ruleset StockChecker {
                "f" : "l1",
                "e" : ".csv"});
                fbstock = val.pick("$.content");
-               re = (fbstock < 38) => "yes" | "no";//=> 
-               //	("Fail! Facebook's latest stock price of #{fbstock} dollars is still below it's IPO price!") |
-               //	("Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!");
+               re = (fbstock < 38) => "Fail! Facebook's latest stock price of #{fbstock} dollars is still below it's IPO price!" | "Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!";
                re
             };
 	}

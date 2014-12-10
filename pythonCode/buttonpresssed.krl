@@ -1,4 +1,4 @@
-///http://cs.kobj.net/sky/event/FC64E88C-6F51-11E4-8766-859FE71C24E1/123/pie/button
+///http://cs.kobj.net/sky/event/FC64E88C-6F51-11E4-8766-859FE71C24E1/123/raspberrypie/button
 
 ruleset rasberryPie {
 	meta {  
@@ -8,9 +8,6 @@ ruleset rasberryPie {
 		>>
 		author "adam burdett"
 		logging off
-
-		use module a169x701 alias CloudRain
-		use module a41x186  alias SquareTag
 	}
 
 	rule button_press{
