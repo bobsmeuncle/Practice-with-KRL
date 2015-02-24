@@ -24,7 +24,7 @@ ruleset echo2 {
 
 	rule displayMEWOrking{
 		select when pageview ".*" {
-			notify("version" ,".1");
+			notify("version" ,".2");
 
 		}
 
