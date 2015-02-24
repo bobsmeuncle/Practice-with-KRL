@@ -17,7 +17,7 @@ ruleset echo2 {
          	foo = event:attr("input");
       	}
 		{
-			send_directive("sing") with song = foo;
+			send_directive("sing") with singing = foo;
 		}
 
 	}
