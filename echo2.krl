@@ -12,7 +12,7 @@ ruleset echo2 {
 	}
 
 	rule message{
-		select when echo message
+		select when echo message where msg_type eq song
 		pre {
          	foo = event:attr("input");
       	}
