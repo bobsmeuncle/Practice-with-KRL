@@ -12,15 +12,25 @@ ruleset echo2 {
 	}
 
 	rule message{
-		select when echo message where event:attr("msg_type") == "song"
+		select when echo message where (event:attr("msg_type") eq song)
 		pre {
          	foo = event:attr("input");
       	}
 		{
 			send_directive("sing") with song = foo;
 		}
-
+		fired{
+			raise explicit event sung
+  				with song = foo;
+   		}
 	}
+	rule find_hymn{
+		select when explicit sung where event:attr("song").match(re#.*god.*#)
+		noop();
+		fired{
+			raise explicit event found_hymn;
+		}
+  	}
 
 	rule displayMEWOrking{
 		select when pageview ".*" {
