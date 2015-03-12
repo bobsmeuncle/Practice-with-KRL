@@ -12,11 +12,12 @@ ruleset echo2 {
 	}
 
 	rule message{
-		select when echo message and (event:attr("msg_type") eq "song")
+		select when echo message
 		pre {
          	foo = event:attr("input");
+         	msg_type = event:attr("msg_type");
       	}
-		{
+		if( msg_type eq "song" ) then {
 			send_directive("sing") with song = foo;
 		}
 		fired{
@@ -25,10 +26,14 @@ ruleset echo2 {
    		}
 	}
 	rule find_hymn{
-		select when explicit sung and event:attr("song").match(re#.*god.*#)
+		select when explicit sung
 		pre{
+			song = event:attr("song");
 		}
-		always{
+		if(song.match(re#.*god.*#)) then {
+			noop();
+		}
+		fired{
 			raise explicit event found_hymn;
 		}
   	}
