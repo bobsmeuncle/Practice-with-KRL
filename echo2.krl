@@ -26,6 +26,9 @@ ruleset echo2 {
 	}
 	rule find_hymn{
 		select when explicit sung where event:attr("song").match(re#.*god.*#)
+		pre{
+			foo = event:attr("song")
+		}
 		noop();
 		fired{
 			raise explicit event found_hymn;
