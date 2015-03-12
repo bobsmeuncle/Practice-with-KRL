@@ -15,7 +15,7 @@ ruleset echo2 {
 		select when echo message
 		pre {
          	foo = event:attr("input");
-         	msg_type = event:attr("msg_type");
+         	msg_type = event:attr("msg_type").klog("<< msg_type >> ");
       	}
 		if( msg_type eq "song" ) then {
 			send_directive("sing") with song = foo;
