@@ -30,7 +30,7 @@ ruleset echo2 {
 		pre{
 			song = event:attr("song");
 		}
-		if(song.match(re#.*god.*#)) then {
+		if(song.match(re#god#)) then {
 			noop();
 		}
 		fired{
