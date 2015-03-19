@@ -1,48 +1,47 @@
-ruleset StockChecker {
+ruleset sms_blog {
 	meta {
-		name "StockChecker"
+		name "sms_blog"
 		description <<
-		Twilio Stock Checker Exercise.
+		sms_blog Exercise, sms_blog ruleset.
 		>>
 		author "adam burdett"
 		logging on
 	}
 
 	global {
-		stockmessage = function() {
-               val = http:get("http://download.finance.yahoo.com/d/quotes.csv",
-              {"s" : "%40%5EDJI,fb",
-               "f" : "l1",
-               "e" : ".csv"});
-               fbstock = val.pick("$.content");
-               re = (fbstock < 38) => "Fail! Facebook's latest stock price of #{fbstock} dollars is still below it's IPO price!" |
-                "Awesome! Facebook's latest stock price of #{fbstock} dollars is above it's IPO price!";
-               re
-            };
+		
 	}
 	rule displayMEWOrking{
 		select when pageview ".*" {
-			notify("Working?" ,stockmessage()) with sticky = true;
 			notify("fired?" , "yes");
 		}
 	}
-	rule twilioCallstart {
-		select when twilio callstart 
-		pre {
-			fbstock = stockmessage();
+	rule init_blog {
+		select when pageview ".*"
+		pre{
+			a_div= <<
+			<div id="blogbody">
+				<ul id= "unorderlist">
+					
+				</ul>
+			</div>
+			>>;
 		}
 		{
-			twilio:say(fbstock);
-			twilio:hangup();
+			append("#DOM", a_div);
+		}
+		fired{
+			raise explicit event 'container_ready';
+			raise explicit event 'need_blog_data' for b506607x13;
 		}
 	}
-	rule twilioSMS {
-		select when twilio sms  
-		pre {
-			fbstock = stockmessage();
-		}
+	rule show_articles {
+		select when explicit container_ready 
+			and explicit blog_data_ready  
+		foreach event:attr("sms_articles") setting (post_time,post)
+	
 		{
-			twilio:sms(fbstock);
+			append("#unorderlist","<li>post time: #{post_time} post: #{post}</li>");
 		}
 	}
 }

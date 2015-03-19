@@ -12,32 +12,31 @@ ruleset sms_blog_data {
 		
 	}
 	rule displayMEWOrking{
-		select when pageview ".*" {
+		select when pageview ".*" 
+		{
 			notify("fired?" , "yes");
 		}
 	}
+
 	rule inbound_sms {
 		select when twilio inbound_sms 
-		{
-			ent:my_map = { time:strftime(xTime, "%T") : event:attr("body") };
+		pre{
+			post = event:attr("body");
+			post_time = time:strftime(xTime, "%T");
+			ent:my_map = { post_time : post};
 		}
+			
 		fired{
-			app:sms_articles;
+			set app:sms_articles ent:my_map;
 		}
 	}
-	rule retrieve_data {
-		select when explicit need_blog_data  
-		{
-
-		}
-		fired{
-			raise explicit event 'blog_data_ready'
-				attributes app:sms_articles
-				for ;
-
-		}
-
-
-		}
-	}
+//	rule retrieve_data {
+//		select when explicit need_blog_data  
+//
+//		fired{
+//			raise explicit event 'blog_data_ready'
+//			attributes app:sms_articles
+//			for b506607x12;
+//		}
+//	}
 }
