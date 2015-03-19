@@ -41,7 +41,8 @@ ruleset see_songs {
       noop();
     }
     fired{
-      raise explicit event found_hymn;
+      raise explicit event found_hymn
+        with hymn = song;
     }
     }
 
