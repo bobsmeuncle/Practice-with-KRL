@@ -22,16 +22,11 @@ ruleset song_store {
 			hymns;
 		};
 		secular_music = function(){
-			songs = ent:songs.map(function(pair){
-				value =	pair.values();
-				value[0];
-				}).klog("<<songs >>");
-			hymns = ent:hymns.map(function(pair){
-				value =	pair.values();
-				value[0];
-				}).klog("<<hymns >>");
-			result = songs.difference(hymns);
-			result;
+
+		sec_music=ent:songs.values().difference(ent:hymns.values());
+
+      	sec_music;
+
 		};
 
 	}
