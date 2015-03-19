@@ -26,7 +26,6 @@ ruleset see_songs {
     select when echo message_ta 
     send_directive("sing") with
       song = event:attr("input");
-      fired:
   }
 
  
