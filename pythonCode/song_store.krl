@@ -38,15 +38,13 @@ ruleset song_store {
 	rule collect_songs{
 		select when explicit sung
 		pre{
-			time = time:now();
-			song = event:attr("song").klog("<<song>> ");
-			s = {
-				time : song
-			};
+			s = { time:now() : event:attr("song") };
+			songs = s.put(ent:songs);
+		}
+		{
+			noop();
 		}
 		always{
-			songs = ent:songs;
-			songs.append(s);
 			set ent:songs songs;
 		}
 
@@ -54,15 +52,15 @@ ruleset song_store {
 	rule collect_hymns{
 		select when explicit found_hymn
 		pre{
-			time = time:now();
-			hymn = event:attr("hymn").klog("<<hymn>> ");
 			h = {
-				time: hymn
+				time:now() :event:attr("hymn")
 			};
+			hymns = h.put(ent:hymns);
+		}
+		{
+			noop();
 		}
 		always{
-			hymns = ent:hymns;
-			hymns.append(h);
 			set ent:hymns hymns;
 		}
 
