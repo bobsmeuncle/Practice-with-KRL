@@ -32,6 +32,18 @@ ruleset see_songs {
           with song = event:attr("input");
     }
   }
+  rule find_hymn_ta{
+    select when explicit sung
+    pre{
+      song = event:attr("song");
+    }
+    if(song.match(re#.*god.*#)) then {
+      noop();
+    }
+    fired{
+      raise explicit event found_hymn;
+    }
+    }
 
  
 }
