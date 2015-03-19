@@ -22,14 +22,16 @@ ruleset song_store {
 			hymns;
 		};
 		secular_music = function(){
-			not_hyms = ent:songs.values()
-			.klog("<<songs>> ")
-			.difference(ent:hymns.values()
-			.klog("<<hymns>> ")
-			)
-			.klog("<<difference>> ")
-			;
-			not_hyms;
+			songs = ent:songs.map(function(pair){
+				value =	pair.values();
+				value[0];
+				});
+			hymns = ent:hymns.map(function(pair){
+				value =	pair.values();
+				value[0];
+				});
+			result = songs.difference(hymns);
+			result;
 		};
 	}
 
@@ -37,15 +39,15 @@ ruleset song_store {
 		select when explicit sung
 		pre{
 			time = time:now();
-			song = atr("song").klog("<<song>> ");
-			songs = {
-				"song" : song,
-				"time" : time
+			song = event:attr("song").klog("<<song>> ");
+			s = {
+				time : song
 			};
-			c = songs.put(ent:songs);
 		}
 		always{
-			set ent:songs c;
+			songs = ent:songs;
+			songs.append(s);
+			set ent:songs songs;
 		}
 
 	}
@@ -53,15 +55,15 @@ ruleset song_store {
 		select when explicit found_hymn
 		pre{
 			time = time:now();
-			hymn = atr("hymn").klog("<<hymn>> ");
-			hymns = {
-				"hymn" : hymn,
-				"time" : time
+			hymn = event:attr("hymn").klog("<<hymn>> ");
+			h = {
+				time: hymn
 			};
-			c = hymns.put(ent:hymns);
 		}
 		always{
-			set ent:hymns c;
+			hymns = ent:hymns;
+			hymns.append(h);
+			set ent:hymns hymns;
 		}
 
 	}
