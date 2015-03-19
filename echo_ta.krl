@@ -22,10 +22,15 @@ ruleset see_songs {
     send_directive("say") with
       something = "Hello World";
   }
-    rule songs_ta {
+  rule songs_ta {
     select when echo message_ta msg_type re#song# 
     send_directive("sing") with
       song = event:attr("input");
+    
+  always{
+      raise explicit event sung
+          with song = event:attr("input");
+    }
   }
 
  
