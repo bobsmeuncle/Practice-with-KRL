@@ -23,7 +23,7 @@ ruleset see_songs {
       something = "Hello World";
   }
     rule songs {
-    select when echo message_ta 
+    select when echo message_ta msg_type re#song# 
     send_directive("sing") with
       song = event:attr("input");
   }
