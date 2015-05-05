@@ -85,7 +85,6 @@ ruleset devtools {
 		}
 		
 	}
-
 	
 	rule updateRuleset {
 		select when web submit "#formUpdateRuleset"
