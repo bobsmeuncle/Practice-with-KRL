@@ -1,4 +1,4 @@
-ruleset hello_world {
+ruleset echo {
   meta {
     name "Hello World"
     description <<
@@ -17,18 +17,18 @@ A first ruleset for the Quickstart
     };
  
   }
-  rule hello_world {
+  rule hello {
     select when echo hello
-
-  pre{
-    name = event:attr("name").klog("our passed in Name: ");
-  }{
     send_directive("say") with
-      something = "Hello #{name}";
+      something = "Hello World";
   }
-    always {
-      log "LOG says Hello " + name ;
+  rule message {
+    select when echo message
+    pre{
+      input = event:attr("input")
     }
+    send_directive("say") with
+      something = input;
   }
  
 }
