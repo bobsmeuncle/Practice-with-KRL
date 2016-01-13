@@ -7,7 +7,7 @@ A ruleset for the storing trips
     author "burdettadam the ta"
     logging on
     sharing on
-    provides hello
+    provides trips, short_trips, long_trips
  
   }
   global {
