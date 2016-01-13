@@ -33,7 +33,7 @@ A ruleset for the storing trips
   long_trip = 10;
   }
   rule collect_trips {
-    select when explicit processed_trip
+    select when explicit trip_processed
     pre{
       time_stamp = time:now()
     }{
