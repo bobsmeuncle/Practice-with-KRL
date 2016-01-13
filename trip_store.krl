@@ -11,15 +11,18 @@ A ruleset for the storing trips
  
   }
   global {
-    trips = function(){ ent:trips; }
+    trips = function(){
+     tps = ent:trips.klog("trips: ");
+     tps;
+    }
     long_trips = function (){  ent:long_trips; }
 
     short_trips = function(){ 
-     Atrips = trips();
-     short_trips_keys = (ent:trips.keys()).difference((ent:long_trips.keys()));
+     Atrips = trips().klog("all trips: ");
+     short_trips_keys = (ent:trips.keys()).difference((ent:long_trips.keys())).klog("list of short trip keys: ");
      short_trips_return = Atrips.filter( function(k,v){
       short_trips_keys.all(function(x){x eq k});
-     })
+     }).klog("filtered short_trips: ");
      short_trips_return;
     }
 
