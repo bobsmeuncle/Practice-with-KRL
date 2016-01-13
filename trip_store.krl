@@ -35,6 +35,7 @@ A ruleset for the storing trips
   rule collect_trips {
     select when explicit trip_processed
     pre{
+      mileage = event:attr("mileage");
       time_stamp = time:now()
     }{
     noop();
