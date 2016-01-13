@@ -18,10 +18,10 @@ A ruleset for the storing trips
     long_trips = function (){  ent:long_trips; }
 
     short_trips = function(){ 
-     Atrips = trips().klog("all trips: ");
+     Atrips = trips();
      short_trips_keys = (ent:trips.keys()).difference((ent:long_trips.keys())).klog("list of short trip keys: ");
      short_trips_return = Atrips.filter( function(k,v){
-      short_trips_keys.all(function(x){x eq k});
+      short_trips_keys.any(function(x){x.klog("x: ") eq k.klog("k: ")});
      }).klog("filtered short_trips: ");
      short_trips_return;
     }
