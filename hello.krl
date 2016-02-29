@@ -39,7 +39,7 @@ A first ruleset for the Quickstart
     }
     {
       send_directive("say") with
-        something = "Hello #{first} #{last}";
+        greeting = "Hello #{first} #{last}";
     }
     always {
         log "LOG says Hello " + first + " " + last ;
