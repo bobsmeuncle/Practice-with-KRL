@@ -36,7 +36,7 @@ A first ruleset for the Quickstart
       name = event:attr("name").defaultsTo(ent:name,"no name passed in");
     }{
       send_directive("say") with
-        something = "Hello #{name}";
+        greeting = "Hello #{name}";
     }
     always {
       log ("LOG says Hello " + name);
