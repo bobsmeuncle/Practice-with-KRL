@@ -22,8 +22,8 @@ A first ruleset for the Quickstart
     };
     name = function(id){
       all_users = users();
-        first = all_users{[id,name,first]}.defaultsTo("HAL", "could not find user. ");
-        last = all_users{[id,name,last]}.defaultsTo("9000", "could not find user. ");
+        first = all_users{[id,"name","first"]}.defaultsTo("HAL", "could not find user. ");
+        last = all_users{[id,"name","last"]}.defaultsTo("9000", "could not find user. ");
         name = first + " " + last; 
         name;
     };
