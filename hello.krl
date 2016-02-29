@@ -18,31 +18,29 @@ A first ruleset for the Quickstart
 
     users = function(){
       users = ent:names;
-      users
+        users
     };
-
     name = function(id){
       all_users = users();
-      first = all_users{[id,name,first]}.defaultsTo("HAL", "could not find user. ");
-      last = all_users{[id,name,last]}.defaultsTo("9000", "could not find user. ");
-      name = first + " " + last; 
-      name;
+        first = all_users{[id,name,first]}.defaultsTo("HAL", "could not find user. ");
+        last = all_users{[id,name,last]}.defaultsTo("9000", "could not find user. ");
+        name = first + " " + last; 
+        name;
     };
- 
   }
   rule hello_world {
     select when echo hello
     pre{
-      id = event:attr("id").defaultsTo("1","no id passed.");
-      first = ent:name{[id,"name","first"]};
-      last = ent:name{[id,"name","last"]};
+      id = event:attr("id");
+      default_name = name(id);
+      name = event:attr("name").defaultsTo(default_name,"no name passed.");
     }
     {
       send_directive("say") with
-        greeting = "Hello #{first} #{last}";
+        greeting = "Hello #{name}";
     }
     always {
-        log "LOG says Hello " + first + " " + last ;
+      log "LOG says Hello " + name ;
     }
   }
   rule store_name {
