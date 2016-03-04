@@ -17,7 +17,7 @@ A first ruleset for the Quickstart
     };
 
     users = function(){
-      users = ent:names;
+      users = ent:name;
         users;
     };
     name = function(id){
