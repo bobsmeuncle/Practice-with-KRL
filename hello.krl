@@ -4,7 +4,7 @@ ruleset hello_world {
     description <<
 A first ruleset for the Quickstart
 >>
-    author "Phil Windley"
+    author "Phil Windley version:1"
     logging on
     sharing on
     provides hello, users , name
@@ -22,8 +22,8 @@ A first ruleset for the Quickstart
     };
     name = function(id){
       all_users = users();
-        first = all_users{[id, "name", "first"]}.defaultsTo("HAL", "could not find user. ");
-        last = all_users{[id, "name" , "last"]}.defaultsTo("9000", "could not find user. ");
+        first = all_users{["one", "name", "first"]}.defaultsTo("HAL", "could not find user. ");
+        last = all_users{["one", "name" , "last"]}.defaultsTo("9000", "could not find user. ");
         name = first + " " + last; 
         name;
     };
@@ -57,9 +57,8 @@ A first ruleset for the Quickstart
       passed_last = last;
     }
     always{
-      set ent:name "name";
-      set ent:name{[id,"name","first"]} first;
-      set ent:name{[id, "name", "last"]} last; 
+      set ent:name{["one","name","first"]} first;
+      set ent:name{["one", "name", "last"]} last; 
     }
   }
 /* rule store_name {
