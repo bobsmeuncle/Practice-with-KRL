@@ -2,7 +2,7 @@ ruleset hello_world {
   meta {
     name "Hello World"
     description <<
-A first ruleset for the Quickstart
+A first ruleset for the Quickstart version:1
 >>
     author "Phil Windley version:1"
     logging on
