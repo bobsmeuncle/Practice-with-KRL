@@ -57,9 +57,8 @@ A first ruleset for the Quickstart
       passed_last = last;
     }
     always{
-      //set ent:name{id} id;
-      set ent:name{[id,"name","first"]} first if not first;
-      set ent:name{[id, "name", "last"]} last if not last; 
+      set ent:name{["#" + id,"name","first"]} first;
+      set ent:name{["#" + id, "name", "last"]} last; 
     }
   }
 /* rule store_name {
