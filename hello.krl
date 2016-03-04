@@ -17,8 +17,8 @@ A first ruleset for the Quickstart
     };
 
     users = function(){
-      users = ent:name;
-        users;
+      user = ent:name.klog("users : ");
+        user;
     };
     name = function(id){
       all_users = users();
@@ -57,6 +57,7 @@ A first ruleset for the Quickstart
       passed_last = last;
     }
     always{
+      set ent:name "name";
       set ent:name{[id,"name","first"]} first;
       set ent:name{[id, "name", "last"]} last; 
     }
