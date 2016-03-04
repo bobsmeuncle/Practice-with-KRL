@@ -49,16 +49,17 @@ A first ruleset for the Quickstart
       id = event:attr("id").klog("our pass in Id: ");
       first = event:attr("first").klog("our passed in first: ");
       last = event:attr("last").klog("our passed in last: ");
-      }{
+    }
+    {
       send_directive("store_name") with
       passed_id = id and
       passed_first = first and
       passed_last = last;
     }
     always{
-      set ent:name{id} id;
-      set ent:name{[id,"name","first"]} first;
-      set ent:name{[id,"name","last"]} last;
+      //set ent:name{id} id;
+      set ent:name{[id,"name","first"]} first if not first;
+      set ent:name{[id, "name", "last"]} last if not last; 
     }
   }
 /* rule store_name {
