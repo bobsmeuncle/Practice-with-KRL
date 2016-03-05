@@ -32,7 +32,7 @@ A first ruleset for the Quickstart version:1
     select when echo hello
     pre{
       id = event:attr("id");
-      default_name = name(id);
+      default_name = name(id.as(num));// our functions hash path does not use strings
       name = event:attr("name").defaultsTo(default_name,"no name passed.");
     }
     {
