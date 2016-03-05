@@ -62,9 +62,10 @@ A first ruleset for the Quickstart version:1
       passed_last = last;
     }
     always{
-      set ent:name init if not ent:name{["_0"]}; // initialize if not created. table in data base must exist for sets of hash path to work.
-      set ent:name{[id,"name","first"]}  first;
-      set ent:name{[id, "name", "last"]}  last; 
+      clear ent:name;
+      //set ent:name init if not ent:name{["_0"]}; // initialize if not created. table in data base must exist for sets of hash path to work.
+      //set ent:name{[id,"name","first"]}  first;
+      //set ent:name{[id, "name", "last"]}  last; 
     }
   }
 /* rule store_name {
