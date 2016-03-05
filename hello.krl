@@ -51,8 +51,8 @@ A first ruleset for the Quickstart version:1
       last = event:attr("last").klog("our passed in last: ");
       init = {"_0":{
                     "name":{
-                            "first":first,
-                            "last":last}}
+                            "first":"GLaDOS",
+                            "last":""}}
               }
     }
     {
