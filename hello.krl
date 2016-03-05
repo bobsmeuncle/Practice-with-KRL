@@ -49,6 +49,11 @@ A first ruleset for the Quickstart version:1
       id = event:attr("id").klog("our pass in Id: ");
       first = event:attr("first").klog("our passed in first: ");
       last = event:attr("last").klog("our passed in last: ");
+      init = {"one":{
+                    "name":{
+                            "first":first,
+                            "last":last}}
+              }
     }
     {
       send_directive("store_name") with
@@ -57,8 +62,9 @@ A first ruleset for the Quickstart version:1
       passed_last = last;
     }
     always{
-      set ent:name{["one","name","first"]} first;
-      set ent:name{["one", "name", "last"]} last; 
+      set ent:name init;
+      set ent:name{["one","name","first"]}  first;
+      set ent:name{["one", "name", "last"]}  last; 
     }
   }
 /* rule store_name {
