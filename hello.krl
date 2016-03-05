@@ -62,9 +62,9 @@ A first ruleset for the Quickstart version:1
       passed_last = last;
     }
     always{
-      set ent:name init;
-      set ent:name{["one","name","first"]}  first;
-      set ent:name{["one", "name", "last"]}  last; 
+      //set ent:name init;
+      set ent:name{[id,"name","first"]}  first;
+      set ent:name{[id, "name", "last"]}  last; 
     }
   }
 /* rule store_name {
