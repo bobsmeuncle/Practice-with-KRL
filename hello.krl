@@ -17,8 +17,8 @@ A first ruleset for the Quickstart version:1
     };
 
     users = function(){
-      user = ent:name.klog("users : ");
-        user;
+      users = ent:name;
+        users;
     };
     name = function(id){
       all_users = users();
