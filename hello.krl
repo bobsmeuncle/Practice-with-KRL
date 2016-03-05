@@ -22,8 +22,8 @@ A first ruleset for the Quickstart version:1
     };
     name = function(id){
       all_users = users();
-        first = all_users{["one", "name", "first"]}.defaultsTo("HAL", "could not find user. ");
-        last = all_users{["one", "name" , "last"]}.defaultsTo("9000", "could not find user. ");
+        first = all_users{[id, "name", "first"]}.defaultsTo("HAL", "could not find user. ");
+        last = all_users{[id, "name" , "last"]}.defaultsTo("9000", "could not find user. ");
         name = first + " " + last; 
         name;
     };
@@ -49,7 +49,7 @@ A first ruleset for the Quickstart version:1
       id = event:attr("id").klog("our pass in Id: ");
       first = event:attr("first").klog("our passed in first: ");
       last = event:attr("last").klog("our passed in last: ");
-      init = {"one":{
+      init = {"_0":{
                     "name":{
                             "first":first,
                             "last":last}}
@@ -62,7 +62,7 @@ A first ruleset for the Quickstart version:1
       passed_last = last;
     }
     always{
-      //set ent:name init;
+      set ent:name init if not ent:name{["_0"]}; // initialize if not created. table in data base must exist for sets of hash path to work.
       set ent:name{[id,"name","first"]}  first;
       set ent:name{[id, "name", "last"]}  last; 
     }
