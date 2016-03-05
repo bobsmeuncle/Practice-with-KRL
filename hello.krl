@@ -23,8 +23,8 @@ A first ruleset for the Quickstart version:1
     name = function(id){
       all_users = users();
       num_id = id.as(num);  //hash path does not use strings
-        first = all_users{["#{num_id}", "name", "first"]}.defaultsTo("HAL", "could not find user. ");
-        last = all_users{["#{num_id}", "name" , "last"]}.defaultsTo("9000", "could not find user. ");
+        first = all_users{["#{id}", "name", "first"]}.defaultsTo("HAL", "could not find user. ");
+        last = all_users{["#{id}", "name" , "last"]}.defaultsTo("9000", "could not find user. ");
         name = first + " " + last; 
         name;
     };
@@ -33,7 +33,7 @@ A first ruleset for the Quickstart version:1
     select when echo hello
     pre{
       id = event:attr("id");
-      default_name = name(id);
+      default_name = name("#{id}");
       name = event:attr("name").defaultsTo(default_name,"no name passed.");
     }
     {
