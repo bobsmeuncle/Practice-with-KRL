@@ -4,7 +4,7 @@ ruleset hello_world {
     description <<
 A first ruleset for the Quickstart version:1
 >>
-    author "Phil Windley version:3"
+    author "Phil Windley version:2"
     logging on
     sharing on
     provides hello, users , name
@@ -22,9 +22,8 @@ A first ruleset for the Quickstart version:1
     };
     name = function(id){
       all_users = users();
-      num_id = id.as(num);  //hash path does not use strings
-        first = all_users{["#{id}", "name", "first"]}.defaultsTo("HAL", "could not find user. ");
-        last = all_users{["#{id}", "name" , "last"]}.defaultsTo("9000", "could not find user. ");
+        first = all_users{[id, "name", "first"]}.defaultsTo("HAL", "could not find user. ");
+        last = all_users{[id, "name" , "last"]}.defaultsTo("9000", "could not find user. ");
         name = first + " " + last; 
         name;
     };
@@ -32,16 +31,16 @@ A first ruleset for the Quickstart version:1
   rule hello_world {
     select when echo hello
     pre{
-      id = event:attr("id");
-      default_name = name("#{id}");
-      name = event:attr("name").defaultsTo(default_name,"no name passed.");
+      //id = event:attr("id");
+      default_name = name(4);
+      //name = event:attr("name").defaultsTo(default_name,"no name passed.");
     }
     {
       send_directive("say") with
-        greeting = "Hello #{name}";
+        greeting = "Hello #{default_name}";
     }
     always {
-      log "LOG says Hello " + name ;
+      log "LOG says Hello " + default_name ;
     }
   }
   rule store_name {
