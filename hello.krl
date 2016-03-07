@@ -31,8 +31,8 @@ A first ruleset for the Quickstart version:1
   rule hello_world {
     select when echo hello
     pre{
-      //id = event:attr("id");
-      default_name = name(4);
+      id = event:attr("id");
+      default_name = name(id);
       //name = event:attr("name").defaultsTo(default_name,"no name passed.");
     }
     {
