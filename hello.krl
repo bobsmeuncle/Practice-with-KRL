@@ -71,7 +71,7 @@ A first ruleset for the Quickstart version:2
       full_name = name.split(re/\s/);
       first_name = full_name[0].klog("first : ");
       last_name = full_name[1].klog("last : "); // note we don't check name format its assumed.
-      check = user(full_name).klog("user result: ");
+      check = user(name).klog("user result: ");
       get_id = function(user) {
         user_hash = user.keys();
         id = user_hash[0];
