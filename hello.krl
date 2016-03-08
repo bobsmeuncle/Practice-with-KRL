@@ -37,8 +37,9 @@ A first ruleset for the Quickstart version:1
     //       }
     user = function(full_name){
       all_users = users();
-      filtered_users = all_users.filter(function(user){
-        ((user{["name","first"] + " " + user{["name","last"]}}) eq full_name);
+      filtered_users = all_users.filter( function(user){
+        user_name = user.values(["name"]); 
+        user{"first"} + " " + user{"last"} eq full_name;
         });
       result = filtered_users.head().defaultsTo(0,"no user found");
       result;
