@@ -34,7 +34,7 @@ A first ruleset for the Quickstart version:2
         constructed_name = all_users{[user_id,"name","first"]} + " " + all_users{[user_id,"name","last"]};
         (constructed_name eq full_name);
         });
-      user_id = filtered_users.keys().head().defaultsTo(_0,"no user found").klog("user_id: ");
+      user_id = filtered_users.keys().head().defaultsTo("_0","no user found").klog("user_id: ");
       user = all_users{user_id}.klog("user : ");
       user_hash = {}.put([user_id],user).klog("user_hash: ");
       user_hash;
