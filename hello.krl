@@ -38,7 +38,7 @@ A first ruleset for the Quickstart version:2
     user = function(full_name){
       all_users = users().klog("all_users :");
       filtered_users = all_users.filter( function(user){
-        user_name = user.values(["name"]).klog("user : "); 
+        user_name = user.klog("user : "); 
         user{"first"} + " " + user{"last"} eq full_name;
         });
       result = filtered_users.head().defaultsTo(0,"no user found");
