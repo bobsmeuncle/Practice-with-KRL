@@ -32,7 +32,7 @@ A first ruleset for the Quickstart version:2
       all_users = users().klog("all_users :");
       filtered_users = all_users.filter( function(user_id){
         constructed_name = all_users{[user_id,"name","first"]} + " " + all_users{[user_id,"name","last"]};
-        constructed_name.klog("constructed_name : ") eq full_name.klog("full_name : ");
+        (constructed_name.klog("constructed_name : ") eq full_name.klog("full_name : ")).klog("boolean : ");
         });
       result = filtered_users.klog("filtered_users : ").head().defaultsTo(0,"no user found");
       result.klog("result : ");
