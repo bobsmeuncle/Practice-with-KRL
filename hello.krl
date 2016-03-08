@@ -36,7 +36,7 @@ A first ruleset for the Quickstart version:2
     //        visits : <int>
     //       }
     user = function(full_name){
-      all_users = users();
+      all_users = users().klog("all_users :");
       filtered_users = all_users.filter( function(user){
         user_name = user.values(["name"]).klog("user : "); 
         user{"first"} + " " + user{"last"} eq full_name;
