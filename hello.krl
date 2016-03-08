@@ -49,10 +49,10 @@ A first ruleset for the Quickstart version:2
       last = event:attr("last").klog("our passed in last: "); 
       new_user = {
           "name":{
-            "first":"GLaDOS",
-              "last":""},
+            "first":first,
+              "last":last},
           "visits": 1
-          }
+          };
       }{
       send_directive("new_user") with
       passed_id = id and
