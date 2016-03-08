@@ -29,13 +29,13 @@ A first ruleset for the Quickstart version:2
     };
 
     user = function(full_name){
-      all_users = users().klog("all_users :");
+      all_users = users();
       filtered_users = all_users.filter( function(user_id){
         constructed_name = all_users{[user_id,"name","first"]} + " " + all_users{[user_id,"name","last"]};
-        (constructed_name.klog("constructed_name : ") eq full_name.klog("full_name : ")).klog("boolean : ");
+        (constructed_name eq full_name);
         });
-      result = filtered_users.klog("filtered_users : ").keys().head().defaultsTo(0,"no user found");
-      result.klog("result : ");
+      result = filtered_users.keys().head().defaultsTo(0,"no user found");
+      result;
     };
 
   }
@@ -72,7 +72,7 @@ A first ruleset for the Quickstart version:2
       full_name = name.split(re/' '/);
       first_name = full_name[0];
       last_name = full_name[1]; // note we don't check name format its assumed.
-      check = user(full_name);
+      check = user(full_name).klog("user result: ");
       get_id = function(user) {
         user_hash = user.keys();
         id = user_hash[0];
