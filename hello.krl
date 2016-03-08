@@ -21,9 +21,10 @@ A first ruleset for the Quickstart version:1
         users;
     };
     name = function(id){
+      _id= id.defaultsTo(_0,"no id passed into name function");
       all_users = users();
-        first = all_users{[id, "name", "first"]}.defaultsTo("HAL", "could not find user. ");
-        last = all_users{[id, "name" , "last"]}.defaultsTo("9000", "could not find user. ");
+        first = all_users{[_id, "name", "first"]}.defaultsTo("HAL", "could not find user. ");
+        last = all_users{[_id, "name" , "last"]}.defaultsTo("9000", "could not find user. ");
         name = first + " " + last; 
         name;
     };
@@ -103,14 +104,6 @@ A first ruleset for the Quickstart version:1
           set ent:names{[user_id,"visits"]} ent:names{[user_id,"visits"]} + 1;
     }
   }
-
-
-
-
-
-
-
-
 
 
 
