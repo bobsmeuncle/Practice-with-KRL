@@ -34,8 +34,8 @@ A first ruleset for the Quickstart version:2
         constructed_name = all_users{[user_id,"name","first"]} + " " + all_users{[user_id,"name","last"]};
         (constructed_name eq full_name);
         });
-      result = filtered_users.keys().head().defaultsTo(0,"no user found");
-      result;
+      user_id = filtered_users.keys().head().defaultsTo(0,"no user found");
+      all_users{user_id};
     };
 
   }
