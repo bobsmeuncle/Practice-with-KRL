@@ -50,7 +50,8 @@ A first ruleset for the Quickstart version:2
       new_user = {
           "name":{
             "first":first,
-              "last":last},
+              "last":last
+              },
           "visits": 1
           };
       }{
@@ -60,7 +61,8 @@ A first ruleset for the Quickstart version:2
       passed_last = last;
     }
     always{
-      set ent:names{id} new_user;
+      clear ent:names;
+      set ent:names{[id]} new_user;
     }
   }
 
