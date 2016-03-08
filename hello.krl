@@ -61,8 +61,7 @@ A first ruleset for the Quickstart version:2
       passed_last = last;
     }
     always{
-      clear ent:names;
-      set ent:names{[id]} new_user;
+      set ent:name{[id]} new_user;
     }
   }
 
@@ -101,7 +100,7 @@ A first ruleset for the Quickstart version:2
     }
     else {
           log "LOG says Hello " + name ;
-          set ent:names{[user_id,"visits"]} ent:names{[user_id,"visits"]} + 1;
+          set ent:name{[user_id,"visits"]} ent:names{[user_id,"visits"]} + 1;
     }
   }
 
