@@ -31,12 +31,11 @@ A first ruleset for the Quickstart version:2
     user = function(full_name){
       all_users = users().klog("all_users :");
       filtered_users = all_users.filter( function(user_id){
-        constructed_name = all_users{[user_id,"name","first"]} +" " + all_users{[user_id,"name","last"]};
-        constructed_name.klog("fullname : ")
-        //all_users{[user_id,"name","first"]} + " " + all_users{[user_id,"name","last"]} eq full_name;
+        constructed_name = all_users{[user_id,"name","first"]} + " " + all_users{[user_id,"name","last"]};
+        constructed_name eq full_name;
         });
       result = filtered_users.head().defaultsTo(0,"no user found");
-      result;
+      result.klog("result : ");
     };
 
   }
