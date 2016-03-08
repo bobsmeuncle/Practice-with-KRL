@@ -7,7 +7,7 @@ A first ruleset for the Quickstart version:1
     author "Phil Windley version:3"
     logging on
     sharing on
-    provides hello, users , name
+    provides hello, users , name , user 
  
   }
   global {
@@ -38,7 +38,7 @@ A first ruleset for the Quickstart version:1
     user = function(full_name){
       all_users = users();
       filtered_users = all_users.filter(function(user){
-        (user{["name","first"] + " " + user{["name","last"]}} eq first_name);
+        ((user{["name","first"] + " " + user{["name","last"]}}) eq full_name);
         });
       result = filtered_users.head().defaultsTo(0,"no user found");
       result;
