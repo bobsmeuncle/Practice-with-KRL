@@ -100,7 +100,7 @@ A first ruleset for the Quickstart version:2
     }
     else {
           log "LOG says Hello " + name ;
-          set ent:name{[user_id,"visits"]} ent:names{[user_id,"visits"]} + 1;
+          set ent:name{[user_id,"visits"]} ent:name{[user_id,"visits"]} + 1;
     }
   }
 
