@@ -21,10 +21,9 @@ A first ruleset for the Quickstart version:1
         users;
     };
     name = function(id){
-      _id= id.defaultsTo(_0,"no id passed into name function");
       all_users = users();
-        first = all_users{[_id, "name", "first"]}.defaultsTo("HAL", "could not find user. ");
-        last = all_users{[_id, "name" , "last"]}.defaultsTo("9000", "could not find user. ");
+        first = all_users{[id, "name", "first"]}.defaultsTo("HAL", "could not find user. ");
+        last = all_users{[id, "name" , "last"]}.defaultsTo("9000", "could not find user. ");
         name = first + " " + last; 
         name;
     };
@@ -33,7 +32,7 @@ A first ruleset for the Quickstart version:1
     //      { name :{
     //          first : <string>
     //          last : <string>
-    //        }
+    //              }
     //        visits : <int>
     //       }
     user = function(full_name){
@@ -52,6 +51,12 @@ A first ruleset for the Quickstart version:1
       id = event:attr("id").klog("our pass in Id: ");
       first = event:attr("first").klog("our passed in first: ");
       last = event:attr("last").klog("our passed in last: "); 
+      new_user = {
+          "name":{
+            "first":"GLaDOS",
+              "last":""},
+          "visits": 1
+          }
       }{
       send_directive("new_user") with
       passed_id = id and
@@ -59,10 +64,7 @@ A first ruleset for the Quickstart version:1
       passed_last = last;
     }
     always{
-      set ent:names{id} id;
-      set ent:names{[id,"name",first]} first;
-      set ent:names{[id,"name",last]} last;
-      set ent:names{[id,"visits"]} 1;
+      set ent:names{id} new_user;
     }
   }
 
