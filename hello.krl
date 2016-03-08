@@ -79,13 +79,13 @@ A first ruleset for the Quickstart version:2
         id = user_hash[0];
         id;
       };
-    //  user_id = (check neq 0) => get_id(check) | math:random(999); // note we do not check for duplicates 
-    //  new_user = (check eq 0) => 
-    //          {
-    //            "id"    : user_id, 
-    //            "first" : first_name,
-    //            "last"  : last_name
-    //          } | {};
+      user_id = (check neq 0) => get_id(check).klog("id: ") | math:random(999); // note we do not check for duplicates 
+      new_user = (check eq 0) => 
+              {
+                "id"    : user_id, 
+                "first" : first_name,
+                "last"  : last_name
+              } | {};
     }
     if(check eq 0 ) then {
         send_directive("say") with
@@ -98,7 +98,7 @@ A first ruleset for the Quickstart version:2
     }
     else {
           log "LOG says Hello " + name ;
-         // set ent:names{[user_id,"visits"]} ent:names{[user_id,"visits"]} + 1;
+          set ent:names{[user_id,"visits"]} ent:names{[user_id,"visits"]} + 1;
     }
   }
 
