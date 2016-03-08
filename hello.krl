@@ -79,15 +79,16 @@ A first ruleset for the Quickstart version:2
         id = user_hash[0];
         id;
       };
-      user_id = (check neq "_0") => get_id(check).klog("id: ") | math:random(999); // note we do not check for duplicates 
-      new_user = (check eq "_0") => 
+      id_check = get_id(check).klog("id: ");
+      user_id = (id_check neq _0) => id_check| math:random(999); // note we do not check for duplicates 
+      new_user = (id_check eq _0) => 
               {
                 "id"    : user_id, 
                 "first" : first_name,
                 "last"  : last_name
               } | {};
     }
-    if(check eq "_0" ) then {
+    if(id_check eq _0 ) then {
         send_directive("say") with
           something = "Hello #{name}";
     }
