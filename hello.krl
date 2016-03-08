@@ -2,9 +2,9 @@ ruleset hello_world {
   meta {
     name "Hello World"
     description <<
-A first ruleset for the Quickstart version:1
+A first ruleset for the Quickstart version:2
 >>
-    author "Phil Windley version:3"
+    author "Phil Windley version:4"
     logging on
     sharing on
     provides hello, users , name , user 
@@ -38,7 +38,7 @@ A first ruleset for the Quickstart version:1
     user = function(full_name){
       all_users = users();
       filtered_users = all_users.filter( function(user){
-        user_name = user.values(["name"]); 
+        user_name = user.values(["name"]).klog("user : "); 
         user{"first"} + " " + user{"last"} eq full_name;
         });
       result = filtered_users.head().defaultsTo(0,"no user found");
