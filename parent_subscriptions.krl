@@ -23,8 +23,7 @@ A rulest to show how to create subscriptions.
     select when subscriptions automate
     foreach children setting (child)
     pre{
-      eventattrs = event:attrs();
-      attributes = eventattrs.put(["Prototype_init_event_domain"],"subscriptions") // event to initialize our automated Subscription
+      attributes = {}.put(["Prototype_init_event_domain"],"subscriptions") // event to initialize our automated Subscription
                               .put(["Prototype_init_event_type"],"create_well_known")
                               .put(["Prototype_rids"],"b507706x5.dev") // ; seperated rulesets the child needs installed at creation
                               .put(["name"],child) // name for child
@@ -32,7 +31,7 @@ A rulest to show how to create subscriptions.
     }
     {
       event:send({"cid":meta:eci()}, "wrangler", "child_creation")  // wrangler api event.
-      with attrs = attributes; // needs a name attribute for child
+      with attrs = attributes.klog("attributes: "); // needs a name attribute for child
     }
     always{
       log("create child for " + child);
