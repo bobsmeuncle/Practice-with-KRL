@@ -26,7 +26,7 @@ A rulest to show how to create subscriptions.
       eventattrs = event:attrs();
       attributes = eventattrs.put(["Prototype_init_event_domain"],"subscriptions") // event to initialize our automated Subscription
                               .put(["Prototype_init_event_type"],"create_well_known")
-                              .put(["Prototype_rids"],"") // ; seperated rulesets the child needs installed at creation
+                              .put(["Prototype_rids"],"b507706x5.dev") // ; seperated rulesets the child needs installed at creation
                               .put(["name"],child) // name for child
                               ;
     }
