@@ -55,14 +55,27 @@ A rulest to show how to create subscriptions.
     }
     if (child_eci neq 0) then 
     {// if some one to send invite exist, send request for sibling_eci to raise
-      event:send({"cid":sibling_eci}, wrangler, subscription)  
-        with attrs = attributes;
+      event:send({"cid":sibling_eci}, "wrangler", "subscription")  
+        with attrs = attributes.klog("attributes for subscription: ");
     }
     fired { // send request events 
     set ent:child other_child;
     }
     else{ // initialize child to send subscriptions request to next time this rule fires. 
     set ent:child other_child;
+    }
+  }
+
+  rule clearChild { 
+    select when subscriptions clear_child
+    pre {
+
+    }
+    {
+      noop();
+    }
+    always {  
+    clear ent:child;
     }
   }
 
