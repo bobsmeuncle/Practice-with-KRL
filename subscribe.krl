@@ -48,7 +48,7 @@ A rulest to show how to create subscriptions.
 
   rule wellKnownCreated {
     select when wrangler channel_created where channel_name eq "Well_Known" 
-          and wrangler channel_created where channel_type eq "Pico_Tutorial"
+          //and wrangler channel_created where channel_type eq "Pico_Tutorial"
     pre {
         // find parant 
         parant_results = wrangler_api:parent();
