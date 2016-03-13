@@ -5,7 +5,7 @@ ruleset subscriptions {
 A rulest to show how to create subscriptions.
 >>
     author "adam burdett"
-    use module  b507199x5 alias wrangler
+    use module  b507199x5 alias wrangler_api
     logging on
     sharing on
     provides hello 
@@ -38,11 +38,14 @@ A rulest to show how to create subscriptions.
                       ;
     }
     {
-        event:send({"cid": meta:eci() }, wrangler, channel_creation_requested)  // raise event has failed me. so now I use event:send
-        with attrs = attr;
+      noop();
+     //   event:send({"cid": meta:eci() }, wrangler, channel_creation_requested)  
+     //   with attrs = attr;
     }
     always {
       log("created wellknown channel");
+      raise wrangler event channel_creation_requested // init prototype  // rule in pds needs to be created.
+            attributes attr
     }
   }
 
@@ -51,7 +54,7 @@ A rulest to show how to create subscriptions.
           and wrangler channel_created where channel_type eq "Pico_Tutorial"
     pre {
         // find parant 
-        parant_results = wrangler:parent();
+        parant_results = wrangler_api:parent();
         parent = parant_results{'parent'};
         parent_eci = parent[0].klog("parent_eci: ");
         well_known_eci = channel("Well_Known").klog("well known eci: ");
