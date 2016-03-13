@@ -31,7 +31,7 @@ A rulest to show how to create subscriptions.
   rule createWellKnown {
     select when wrangler init_eventss
     pre {
-      attributes = {}.put(["channel_name"],"Well_Known")
+      attr = {}.put(["channel_name"],"Well_Known")
                       .put(["channel_type"],"Pico_Tutorial")
                       .put(["attributes"],"")
                       .put(["policy"],"")
@@ -39,10 +39,13 @@ A rulest to show how to create subscriptions.
     }
     {
       noop();
+     //   event:send({"cid": meta:eci() }, subscriptions, chiled_well_known_created)  
+     //   with attrs = attributes;
     }
     always {
-    raise wrangler event channel_creation_requested // init prototype  // rule in pds needs to be created.
-            attributes attributes
+      log("created wellknown channel");
+      raise wrangler event channel_creation_requested // init prototype  // rule in pds needs to be created.
+            attributes attr
     }
   }
 
