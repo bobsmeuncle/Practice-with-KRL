@@ -38,14 +38,11 @@ A rulest to show how to create subscriptions.
                       ;
     }
     {
-      noop();
-     //   event:send({"cid": meta:eci() }, wrangler, channel_creation_requested)  
-     //   with attrs = attr;
+        event:send({"cid": meta:eci() }, wrangler, channel_creation_requested)  
+        with attrs = attr;
     }
     always {
       log("created wellknown channel");
-      raise wrangler event channel_creation_requested // init prototype  // rule in pds needs to be created.
-            attributes attr
     }
   }
 
