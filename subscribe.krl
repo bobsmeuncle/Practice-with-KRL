@@ -58,7 +58,7 @@ A rulest to show how to create subscriptions.
         attributes = event:attrs().put(["well_known_eci"],well_known_eci);
     }
     {
-      event:send({"cid":parent_eci}, subscriptions, chiled_well_known_created)  
+      event:send({"cid":parent_eci}, "subscriptions", "chiled_well_known_created")  
         with attrs = attributes;
     }
     always {
