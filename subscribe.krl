@@ -18,10 +18,10 @@ A rulest to show how to create subscriptions.
     };
     channel = function (name){ // eci from name
       my_channels = wrangler_api:channels();
-      channel_list = my_channels{"channels"}.defaultsTo("no Channel",standardOut("no channel found, by channels"));
+      channel_list = my_channels{"channels"}.defaultsTo("no Channel","no channel found, by channels");
       filtered_channels = channel_list.filter(function(channel){
         (channel{'name'} eq name);}); 
-      result = filtered_channels.head().defaultsTo("",standardError("no channel found, by .head()"));
+      result = filtered_channels.head().defaultsTo("","no channel found, by .head()");
       (result{'cid'});
     }
 
