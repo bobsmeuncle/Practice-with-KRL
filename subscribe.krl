@@ -38,14 +38,11 @@ A rulest to show how to create subscriptions.
                       ;
     }
     {
-      noop();
-     //   event:send({"cid": meta:eci() }, subscriptions, chiled_well_known_created)  
-     //   with attrs = attributes;
+        event:send({"cid": meta:eci() }, wrangler, channel_creation_requested)  // raise event has failed me. so now I use event:send
+        with attrs = attr;
     }
     always {
       log("created wellknown channel");
-      raise wrangler event channel_creation_requested // init prototype  // rule in pds needs to be created.
-            attributes attr
     }
   }
 
