@@ -30,7 +30,6 @@ A rulest to show how to create subscriptions.
   // create well known eci in child
   rule createWellKnown {
     select when wrangler init_events
-    
     pre {
       attributes = {}.put(["channel_name"],"Well_Known")
                       .put(["channel_type"],"Pico_Tutorial")
@@ -38,14 +37,12 @@ A rulest to show how to create subscriptions.
                       .put(["policy"],"")
                       ;
     }
-    
     {
       noop();
     }
-    
     always {
     raise wrangler event channel_creation_requested // init prototype  // rule in pds needs to be created.
-            attributes event:attrs()
+            attributes attributes
     }
   }
 
