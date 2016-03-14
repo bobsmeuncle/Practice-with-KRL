@@ -59,10 +59,10 @@ A rulest to show how to create subscriptions.
         with attrs = attributes.klog("attributes for subscription: ");
     }
     fired { // send request events 
-    set ent:child other_child;
+    set ent:child sibling_eci;
     }
     else{ // initialize child to send subscriptions request to next time this rule fires. 
-    set ent:child other_child;
+    set ent:child sibling_eci;
     }
   }
 
