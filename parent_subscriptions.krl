@@ -5,16 +5,24 @@ ruleset subscriptions {
 A rulest to show how to create subscriptions.
 >>
     author "adam burdett"
-    use module  b507199x5 alias wrangler
+    use module  b507199x5 alias wrangler_api
     logging on
     sharing on
     //provides hello 
  
   }
   global {
+    child = function(name) {
+      child_list_results = wrangler_api:children();
+      child_list = child_list_results{'children'};
+      children_with_name = child_list.filter( function (tuple){
+        (wrangler_api:skyQuery(tuple[0],wrangler_api,name,"") eq name)
+        ;});
+      child = children_with_name.head().klog("matched child: ");
+      child;
+    };
 
     children = ["ChildC","ChildD"];  // children to be created
-
   }
 
 
@@ -37,45 +45,37 @@ A rulest to show how to create subscriptions.
     }
   }
 
-
   // Request Subscription
   rule requestSubscription { // ruleset for parent 
-    select when subscriptions chiled_well_known_created
+    select when subscriptions child_well_known_created where child_name eq children[0]
+            and subscriptions child_well_known_created where child_name eq children[1]
+
     pre {
-      sibling_eci = event:attr("well_known_eci").klog("sibling_eci: ");
-      child_eci = ent:child.defaultsTo(0,"child_eci variable is not initialize yet");
+      sibling_eci = child(children[0]).klog("sibling_eci: ");
+      //sibling_eci = event:attr("well_known_eci").klog("sibling_eci: ");
+      //child_eci = ent:child.defaultsTo(0,"child_eci variable is not initialize yet");
+      child_eci = child(children[1]).klog("child_eci");
+      // get well_known_eci
+      well_known_channel = wrangler_api:skyQuery(sibling_eci,wrangler_api,channel,"Well_Known");
+      sibling_well_known_eci = well_known_channel{'cid'}.klog("sibling_well_known_eci: ");
+      well_known_channel = wrangler_api:skyQuery(child_eci,wrangler_api,channel,"Well_Known");
+      child_well_known_eci = well_known_channel{'cid'}.klog("child_well_known_eci: ");
+
       attributes = {}.put(["name"],"brothers")
                       .put(["name_space"],"Tutorial_Subscriptions")
                       .put(["my_role"],"BrotherB")
                       .put(["your_role"],"BrotherA")
-                      .put(["target_eci"],child_eci)
+                      .put(["target_eci"],child_well_known_eci)
                       .put(["channel_type"],"Pico_Tutorial")
                       .put(["attrs"],"success")
                       ;
     }
-    if (child_eci neq 0) then 
-    {// if some one to send invite exist, send request for sibling_eci to raise
-      event:send({"cid":sibling_eci}, "wrangler", "subscription")  
+    {
+      event:send({"cid":sibling_well_known_eci}, "wrangler", "subscription")  
         with attrs = attributes.klog("attributes for subscription: ");
     }
-    fired { // send request events 
-    set ent:child sibling_eci;
-    }
-    else{ // initialize child to send subscriptions request to next time this rule fires. 
-    set ent:child sibling_eci;
-    }
-  }
-
-  rule clearChild { 
-    select when subscriptions clear_child
-    pre {
-
-    }
-    {
-      noop();
-    }
-    always {  
-    clear ent:child;
+    always{ 
+      log("send child " +sibling_eci+ "subscription event to child "+child_eci); 
     }
   }
 

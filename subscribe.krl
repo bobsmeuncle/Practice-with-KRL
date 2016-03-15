@@ -16,7 +16,7 @@ A rulest to show how to create subscriptions.
       msg = "Hello " + obj
       msg
     };
-    channel = function (name){ // eci from name
+    channel = function (name){ // eci from name // use function from wrangler
       my_channels = wrangler_api:channels();
       channel_list = my_channels{"channels"}.defaultsTo("no Channel","no channel found, by channels");
       filtered_channels = channel_list.filter(function(channel){
@@ -47,20 +47,20 @@ A rulest to show how to create subscriptions.
   }
 
   rule wellKnownCreated {
-    select when wrangler channel_created where channel_name eq "Well_Known" 
-          //and wrangler channel_created where channel_type eq "Pico_Tutorial"
+    select when wrangler channel_created where channel_name eq "Well_Known" && channel_type eq "Pico_Tutorial"
     pre {
         // find parant 
-        parant_results = wrangler_api:parent();
-        parent = parant_results{'parent'};
+        parent_results = wrangler_api:parent();
+        parent = parent_results{'parent'};
         parent_eci = parent[0].klog("parent_eci: ");
-        well_known_eci = channel("Well_Known").klog("well known eci: ");
+        name_results = wrangler_api:name();
+        name = name_results{'picoName'};
         init_attributes = event:attrs();
-        attributes = init_attributes.put(["well_known_eci"],well_known_eci);
+        attributes = init_attributes.put(["child_name"],name);
     }
     {
-      event:send({"cid":parent_eci}, "subscriptions", "chiled_well_known_created")  
-        with attrs = attributes.klog("event:send attrs: ");
+      event:send({"cid":parent_eci}, "subscriptions", "child_well_known_created")  
+        with attrs = init_attributes.klog("event:send attrs: ");
     }
     always {
       log("parent notified of well known channel");
