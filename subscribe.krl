@@ -60,7 +60,7 @@ A rulest to show how to create subscriptions.
     }
     {
       event:send({"cid":parent_eci}, "subscriptions", "child_well_known_created")  
-        with attrs = init_attributes.klog("event:send attrs: ");
+        with attrs = attributes.klog("event:send attrs: ");
     }
     always {
       log("parent notified of well known channel");
