@@ -75,7 +75,7 @@ A rulest to show how to create subscriptions.
         with attrs = attributes.klog("attributes for subscription: ");
     }
     always{ 
-      log("send child " +sibling_eci+ "subscription event to child "+child_eci); 
+      log("send child well known " +sibling_well_known_eci+ "subscription event for child well known "+child_well_known_eci); 
     }
   }
 
