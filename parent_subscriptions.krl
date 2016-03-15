@@ -47,19 +47,19 @@ A rulest to show how to create subscriptions.
 
   // Request Subscription
   rule requestSubscription { // ruleset for parent 
-    select when subscriptions child_well_known_created where child_name eq children[0]
-            and subscriptions child_well_known_created where child_name eq children[1]
+    select when subscriptions child_well_known_created where child_name eq children[0] && well_known re/(^(([A-Z]|\d)+-)+([A-Z]|\d)+$)/ setting (sibling_well_known_eci) 
+            and subscriptions child_well_known_created where child_name eq children[1] && well_known re/(^(([A-Z]|\d)+-)+([A-Z]|\d)+$)/ setting (child_well_known_eci)
 
     pre {
-      sibling_eci = child(children[0]).klog("sibling_eci: ");
+      //sibling_eci = child(children[0]).klog("sibling_eci: ");
       //sibling_eci = event:attr("well_known_eci").klog("sibling_eci: ");
       //child_eci = ent:child.defaultsTo(0,"child_eci variable is not initialize yet");
-      child_eci = child(children[1]).klog("child_eci");
+      //child_eci = child(children[1]).klog("child_eci");
       // get well_known_eci
-      well_known_channel = wrangler_api:skyQuery(sibling_eci,wrangler_api,channel,"Well_Known");
-      sibling_well_known_eci = well_known_channel{'cid'}.klog("sibling_well_known_eci: ");
-      well_known_channel = wrangler_api:skyQuery(child_eci,wrangler_api,channel,"Well_Known");
-      child_well_known_eci = well_known_channel{'cid'}.klog("child_well_known_eci: ");
+      //well_known_channel = wrangler_api:skyQuery(sibling_eci,wrangler_api,channel,"Well_Known");
+      //sibling_well_known_eci = well_known_channel{'cid'}.klog("sibling_well_known_eci: ");
+      //well_known_channel = wrangler_api:skyQuery(child_eci,wrangler_api,channel,"Well_Known");
+      //child_well_known_eci = well_known_channel{'cid'}.klog("child_well_known_eci: ");
 
       attributes = {}.put(["name"],"brothers")
                       .put(["name_space"],"Tutorial_Subscriptions")
@@ -71,7 +71,7 @@ A rulest to show how to create subscriptions.
                       ;
     }
     {
-      event:send({"cid":sibling_well_known_eci}, "wrangler", "subscription")  
+      event:send({"cid":sibling_well_known_eci.klog("sibling_well_known_eci: ")}, "wrangler", "subscription")  
         with attrs = attributes.klog("attributes for subscription: ");
     }
     always{ 
