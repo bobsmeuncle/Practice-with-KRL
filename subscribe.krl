@@ -63,11 +63,9 @@ A rulest to show how to create subscriptions.
                                     ;
     }
     {
-      event:send({"cid":"D0647BAC-AF52-11E5-9D3E-A37B040ECC4C"}, "subscriptions", "child_well_known_created")  
-      //event:send({"cid":"D0647BAC-AF52-11E5-9D3E-A37B040ECC4C"parent_eci.klog("parent_eci: ")}, "subscriptions", "child_well_known_created")  
+      event:send({"cid":"D0647BAC-AF52-11E5-9D3E-A37B040ECC4C".klog("parent_eci: ")}, "subscriptions", "child_well_known_created")  
+      //event:send({"cid":parent_eci.klog("parent_eci: ")}, "subscriptions", "child_well_known_created")  
         with attrs = attributes.klog("event:send attrs: ");
-      send_directive("wellKnownCreated") with
-        parent_eci = parent_eci;
     }
     always {
       log("parent notified of well known channel");
