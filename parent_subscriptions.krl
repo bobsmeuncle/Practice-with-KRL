@@ -48,7 +48,7 @@ A rulest to show how to create subscriptions.
   // Request Subscription
   rule requestSubscription { // ruleset for parent 
     select when subscriptions child_well_known_created  well_known re#(^(([A-Z]|\d)*-)+([A-Z]|\d)*)# setting (sibling_well_known_eci) 
-            and subscriptions child_well_known_created well_known re#(^(([A-Z]|\d)*-)+([A-Z]|\d)*)# setting (child_well_known_eci)
+            and subscriptions child_well_known_created well_known re#(.*)# setting (child_well_known_eci)
 
     pre {
       //sibling_eci = child(children[0]).klog("sibling_eci: ");
@@ -65,7 +65,7 @@ A rulest to show how to create subscriptions.
                       .put(["name_space"],"Tutorial_Subscriptions")
                       .put(["my_role"],"BrotherB")
                       .put(["your_role"],"BrotherA")
-                      .put(["target_eci"],child_well_known_eci.klog("target eci: "))
+                      .put(["target_eci"],child_well_known_eci.klog("target ECI: "))
                       .put(["channel_type"],"Pico_Tutorial")
                       .put(["attrs"],"success")
                       ;
