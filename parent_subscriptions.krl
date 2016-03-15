@@ -65,7 +65,7 @@ A rulest to show how to create subscriptions.
                       .put(["name_space"],"Tutorial_Subscriptions")
                       .put(["my_role"],"BrotherB")
                       .put(["your_role"],"BrotherA")
-                      .put(["target_eci"],child_well_known_eci)
+                      .put(["target_eci"],child_well_known_eci.klog("target_eci: "))
                       .put(["channel_type"],"Pico_Tutorial")
                       .put(["attrs"],"success")
                       ;
