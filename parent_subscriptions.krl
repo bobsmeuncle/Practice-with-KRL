@@ -14,7 +14,7 @@ A rulest to show how to create subscriptions.
   global {
     child = function(name) {
       child_list_results = wrangler_api:children();
-      child_list = child_list_results{'children'};
+      child_list = child_list_results{'children'}.klog("children: ");
       children_with_name = child_list.filter( function (tuple){
         (wrangler_api:skyQuery(tuple[0],wrangler_api,name,"") eq name)
         ;});
