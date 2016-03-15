@@ -52,7 +52,7 @@ A rulest to show how to create subscriptions.
         // find parant 
         parent_results = wrangler_api:parent();
         parent = parent_results{'parent'};
-        parent_eci = parent[0].klog("parent_eci: ");
+        parent_eci = parent[0].klog("parent eci: ");
        // name_results = wrangler_api:name();
        // name = name_results{'picoName'};
         well_known_eci = channel("Well_Known").klog("well known eci: ");
