@@ -27,7 +27,7 @@ A rulest to show how to create subscriptions.
 
 
   // create 2 children 
-    rule createChildren is active{
+    rule createChildren{
     select when subscriptions automate
     foreach children setting (child)
     pre{
@@ -46,7 +46,7 @@ A rulest to show how to create subscriptions.
   }
 
   // Request Subscription
-  rule requestSubscription is active{ // ruleset for parent 
+  rule requestSubscription { // ruleset for parent 
     select when subscriptions child_well_known_created well_known re#(.*)# setting (sibling_well_known_eci) 
             and subscriptions child_well_known_created well_known re#(.*)# setting (child_well_known_eci)
 
