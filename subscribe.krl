@@ -28,7 +28,7 @@ A rulest to show how to create subscriptions.
 
   }
   // create well known eci in child
-  rule createWellKnown {
+  rule createWellKnown is active{
     select when wrangler init_events
     pre {
       attr = {}.put(["channel_name"],"Well_Known")
@@ -46,7 +46,7 @@ A rulest to show how to create subscriptions.
     }
   }
 
-  rule wellKnownCreated {
+  rule wellKnownCreated is active {
     select when wrangler channel_created where channel_name eq "Well_Known" && channel_type eq "Pico_Tutorial"
     pre {
         // find parant 
