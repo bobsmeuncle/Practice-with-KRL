@@ -2,9 +2,9 @@ ruleset echo {
   meta {
     name "Hello World"
     description <<
-A first ruleset for the Quickstart
+A first ruleset for reactive
 >>
-    author "Phil Windley"
+    author "burdettadam the ta"
     logging on
     sharing on
     provides hello

@@ -31,20 +31,22 @@ A rulest to show how to create subscriptions.
     select when subscriptions automate
     foreach children setting (child)
     pre{
-      attributes = {}
+      attr = {}
                               .put(["Prototype_rids"],"b507706x5.dev") // ; seperated rulesets the child needs installed at creation
                               .put(["name"],child) // name for child
                               ;
     }
     {
-      event:send({"cid":meta:eci()}, "wrangler", "child_creation")  // wrangler api event.
-      with attrs = attributes.klog("attributes: "); // needs a name attribute for child
+      noop();
+      //event:send({"cid":meta:eci()}, "wrangler", "child_creation")  // wrangler api event.
+      //with attrs = attributes.klog("attributes: "); // needs a name attribute for child
     }
     always{
+      raise wrangler event "child_creation"
+      attributes attr;
       log("create child for " + child);
     }
   }
-
   // Request Subscription
   rule requestSubscription { // ruleset for parent 
     select when subscriptions child_well_known_created well_known re#(.*)# setting (sibling_well_known_eci) 

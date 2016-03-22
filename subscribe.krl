@@ -8,22 +8,10 @@ A rulest to show how to create subscriptions.
     use module  b507199x5 alias wrangler_api
     logging on
     sharing on
-    provides hello 
+    //provides 
  
   }
   global {
-    hello = function(obj) {
-      msg = "Hello " + obj
-      msg
-    };
-    channel = function (name){ // eci from name // use function from wrangler
-      my_channels = wrangler_api:channels();
-      channel_list = my_channels{"channels"}.defaultsTo("no Channel","no channel found, by channels");
-      filtered_channels = channel_list.filter(function(channel){
-        (channel{'name'} eq name);}); 
-      result = filtered_channels.head().defaultsTo("","no channel found, by .head()");
-      (result{'cid'});
-    }
 
 
   }
@@ -38,10 +26,13 @@ A rulest to show how to create subscriptions.
                       ;
     }
     {
-        event:send({"cid": meta:eci()}, "wrangler", "channel_creation_requested")  
-        with attrs = attr.klog("attributes: ");
+      noop();
+        //event:send({"cid": meta:eci()}, "wrangler", "channel_creation_requested")  
+        //with attrs = attr.klog("attributes: ");
     }
     always {
+      raise wrangler event "channel_creation_requested"
+      attributes attr;
       log("created wellknown channel");
     }
   }
@@ -55,7 +46,8 @@ A rulest to show how to create subscriptions.
         parent_eci = parent[0].klog("parent eci: ");
        // name_results = wrangler_api:name();
        // name = name_results{'picoName'};
-        well_known_eci = channel("Well_Known").klog("well known eci: ");
+        well_known = wrangler_api:channel("Well_Known").klog("well known: ");
+        well_known_eci = well_known{"cid"};
         init_attributes = event:attrs();
         attributes = init_attributes
                                     //.put(["child_name"],name)
@@ -63,8 +55,8 @@ A rulest to show how to create subscriptions.
                                     ;
     }
     {
-      event:send({"cid":"D0647BAC-AF52-11E5-9D3E-A37B040ECC4C".klog("parent_eci: ")}, "subscriptions", "child_well_known_created")  
-      //event:send({"cid":parent_eci.klog("parent_eci: ")}, "subscriptions", "child_well_known_created")  
+      //event:send({"cid":"D0647BAC-AF52-11E5-9D3E-A37B040ECC4C".klog("parent_eci: ")}, "subscriptions", "child_well_known_created")  
+      event:send({"cid":parent_eci.klog("parent_eci: ")}, "subscriptions", "child_well_known_created")  
         with attrs = attributes.klog("event:send attrs: ");
     }
     always {
