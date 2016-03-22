@@ -43,7 +43,7 @@ A rulest to show how to create subscriptions.
     }
     always{
       raise wrangler event "child_creation"
-      attributes attr;
+      attributes attr.klog("attributes: ");
       log("create child for " + child);
     }
   }
