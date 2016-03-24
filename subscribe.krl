@@ -26,13 +26,10 @@ A rulest to show how to create subscriptions.
                       ;
     }
     {
-      noop();
-        //event:send({"cid": meta:eci()}, "wrangler", "channel_creation_requested")  
-        //with attrs = attr.klog("attributes: ");
+        event:send({"cid": meta:eci()}, "wrangler", "channel_creation_requested")  
+        with attrs = attr.klog("attributes: ");
     }
     always {
-      raise wrangler event "channel_creation_requested"
-      attributes attr;
       log("created wellknown channel");
     }
   }
