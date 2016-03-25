@@ -18,7 +18,10 @@ A rulest to show how to create subscriptions.
   rule childTOParent {
     select when wrangler init_events
     pre {
-      parent_eci = event:attr("parent_eci"); 
+              // find parant 
+      parent_results = wrangler_api:parent();
+      parent = parent_results{'parent'};
+      parent_eci = parent; //event:attr("parent_eci"); 
        attrs = {}.put(["name"],"Family")
                       .put(["name_space"],"Tutorial_Subscriptions")
                       .put(["my_role"],"Child")
