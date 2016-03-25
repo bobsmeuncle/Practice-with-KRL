@@ -19,7 +19,7 @@ A rulest to show how to create subscriptions.
     select when wrangler init_events
     pre {
       parent_eci = event:attr("parent_eci"); 
-       attributes = {}.put(["name"],"Family")
+       attrs = {}.put(["name"],"Family")
                       .put(["name_space"],"Tutorial_Subscriptions")
                       .put(["my_role"],"Child")
                       .put(["your_role"],"Parent")
@@ -35,7 +35,7 @@ A rulest to show how to create subscriptions.
     }
     always {
       raise wrangler event "subscription"
-        with attrs = attributes;
+        with attributes = attrs;
       log("created wellknown channel");
     }
   }
