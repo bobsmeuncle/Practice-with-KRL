@@ -40,7 +40,7 @@ A rulest to show how to create subscriptions.
     }
   }
 
-  // create well known eci in child
+  /*// create well known eci in child
   rule createWellKnown {
     select when wrangler init_events
     pre {
@@ -85,6 +85,7 @@ A rulest to show how to create subscriptions.
       log("parent notified of well known channel");
     }
   }
+
   rule autoAccept {
     select when wrangler inbound_pending_subscription_added 
     pre{
@@ -98,6 +99,6 @@ A rulest to show how to create subscriptions.
           attributes attributes;        
           log("auto accepted subcription.");
     }
-  }
+  } */
  }
 
