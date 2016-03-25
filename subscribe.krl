@@ -21,7 +21,7 @@ A rulest to show how to create subscriptions.
               // find parant 
       parent_results = wrangler_api:parent();
       parent = parent_results{'parent'};
-      parent_eci = parent; //event:attr("parent_eci"); 
+      parent_eci = parent[0]; //event:attr("parent_eci"); 
        attrs = {}.put(["name"],"Family")
                       .put(["name_space"],"Tutorial_Subscriptions")
                       .put(["my_role"],"Child")
