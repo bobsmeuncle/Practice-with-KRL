@@ -35,7 +35,7 @@ A rulest to show how to create subscriptions.
     }
     always {
       raise wrangler event "subscription"
-        with attributes = attrs;
+      attributes attrs;
       log("created wellknown channel");
     }
   }
