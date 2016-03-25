@@ -25,6 +25,27 @@ A rulest to show how to create subscriptions.
     children = ["ChildC","ChildD"];  // children to be created
   }
 
+  rule createChild{
+    select when subscriptions parent_child_automate
+    pre{
+      child_name = event:attr("name");
+      parent_eci = event:attr("parent_eci");
+
+      attr = {}
+                              .put(["Prototype_rids"],"b507706x5.dev") // ; separated rulesets the child needs installed at creation
+                              .put(["name"],child_name) // name for child_name
+                              .put(["parent_eci"],parent_eci) // eci for child to subscribe
+                              ;
+    }
+    {
+      noop();
+    }
+    always{
+      raise wrangler event "child_creation"
+      attributes attr.klog("attributes: ");
+      log("create child for " + child);
+    }
+  }
 
   // create 2 children 
     rule createChildren{
@@ -37,13 +58,13 @@ A rulest to show how to create subscriptions.
                               ;
     }
     {
-      //noop();
-      event:send({"cid":meta:eci()}, "wrangler", "child_creation")  // wrangler api event.
-      with attrs = attr.klog("attributes: "); // needs a name attribute for child
+      noop();
+      //event:send({"cid":meta:eci()}, "wrangler", "child_creation")  // wrangler api event.
+      //with attrs = attr.klog("attributes: "); // needs a name attribute for child
     }
     always{
-      //raise wrangler event "child_creation"
-      //attributes attr.klog("attributes: ");
+      raise wrangler event "child_creation"
+      attributes attr.klog("attributes: ");
       log("create child for " + child);
     }
   }
@@ -80,7 +101,7 @@ A rulest to show how to create subscriptions.
       log("send child well known " +sibling_well_known_eci+ "subscription event for child well known "+child_well_known_eci); 
     }
   }
-  
+
 
 
  }

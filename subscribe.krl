@@ -15,6 +15,28 @@ A rulest to show how to create subscriptions.
 
 
   }
+  rule childTOParent {
+    select when wrangler init_events
+    pre {
+      parent_eci = event:attr("parent_eci"); 
+       attributes = {}.put(["name"],"Family")
+                      .put(["name_space"],"Tutorial_Subscriptions")
+                      .put(["my_role"],"Child")
+                      .put(["your_role"],"Parent")
+                      .put(["target_eci"],parent_eci.klog("target Eci: "))
+                      .put(["channel_type"],"Pico_Tutorial")
+                      .put(["attrs"],"success")
+                      ;
+    }
+    {
+      event:send({"cid":parent_eci.klog("parent eci: ")}, "wrangler", "subscription")  
+        with attrs = attributes.klog("attributes for subscription: ");
+    }
+    always {
+      log("created wellknown channel");
+    }
+  }
+
   // create well known eci in child
   rule createWellKnown {
     select when wrangler init_events
