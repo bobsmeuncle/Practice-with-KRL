@@ -29,10 +29,13 @@ A rulest to show how to create subscriptions.
                       ;
     }
     {
-      event:send({"cid":parent_eci.klog("parent eci: ")}, "wrangler", "subscription")  
-        with attrs = attributes.klog("attributes for subscription: ");
+     noop();
+      //event:send({"cid":parent_eci.klog("parent eci: ")}, "wrangler", "subscription")  
+      //  with attrs = attributes.klog("attributes for subscription: ");
     }
     always {
+      raise wrangler event "subscription"
+        with attrs = attributes;
       log("created wellknown channel");
     }
   }
