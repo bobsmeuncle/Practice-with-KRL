@@ -141,10 +141,10 @@ ruleset trip_store {
     rule well_known_created {
         select when wrangler channel_created where channel_name eq "Well_Known" && channel_type eq "Multi_Picos"
         pre {
-            parent_results = wrangler_api:parent();
+            parent_results = wranglerOS:parent();
             parent = parent_results{'parent'};
             parent_eci = parent[0].klog("parent eci: ");
-            well_known = wrangler_api:channel("Well_Known").klog("well known: ");
+            well_known = wranglerOS:channel("Well_Known").klog("well known: ");
             well_known_eci = well_known{"cid"};
             init_attributes = event:attrs();
             attributes = init_attributes.put(["well_known"],well_known_eci)
