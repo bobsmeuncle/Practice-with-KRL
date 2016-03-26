@@ -41,7 +41,7 @@ Pico for managing a fleet.
             target_ecis = get_target_ecis();
 
             reports = target_ecis.map(function(eci) {
-                wranglerOS:skyQuery(eci,"b507728x4.prod","trips","");
+                wranglerOS:skyQuery(eci,"b507706x8.prod","trips","");
             });
 
             filtered_reports = reports.filter(function(obj) {
