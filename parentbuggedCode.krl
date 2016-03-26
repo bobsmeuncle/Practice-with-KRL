@@ -9,7 +9,7 @@ Pico for managing a fleet.
 
         logging on
         sharing on
-        provides vehicles, children, known_vehicle, get_trips, get_done_reports, get_running_reports, get_target_ecis
+        provides vehicles, children, known_vehicle, get_trips, get_done_reports, get_running_reports, get_target_ecis, get_event_ecis
     }
 
     global {
@@ -75,6 +75,27 @@ Pico for managing a fleet.
             });
 
             target_ecis
+        }
+
+        get_event_ecis = function()
+        {
+            reports = [];
+            subs = vehicles();
+            subscriptions = subs{"subscribed"};
+            stripped_subs = subscriptions.map(function(subscription){
+                vals = subscription.values();
+                vals.head()
+            });
+
+            filtered_subs = stripped_subs.filter(function(obj) {
+                obj{"status"} eq "subscribed" && obj{"relationship"} eq "fleet" && obj{"name_space"} eq "Multiple_Picos"
+            });
+
+            event_ecis = filtered_subs.map(function(obj) {
+                obj{"event_eci"}
+            });
+
+            event_ecis
         }
 
         get_done_reports = function()
