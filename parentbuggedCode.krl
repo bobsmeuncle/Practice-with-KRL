@@ -9,7 +9,7 @@ Pico for managing a fleet.
 
         logging on
         sharing on
-        provides vehicles, children, known_vehicle, get_trips, get_done_reports, get_running_reports,get_target_ecis
+        provides vehicles, children, known_vehicle, get_trips, get_done_reports, get_running_reports, get_target_ecis
     }
 
     global {
