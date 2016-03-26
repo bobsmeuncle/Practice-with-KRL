@@ -195,7 +195,7 @@ Pico for managing a fleet.
         select when fleet scatter_report
         pre {
             correlation_identifier = event:attr("correlation_identifier") || "Report-"+math:random(99999);
-            target_ecis = get_target_ecis();
+            target_ecis = get_event_ecis();
             attrs = {}
                         .put(["correlation_identifier"], correlation_identifier)
                         .put(["target_ecis"], target_ecis)
@@ -203,6 +203,7 @@ Pico for managing a fleet.
                         ;
         }
         fired {
+            set ent:event_ecis target_ecis;
             raise explicit event 'scatter_report_execute'
                 attributes attrs;
             log "successfully raised the explicit event 'scatter_report_execute'";
@@ -211,7 +212,7 @@ Pico for managing a fleet.
 
     rule scatter_report_execute {
         select when explicit scatter_report_execute
-        foreach event:attr("target_ecis") setting (eci)
+        foreach ent:event_ecis setting (eci)
         pre {
             correlation_identifier = event:attr("correlation_identifier");
             tmp = ent:running_reports || {};
