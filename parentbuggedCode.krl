@@ -198,7 +198,7 @@ Pico for managing a fleet.
             target_ecis = get_event_ecis();
             attrs = {}
                         .put(["correlation_identifier"], correlation_identifier)
-                        .put(["target_ecis"], target_ecis)
+                        //.put(["target_ecis"], target_ecis)
                         .klog("here are the attrs: ")
                         ;
         }
