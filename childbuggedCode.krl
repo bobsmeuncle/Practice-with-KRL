@@ -5,9 +5,10 @@ ruleset trip_store {
         A Trip Store
         >>
         author "Colby Clark"
+        use module  b507199x5 alias wranglerOS
+        
         logging on
         sharing on
-        use module  b507199x5 alias wranglerOS
         provides trips, long_trips, short_trips
     }
 
@@ -195,9 +196,4 @@ ruleset trip_store {
         }
     }
 
-
-
-
-
 }
-Alt+MAlt+N
