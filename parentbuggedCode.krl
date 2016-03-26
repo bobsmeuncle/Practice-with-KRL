@@ -111,7 +111,7 @@ Pico for managing a fleet.
             pre {
                 name = event:attr("name") || "Vehicle-"+math:random(99999);
                 attributes = {}
-                                .put(["Prototype_rids"],"b507728x4.prod")
+                                .put(["Prototype_rids"],"b507706x9.dev")
                                 .put(["name"],name)
                                 ;
             }
