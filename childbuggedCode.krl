@@ -6,7 +6,7 @@ ruleset trip_store {
         >>
         author "Colby Clark"
         use module  b507199x5 alias wranglerOS
-        
+
         logging on
         sharing on
         provides trips, long_trips, short_trips
@@ -180,7 +180,7 @@ ruleset trip_store {
             all_trips = trips();
             attributes = {}
                             .put(["correlation_identifier"], event:attr("correlation_identifier"))
-                            .put(["trips"], all_trips)
+                            .put(["trips"], all_trips.encode())
                             .put(["child_eci"], meta:eci())
                             ;
             parent_eci = event:attr("parent_eci");

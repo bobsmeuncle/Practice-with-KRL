@@ -243,7 +243,7 @@ Pico for managing a fleet.
             result_sets = ent:done_reports || {};
             correlation_identifier = event:attr("correlation_identifier");
             tmp = done_reports{[correlation_identifier]};
-            finished_trips = tmp.append(event:attr("trips"));
+            finished_trips = tmp.append(event:attr("trips").decode());
             updated_result_sets = result_sets.put([correlation_identifier], finished_trips);
 
             tmp = ent:running_reports || {};
