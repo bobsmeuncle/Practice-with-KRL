@@ -188,7 +188,7 @@ ruleset trip_store {
             the_identifier = event:attr("identifier").klog("identifier: ");
         }
         {
-            event:send({"cid":parent_eci}, the_domain, the_identifier)
+            event:send({"cid":parent_eci}, "vehicle", "return_and_report")
                 with attrs = attributes.klog("attributes: ");
         }
         always {
