@@ -198,12 +198,11 @@ Pico for managing a fleet.
             target_ecis = get_event_ecis();
             attrs = {}
                         .put(["correlation_identifier"], correlation_identifier)
-                        //.put(["target_ecis"], target_ecis)
+                        .put(["target_ecis"], target_ecis)
                         .klog("here are the attrs: ")
                         ;
         }
         fired {
-            set ent:event_ecis target_ecis;
             raise explicit event 'scatter_report_execute'
                 attributes attrs;
             log "successfully raised the explicit event 'scatter_report_execute'";
@@ -212,7 +211,7 @@ Pico for managing a fleet.
 
     rule scatter_report_execute {
         select when explicit scatter_report_execute
-        foreach ent:event_ecis setting (eci)
+        foreach event:attr("target_ecis") setting (eci)
         pre {
             correlation_identifier = event:attr("correlation_identifier");
             tmp = ent:running_reports || {};
@@ -222,7 +221,7 @@ Pico for managing a fleet.
             attributes = {}
                             .put(["correlation_identifier"],event:attr("correlation_identifier"))
                             .put(["parent_eci"], meta:eci())
-                            .put(["domain"], "vehicle")
+                            .put(["event_domain"], "vehicle")
                             .put(["identifier"], "return_and_report")
                             .klog("scatter_report_execute build up attribs: ")
                             ;
@@ -243,7 +242,7 @@ Pico for managing a fleet.
             result_sets = ent:done_reports || {};
             correlation_identifier = event:attr("correlation_identifier");
             tmp = done_reports{[correlation_identifier]};
-            finished_trips = tmp.append(event:attr("trips").decode());
+            finished_trips = tmp.append(event:attr("trips"));
             updated_result_sets = result_sets.put([correlation_identifier], finished_trips);
 
             tmp = ent:running_reports || {};

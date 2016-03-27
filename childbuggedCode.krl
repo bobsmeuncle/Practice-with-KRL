@@ -177,18 +177,18 @@ ruleset trip_store {
     rule fleet_demands_report {
         select when fleet demand_report
         pre {
-           // all_trips = trips().klog("trips: ");
-            attributes = {};/*
+            all_trips = trips();
+            attributes = {}
                             .put(["correlation_identifier"], event:attr("correlation_identifier"))
-                            //.put(["trips"], all_trips.encode())
+                            .put(["trips"], all_trips)
                             .put(["child_eci"], meta:eci())
                             ;
-            parent_eci = event:attr("parent_eci").klog("parent_eci: ");
-            the_domain = event:attr("domain").klog("domain: ");
-            the_identifier = event:attr("identifier").klog("identifier: ");*/
+            parent_eci = event:attr("parent_eci");
+            the_domain = event:attr("event_domain");
+            the_identifier = event:attr("identifier");
         }
         {
-            event:send({"cid":"AA78B9D8-F36F-11E5-9E84-4FE9E71C24E1"}, "vehicle", "return_and_report")
+            event:send({"cid":parent_eci}, the_domain, the_identifier)
                 with attrs = attributes.klog("attributes: ");
         }
         always {
