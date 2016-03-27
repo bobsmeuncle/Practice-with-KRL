@@ -177,10 +177,10 @@ ruleset trip_store {
     rule fleet_demands_report {
         select when fleet demand_report
         pre {
-            all_trips = trips().klog("trips: ");
+           // all_trips = trips().klog("trips: ");
             attributes = {}
                             .put(["correlation_identifier"], event:attr("correlation_identifier"))
-                            .put(["trips"], all_trips.encode())
+                            //.put(["trips"], all_trips.encode())
                             .put(["child_eci"], meta:eci())
                             ;
             parent_eci = event:attr("parent_eci").klog("parent_eci: ");
