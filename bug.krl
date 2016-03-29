@@ -52,4 +52,3 @@ Ruleset for managing your fleet of vehicles
     }
   }
 }
-Alt+MAlt+N
