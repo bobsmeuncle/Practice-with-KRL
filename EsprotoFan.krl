@@ -58,7 +58,7 @@ ruleset esproto_device {
 
   rule check_threshold {
     select when esproto new_temperature_reading
-    foreach event:attr("readings") setting (reading)
+    //foreach event:attr("readings") setting (reading)
       pre {
 
         // thresholds
@@ -68,13 +68,15 @@ ruleset esproto_device {
 	upper_threshold = threshold_map{["limits","upper"]};
 
         // sensor readings
-	data = reading.klog("Reading from #{threshold_type}: ");
-	reading_value = data{reading_map{threshold_type}}.klog("Reading value for #{threshold_type}: ");
-	sensor_name = data{"name"}.klog("Name of sensor: ");
+	//data = reading.klog("Reading from #{threshold_type}: ");
+  data = event:attr("temp");
+	//reading_value = data{reading_map{threshold_type}}.klog("Reading value for #{threshold_type}: ");
+	//sensor_name = data{"name"}.klog("Name of sensor: ");
 
         // decide
 	//under = reading_value < lower_threshold;
-	over = upper_threshold < reading_value;
+  //over = upper_threshold < reading_value;
+	over = upper_threshold < data;
 	//msg = under => "#{threshold_type} is under threshold of #{lower_threshold}"
 	//    | over  => "#{threshold_type} is over threshold of #{upper_threshold}"
 	//   |          "";
