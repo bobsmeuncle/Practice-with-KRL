@@ -83,9 +83,12 @@ ruleset esproto_device {
       }
       if( over ) then noop();
       fired {
+      log "setting to 1";
+
 	       set ent:fan_state 1;   
       }
       else {
+      log "setting to 2";
         set ent:fan_state 2;
       }
   }
