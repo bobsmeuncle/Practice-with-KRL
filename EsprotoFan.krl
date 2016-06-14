@@ -52,7 +52,7 @@ ruleset esproto_device {
     fired {
       log "Setting threshold value for #{threshold_type}";
       set ent:thresholds{threshold_type} threshold_value;
-      set ent:fan_state 0;
+      set ent:fan_state 2;
     }
   }
 
