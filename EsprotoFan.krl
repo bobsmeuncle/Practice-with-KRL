@@ -86,7 +86,7 @@ ruleset esproto_device {
 	       set ent:fan_state 1;   
       }
       else {
-        set ent:fan_state 0;
+        set ent:fan_state 2;
       }
   }
 
