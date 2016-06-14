@@ -36,6 +36,6 @@ while True:
 	if(IO.content == "1"):
 		#GPIO.output(FAN_PIN, True)
 		print("true")
-	if(IO.content != "1"):
+	if(IO.content == "2"):
 		#GPIO.output(FAN_PIN, False)
 		print("false")
