@@ -21,7 +21,7 @@ ruleset fanController {
 }
 
   rule fanOn {
-    select when fan new_status where status.match(re#on#)
+    select when fan new_status where state.match(re#on#)
     pre {}
    // if(ent:fan_state eq 0) then
     {
@@ -39,7 +39,7 @@ ruleset fanController {
 
 
   rule fanOff {
-    select when fan new_status where status.match(re#off#)
+    select when fan new_status where state.match(re#off#)
     pre {
 
       }
