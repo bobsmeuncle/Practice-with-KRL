@@ -14,54 +14,104 @@ ruleset fanCollection {
   }
 
   global {
-    fan_states = function (){
-      // rapper for fanA and fanB state calls
+    fanStates = function (){
+      // wrapper for fanA and fanB state calls
       // returns an jason object with fan states keyed to there names
       noop();
     };
     //private
-}
-
-/// logic rule 
-// on violation event check outside temp and if cooler turn on fan event. 
-// 
-
-
-
-  rule fansOn {
-    select when esproto threshold_violation // with upper_threshold
-    pre {}
-    {
-      //event send turn on fan to all fans 
-      noop();
-    } 
+    collectionSubscriptions = function () {
+        return = wrangler:subscriptions(unknown,"status","subscribed").klog(">>> All subscribed subscriptions >>> "); 
+        raw_subs = return{"subscriptions"};
+        subs = raw_subs.filter(function(k,v){v{"name_space"} eq "closet_collection" && v{"subscriber_role"} eq "fan_controller"});
+        subs.klog("Subscriptions: ").defaultsTo({})// returns a map of desired subscriptions
+      };
+    fanChannels = function () {
+      subs = collectionSubscriptions();
+      attributes = subs.values().klog("values: "); // array of maps
+      channels = attributes.map( function(x){ x{"outbound_eci"} }); // array of eci's
+      channels.klog("channels : ")
+    }
   }
 
 
-  rule fanOff {
-    select when esproto threshold_violation // with lower_threshold
-    pre {}
+/*
+  rule fanOn { // dynamically 
+    select when fan need_more_air
+      foreach fanChannels setting(i)
+    pre {
+      level = event:attr("level");// 1 or 2
+    }
+    if (i <= level ) then
     {
-      // event send turn off all fans 
       noop();
+      event:send({},)
     } 
     fired {
-      log "turning off fan @ " + ent:off_api;
-      set ent:fan_state 1;
+
+    }
+  }
+*/
+  rule fanAOn {
+    select when fan need_more_air where level == 1 // turn on fan A
+             or explicit need_more_air
+    pre {
+      ecis = fanChannels();
+    }
+    {
+      noop();
+      event:send({"cid": ecis[0] },"fan","new_status")
+        with attrs = {
+          "status" : "on"
+        };
+    } 
+
+  }
+
+  rule fanBOn {
+    select when fan need_more_air where level == 2 // turn on fan B
+    pre {
+      ecis = fanChannels();
+    }
+    {
+      noop();
+      event:send({"cid": ecis[1] },"fan","new_status")
+        with attrs = {
+          "status" : "on"
+        };
+    } 
+    always{
+      raise explicit event "need_more_air"
+        with level = 1;
     }
   }
 
-  rule updateApi {
-    select when collection fan_update_api
+  rule fanAOff {
+    select when fan no_more_air where level == 0 // turn off fans
     pre {
-      api_on = event:attr("api_on");
-      api_off = event:attr("api_off");
-      state = event:attr("state").defaultsTo(0,"defaulted To off");
-      }
-    {
-      // event send fan update_api to all fans with all attributes passed.
-      noop();
+      ecis = fanChannels();
     }
+    {
+      noop();
+      event:send({"cid": ecis[0] },"fan","new_status")
+        with attrs = {
+          "status" : "off"
+        };
+    } 
+  }
+
+  rule fanBOff {
+    select when fan no_more_air where level == 0 // turn off fans
+    pre {
+      ecis = fanChannels();
+    }
+    {
+      noop();
+      event:send({"cid": ecis[1] },"fan","new_status")
+        with attrs = {
+          "status" : "off"
+        };
+    } 
   }
 
 }

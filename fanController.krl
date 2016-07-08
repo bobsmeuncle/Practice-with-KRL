@@ -21,11 +21,11 @@ ruleset fanController {
 }
 
   rule fanOn {
-    select when fan turn_on
+    select when fan new_status where status eq "on"
     pre {}
    // if(ent:fan_state eq 0) then
     {
-      http:put(ent:on_api);// wont work with out https
+      http:put(ent:on_api);
 
     } // fan is off
     always {
@@ -39,7 +39,7 @@ ruleset fanController {
 
 
   rule fanOff {
-    select when fan turn_off
+    select when fan new_status where status eq "off"
     pre {
 
       }
