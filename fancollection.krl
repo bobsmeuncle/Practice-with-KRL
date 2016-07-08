@@ -20,25 +20,22 @@ ruleset fanCollection {
       noop();
     };
     //private
-    collectionSubscriptions = function () {
+    collectionEcis = function () {
         return = wrangler:subscriptions(unknown,"status","subscribed").klog(">>> All subscribed subscriptions >>> "); 
-        raw_subs = return{"subscriptions"};
-        subs = raw_subs.filter(function(k,v){v{"name_space"} eq "closet_collection" && v{"subscriber_role"} eq "fan_controller"});
-        subs.klog("Subscriptions: ").defaultsTo({})// returns a map of desired subscriptions
+        raw_subs = return{"subscriptions"}; // array of subs
+        ecis = raw_subs.filter(function(subs){
+          v = subs.values();
+          v{"outbound_eci"}
+          });
+        ecis.klog("ecis: ")
       };
-    fanChannels = function () {
-      subs = collectionSubscriptions();
-      attributes = subs.values().klog("values: "); // array of maps
-      channels = attributes.map( function(x){ x{"outbound_eci"} }); // array of eci's
-      channels.klog("channels : ")
-    }
   }
 
 
 /*
   rule fanOn { // dynamically 
     select when fan need_more_air
-      foreach fanChannels setting(i)
+      foreach collectionEcis setting(i)
     pre {
       level = event:attr("level");// 1 or 2
     }
@@ -56,7 +53,7 @@ ruleset fanCollection {
     select when fan need_more_air level re#1# // turn on fan A
              or explicit need_more_air
     pre {
-      ecis = fanChannels();
+      ecis = collectionEcis();
     }
     {
       noop();
@@ -71,7 +68,7 @@ ruleset fanCollection {
   rule fanBOn {
     select when fan need_more_air level re#2#  // turn on fan B
     pre {
-      ecis = fanChannels();
+      ecis = collectionEcis();
     }
     {
       noop();
@@ -89,7 +86,7 @@ ruleset fanCollection {
   rule fanAOff {
     select when fan no_more_air level re#0#  // turn off fans
     pre {
-      ecis = fanChannels();
+      ecis = collectionEcis();
     }
     {
       noop();
@@ -103,7 +100,7 @@ ruleset fanCollection {
   rule fanBOff {
     select when fan no_more_air level re#0# // turn off fans
     pre {
-      ecis = fanChannels();
+      ecis = collectionEcis();
     }
     {
       noop();
