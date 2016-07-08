@@ -1,7 +1,7 @@
-ruleset demoBoxCollection {
+ruleset fanCollection {
   meta {
 
-    name "box_collection"
+    name "fan_collection"
     author "PicoLabs"
     description ""
 
