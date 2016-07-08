@@ -23,8 +23,8 @@ ruleset fanCollection {
     collectionEcis = function () {
         return = wrangler:subscriptions(unknown,"status","subscribed").klog(">>> All subscribed subscriptions >>> "); 
         raw_subs = return{"subscriptions"}; // array of subs
-        ecis = raw_subs.filter(function(subs){
-          v = subs.values();
+        ecis = raw_subs.filter(function( subs ){
+          v = subs.values().klog("subs.values(): ");
           v{"outbound_eci"}
           });
         ecis.klog("ecis: ")
