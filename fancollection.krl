@@ -53,7 +53,7 @@ ruleset fanCollection {
   }
 */
   rule fanAOn {
-    select when fan need_more_air where level == 1 // turn on fan A
+    select when fan need_more_air level re#1# // turn on fan A
              or explicit need_more_air
     pre {
       ecis = fanChannels();
@@ -69,7 +69,7 @@ ruleset fanCollection {
   }
 
   rule fanBOn {
-    select when fan need_more_air where level == 2 // turn on fan B
+    select when fan need_more_air level re#2#  // turn on fan B
     pre {
       ecis = fanChannels();
     }
@@ -87,7 +87,7 @@ ruleset fanCollection {
   }
 
   rule fanAOff {
-    select when fan no_more_air where level == 0 // turn off fans
+    select when fan no_more_air level re#0#  // turn off fans
     pre {
       ecis = fanChannels();
     }
@@ -101,7 +101,7 @@ ruleset fanCollection {
   }
 
   rule fanBOff {
-    select when fan no_more_air where level == 0 // turn off fans
+    select when fan no_more_air level re#0# // turn off fans
     pre {
       ecis = fanChannels();
     }
