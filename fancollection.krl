@@ -3,7 +3,7 @@ ruleset fanCollection {
 
     name "fan_collection"
     author "PicoLabs"
-    description ""
+    description "fan_collection"
 
     use module b507199x5 alias wrangler
     
@@ -17,6 +17,7 @@ ruleset fanCollection {
     fan_states = function (){
       // rapper for fanA and fanB state calls
       // returns an jason object with fan states keyed to there names
+      noop();
     };
     //private
 }
@@ -32,6 +33,7 @@ ruleset fanCollection {
     pre {}
     {
       //event send turn on fan to all fans 
+      noop();
     } 
   }
 
@@ -41,6 +43,7 @@ ruleset fanCollection {
     pre {}
     {
       // event send turn off all fans 
+      noop();
     } 
     fired {
       log "turning off fan @ " + ent:off_api;
@@ -57,6 +60,7 @@ ruleset fanCollection {
       }
     {
       // event send fan update_api to all fans with all attributes passed.
+      noop();
     }
   }
 
