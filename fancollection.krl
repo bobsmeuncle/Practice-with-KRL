@@ -10,7 +10,7 @@ ruleset fanCollection {
     logging on
     
     sharing on
-    provides fan_states
+    provides fanStates
   }
 
   global {
@@ -20,7 +20,7 @@ ruleset fanCollection {
       ecis = collectionEcis();
       {
         fan_a : wrangler:skyQuery(ecis[0],meta:host(),fan_state,{}),
-        fan_b : wrangler:skyQuery(ecis[01],meta:host(),fan_state,{})
+        fan_b : wrangler:skyQuery(ecis[1],meta:host(),fan_state,{})
       }
 
     };
