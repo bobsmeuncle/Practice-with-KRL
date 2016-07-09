@@ -49,9 +49,9 @@ ruleset fanCollection {
 
     }
   }
-*/
+
  rule levelZero {
-    select when fan no_more_air level re#0# 
+    select when fan airflow level re#0# 
     pre {
       ecis = collectionEcis();
     }
@@ -68,7 +68,7 @@ ruleset fanCollection {
     }
   }
   rule levelOne {
-    select when fan need_more_air level re#1# // turn on fan A
+    select when fan airflow level re#1# // turn on fan A
     pre {
       ecis = collectionEcis();
     }
@@ -80,13 +80,13 @@ ruleset fanCollection {
         };
     }
     always{ 
-      raise explicit event "fan_b_off"
+      raise fan event "fan_b_off"
           with level = 0;
     }
   }
 
   rule levelTwo {
-    select when fan need_more_air level re#2# // turn on fan A
+    select when fan airflow level re#2# // turn on fan A
     pre {
       ecis = collectionEcis();
     }
@@ -98,13 +98,14 @@ ruleset fanCollection {
         };
     }
     always{ 
-      raise explicit event "need_more_air"
+      raise fan event "airflow"
           with level = 2;
     }
   }
-
+  */
   rule fanAOn {
-    select when fan need_more_air level re#1# // turn on fan A
+    select when fan airflow level re#1#  // turn on fan B
+             or fan airflow level re#2# 
     pre {
       ecis = collectionEcis();
     }
@@ -114,15 +115,11 @@ ruleset fanCollection {
         with attrs = {
           "state" : "on"
         };
-    }
-    always{ 
-      raise explicit event "no_more_air"
-          with level = 0;
-    }
+    } 
   }
 
   rule fanBOn {
-    select when explicit need_more_air level re#2#  // turn on fan B
+    select when fan airflow level re#2#  // turn on fan B
     pre {
       ecis = collectionEcis();
     }
@@ -134,9 +131,9 @@ ruleset fanCollection {
         };
     } 
   }
-/*
+
   rule fanAOff {
-    select when fan no_more_air level re#0#  // turn off fans
+    select when fan airflow level re#0#  // turn off fans
     pre {
       ecis = collectionEcis();
     }
@@ -148,9 +145,10 @@ ruleset fanCollection {
         };
     } 
   }
-*/
+
   rule fanBOff {
-    select when explicit fan_b_off level re#0#
+    select when fan airflow level re#0#
+            or fan airflow level re#1#
     pre {
       ecis = collectionEcis();
     }
