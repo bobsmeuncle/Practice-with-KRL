@@ -60,7 +60,7 @@ ruleset fanCollection {
       noop();
       event:send({"cid": ecis[0].klog("ecis[0]: " ) },"fan","new_status")
         with attrs = {
-          "status" : "on"
+          "state" : "on"
         };
     } 
 
@@ -75,7 +75,7 @@ ruleset fanCollection {
       noop();
       event:send({"cid": ecis[1] },"fan","new_status")
         with attrs = {
-          "status" : "on"
+          "state" : "on"
         };
     } 
     always{
@@ -93,7 +93,7 @@ ruleset fanCollection {
       noop();
       event:send({"cid": ecis[0] },"fan","new_status")
         with attrs = {
-          "status" : "off"
+          "state" : "off"
         };
     } 
   }
@@ -107,7 +107,7 @@ ruleset fanCollection {
       noop();
       event:send({"cid": ecis[1] },"fan","new_status")
         with attrs = {
-          "status" : "off"
+          "state" : "off"
         };
     } 
   }
