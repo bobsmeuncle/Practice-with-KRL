@@ -17,7 +17,12 @@ ruleset fanCollection {
     fanStates = function (){
       // wrapper for fanA and fanB state calls
       // returns an jason object with fan states keyed to there names
-      noop();
+      ecis = collectionEcis();
+      {
+        fan_a : wrangler:skyQuery(ecis[0],meta:host(),fan_state,{}),
+        fan_b : wrangler:skyQuery(ecis[01],meta:host(),fan_state,{})
+      }
+
     };
     //private
     collectionEcis = function () {
@@ -31,78 +36,6 @@ ruleset fanCollection {
         ecis.klog("ecis: ")
       };
   }
-
-
-/*
-  rule fanOn { // dynamically 
-    select when fan need_more_air
-      foreach collectionEcis setting(i)
-    pre {
-      level = event:attr("level");// 1 or 2
-    }
-    if (i <= level ) then
-    {
-      noop();
-      event:send({},)
-    } 
-    fired {
-
-    }
-  }
-
- rule levelZero {
-    select when fan airflow level re#0# 
-    pre {
-      ecis = collectionEcis();
-    }
-    {
-      noop();
-      event:send({"cid": ecis[0] },"fan","new_status")
-        with attrs = {
-          "state" : "off"
-        };
-    }
-    always{ 
-      raise explicit event "fan_b_off"
-          with level = 0;
-    }
-  }
-  rule levelOne {
-    select when fan airflow level re#1# // turn on fan A
-    pre {
-      ecis = collectionEcis();
-    }
-    {
-      noop();
-      event:send({"cid": ecis[0] },"fan","new_status")
-        with attrs = {
-          "state" : "on"
-        };
-    }
-    always{ 
-      raise fan event "fan_b_off"
-          with level = 0;
-    }
-  }
-
-  rule levelTwo {
-    select when fan airflow level re#2# // turn on fan A
-    pre {
-      ecis = collectionEcis();
-    }
-    {
-      noop();
-      event:send({"cid": ecis[0] },"fan","new_status")
-        with attrs = {
-          "state" : "on"
-        };
-    }
-    always{ 
-      raise fan event "airflow"
-          with level = 2;
-    }
-  }
-  */
   rule fanAOn {
     select when fan airflow level re#1#  // turn on fan B
              or fan airflow level re#2# 
@@ -122,7 +55,7 @@ ruleset fanCollection {
     select when fan airflow level re#2#  // turn on fan B
     pre {
       ecis = collectionEcis();
-      
+
     }
     {
       noop();
