@@ -122,6 +122,7 @@ ruleset fanCollection {
     select when fan airflow level re#2#  // turn on fan B
     pre {
       ecis = collectionEcis();
+      
     }
     {
       noop();
