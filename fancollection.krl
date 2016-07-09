@@ -21,7 +21,7 @@ ruleset fanCollection {
     };
     //private
     collectionEcis = function () {
-        return = wrangler:subscriptions(unknown,"status","subscribed").klog(">>> All subscribed subscriptions >>> "); 
+        return = wrangler:subscriptions(unknown,"subscriber_role","fan_controller").klog(">>> All subscribed subscriptions >>> "); 
         raw_subs = return{"subscriptions"}; // array of subs
         ecis = raw_subs.map(function( subs ){
           r = subs.values().klog("subs.values(): ");
@@ -58,7 +58,7 @@ ruleset fanCollection {
     }
     {
       noop();
-      event:send({"cid": ecis[0] },"fan","new_status")
+      event:send({"cid": ecis[0].klog("ecis[0]: " ) },"fan","new_status")
         with attrs = {
           "status" : "on"
         };
