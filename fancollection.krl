@@ -50,6 +50,59 @@ ruleset fanCollection {
     }
   }
 */
+ rule levelZero {
+    select when fan no_more_air level re#0# 
+    pre {
+      ecis = collectionEcis();
+    }
+    {
+      noop();
+      event:send({"cid": ecis[0] },"fan","new_status")
+        with attrs = {
+          "state" : "off"
+        };
+    }
+    always{ 
+      raise explicit event "fan_b_off"
+          with level = 0;
+    }
+  }
+  rule levelOne {
+    select when fan need_more_air level re#1# // turn on fan A
+    pre {
+      ecis = collectionEcis();
+    }
+    {
+      noop();
+      event:send({"cid": ecis[0] },"fan","new_status")
+        with attrs = {
+          "state" : "on"
+        };
+    }
+    always{ 
+      raise explicit event "fan_b_off"
+          with level = 0;
+    }
+  }
+
+  rule levelTwo {
+    select when fan need_more_air level re#2# // turn on fan A
+    pre {
+      ecis = collectionEcis();
+    }
+    {
+      noop();
+      event:send({"cid": ecis[0] },"fan","new_status")
+        with attrs = {
+          "state" : "on"
+        };
+    }
+    always{ 
+      raise explicit event "need_more_air"
+          with level = 2;
+    }
+  }
+
   rule fanAOn {
     select when fan need_more_air level re#1# // turn on fan A
              or explicit need_more_air
@@ -58,16 +111,19 @@ ruleset fanCollection {
     }
     {
       noop();
-      event:send({"cid": ecis[0].klog("ecis[0]: " ) },"fan","new_status")
+      event:send({"cid": ecis[0] },"fan","new_status")
         with attrs = {
           "state" : "on"
         };
-    } 
-
+    }
+    always{ 
+      raise explicit event "no_more_air"
+          with level = 0;
+    }
   }
 
   rule fanBOn {
-    select when fan need_more_air level re#2#  // turn on fan B
+    select when explicit need_more_air re#2#  // turn on fan B
     pre {
       ecis = collectionEcis();
     }
@@ -78,12 +134,8 @@ ruleset fanCollection {
           "state" : "on"
         };
     } 
-    always{
-      raise explicit event "need_more_air"
-        with level = 1;
-    }
   }
-
+/*
   rule fanAOff {
     select when fan no_more_air level re#0#  // turn off fans
     pre {
@@ -97,9 +149,10 @@ ruleset fanCollection {
         };
     } 
   }
-
+*/
   rule fanBOff {
     select when fan no_more_air level re#0# // turn off fans
+             or explicit fan_b_off level re#0#
     pre {
       ecis = collectionEcis();
     }
