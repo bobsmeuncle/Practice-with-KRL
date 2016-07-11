@@ -85,21 +85,15 @@ ruleset closetCollection {
       log "failed to turn on its to hot outside."
     }
   }
-
+/*
     rule logicallyFanOff {
-    select when esproto threshold_violation where threshold eq upper_threshold()
+    select when esproto threshold_violation where threshold eq lower_threshold()
     pre {
       outside = outside_temp().klog("outside temp: ");
       inside = inside_temp().klog("inside temp: ");
-      thresholds = temp_thresholds().klog("inside temp thresholds: ");
-      thresholds_lower = thresholds{["limits","lower"]};
-      //thresholds_upper = thresholds{["limits","upper"]};
-      //temp_diff = inside - outside ;
-      thresholds_diff = inside - thresholds_upper;
-      airflow_level = (thresholds_diff > 3) => 2 | 1;
+      airflow_level = 0;
       fan_driver = fan_collection_eci();
     }
-    if (inside > outside) then
     {
       event:send({"cid": fan_driver[0] },"fan","airflow")
         with attrs = {
@@ -107,11 +101,10 @@ ruleset closetCollection {
         };
     } // fan is off
     fired {
-      log "turning on fans with airflow level @ " + airflow_level;
+      log "turning off fans with airflow level @ " + airflow_level;
     }
     else {
-      log "failed to turn on its to hot outside."
     }
   }
-
+*/
 }
