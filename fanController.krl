@@ -15,7 +15,7 @@ ruleset fanController {
 
   global {
     fan_state = function (){
-      ent:fan_state;
+      http:get(ent:pin_state);
     };
     //private
 }
@@ -30,7 +30,6 @@ ruleset fanController {
     } // fan is off
     always {
       log "turning on fan @ " + ent:on_api;
-      set ent:fan_state 1;
     }
   //  else {
   //    log "fan is already on."
@@ -49,7 +48,6 @@ ruleset fanController {
     } // fan is on
     always {
       log "turning off fan @ " + ent:off_api;
-      set ent:fan_state 0;
     }
   }
 
@@ -58,14 +56,14 @@ ruleset fanController {
     pre {
       api_on = event:attr("api_on");
       api_off = event:attr("api_off");
-      state = event:attr("state").defaultsTo(0,"defaulted To off");
+      state = event:attr("state");
       }
     {
      noop();
     }
     always {
       log "updateing api";
-      set ent:fan_state state;
+      set ent:pin_state state;
       set ent:on_api api_on;
       set ent:off_api api_off;
     }
