@@ -30,7 +30,7 @@ ruleset closetCollection {
     };
     temp_thresholds = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
-      wrangler:skyQuery(ecis[0],thresholds,{ threshold_type : "inside_temp_threshold" })
+      wrangler:skyQuery(ecis[0],thresholds,{ threshold_type : "temperature" })
     };
     lower_threshold = function (){
       thresholds = temp_thresholds();
@@ -61,10 +61,12 @@ ruleset closetCollection {
 }
 
   rule logicallyFanOn {
-    select when esproto threshold_violation where threshold eq upper_threshold()
+    select when esproto threshold_violation 
     pre {
+      reading = event:attr("reading");
+      inside = reading{"temperatureF"}.klog("inside temp: ");
       outside = outside_temp().klog("outside temp: ");
-      inside = inside_temp().klog("inside temp: ");
+      //inside = inside_temp().klog("inside temp: ");
       thresholds = temp_thresholds().klog("inside temp thresholds: ");
       //thresholds_lower = thresholds{["limits","lower"]};
       thresholds_upper = thresholds{["limits","upper"]};
