@@ -20,11 +20,13 @@ ruleset closetCollection {
     };
     outside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_outside_temp");
-      wrangler:skyQuery(ecis[0],meta:host(),lastTemperature,{})
+      temp = wrangler:skyQuery(ecis[0],meta:host(),lastTemperature,{});
+      temp{"temperatureF"}
     };
     inside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
-      wrangler:skyQuery(ecis[0],meta:host(),lastTemperature,{})
+      temp = wrangler:skyQuery(ecis[0],meta:host(),lastTemperature,{});
+      temp{"temperatureF"}
     };
     temp_thresholds = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
