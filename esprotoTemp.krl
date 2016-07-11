@@ -35,9 +35,9 @@ ruleset esproto_device {
     };
 
     collectionSubscriptions = function () {
-        raw_subs = wrangler:subscriptions().pick("$..subscribed[0]", true).klog(">>> All Channels >>> "); 
-  subs = raw_subs[0].filter(function(k,v){v{"name_space"} eq "esproto-meta" && v{"relationship"} eq "Device"});
-  subs.klog("Subscriptions: ").defaultsTo({})
+        return = wrangler:subscriptions(unknown,"subscriber_role","receive_temp"); 
+        raw_subs = return{"subscriptions"}; // array of subs
+        raw_subs.klog("Subscriptions: ")
       };
   }
 
@@ -103,7 +103,7 @@ ruleset esproto_device {
              or esproto battery_level_low
     foreach collectionSubscriptions() setting (sub_name, sub_value)
       pre {
-  eci = sub_value{"event_eci"};
+  eci = sub_value{"outbound_eci"};
       }
       event:send({"cid": eci}, "esproto", event:type())
         with attrs = event:attrs();

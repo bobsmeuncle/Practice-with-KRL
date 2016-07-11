@@ -26,7 +26,7 @@ ruleset fanCollection {
     };
     //private
     collectionEcis = function () {
-        return = wrangler:subscriptions(unknown,"subscriber_role","fan_controller").klog(">>> All subscribed subscriptions >>> "); 
+        return = wrangler:subscriptions(unknown,"subscriber_role","fan_controller"); 
         raw_subs = return{"subscriptions"}; // array of subs
         ecis = raw_subs.map(function( subs ){
           r = subs.values().klog("subs.values(): ");
@@ -43,10 +43,8 @@ ruleset fanCollection {
       ecis = collectionEcis();
     }
     {
-      noop();
       event:send({"cid": ecis[0] },"fan","new_status")
         with attrs = {
-          "state" : "on"
         };
     } 
   }
@@ -58,10 +56,8 @@ ruleset fanCollection {
 
     }
     {
-      noop();
       event:send({"cid": ecis[1] },"fan","new_status")
         with attrs = {
-          "state" : "on"
         };
     } 
   }
@@ -72,10 +68,8 @@ ruleset fanCollection {
       ecis = collectionEcis();
     }
     {
-      noop();
       event:send({"cid": ecis[0] },"fan","new_status")
         with attrs = {
-          "state" : "off"
         };
     } 
   }
@@ -87,10 +81,8 @@ ruleset fanCollection {
       ecis = collectionEcis();
     }
     {
-      noop();
       event:send({"cid": ecis[1] },"fan","new_status")
         with attrs = {
-          "state" : "off"
         };
     } 
   }
