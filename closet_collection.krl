@@ -63,7 +63,7 @@ ruleset closetCollection {
   rule logicallyFanOn {
     select when esproto threshold_violation 
     pre {
-      data = event:attr("reading").klog("data: ");
+      data = event:attr("reading").klog("data: ").decode();
       inside = data{"temperatureF"}.klog("inside temp: ");
       outside = outside_temp().klog("outside temp: ");
       //inside = inside_temp().klog("inside temp: ");
