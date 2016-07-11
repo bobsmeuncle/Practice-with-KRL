@@ -34,9 +34,21 @@ ruleset esproto_device {
       "pressure": "pressure"
     };
 
+    Ecis = function () { 
+      return = wrangler:subscriptions(unknown,"subscriber_role","receive_temp"); 
+      raw_subs = return{"subscriptions"}; // array of subs
+      ecis = raw_subs.map(function( subs ){
+        r = subs.values().klog("subs.values(): ");
+        v = r[0];
+        v{"outbound_eci"}
+        });
+      ecis.klog("ecis: ")
+    };
+
     collectionSubscriptions = function () {
         return = wrangler:subscriptions(unknown,"subscriber_role","receive_temp"); 
         raw_subs = return{"subscriptions"}; // array of subs
+        //subs = raw_subs[0];
         raw_subs.klog("Subscriptions: ")
       };
   }
@@ -101,9 +113,8 @@ ruleset esproto_device {
   rule route_to_collections {
     select when esproto threshold_violation
              or esproto battery_level_low
-    foreach collectionSubscriptions() setting (sub_name, sub_value)
+    foreach Ecis() setting (eci)
       pre {
-  eci = sub_value{"outbound_eci"};
       }
       event:send({"cid": eci}, "esproto", event:type())
         with attrs = event:attrs();
