@@ -20,17 +20,17 @@ ruleset closetCollection {
     };
     outside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_outside_temp").klog("ecis: ");
-      temp = wrangler:skyQuery("725C606C-453C-11E6-A5A1-99CDE71C24E1",meta:host(),lastTemperature,{});
+      temp = wrangler:skyQuery("725C606C-453C-11E6-A5A1-99CDE71C24E1",lastTemperature,{});
       temp
     };
     inside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
-      temp = wrangler:skyQuery(ecis[0],meta:host(),lastTemperature,{});
+      temp = wrangler:skyQuery(ecis[0],lastTemperature,{});
       temp{"temperatureF"}
     };
     temp_thresholds = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
-      wrangler:skyQuery(ecis[0],meta:host(),thresholds,{ threshold_type : "inside_temp_threshold" })
+      wrangler:skyQuery(ecis[0],thresholds,{ threshold_type : "inside_temp_threshold" })
     };
     lower_threshold = function (){
       thresholds = temp_thresholds();
