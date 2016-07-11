@@ -45,6 +45,7 @@ ruleset fanCollection {
     {
       event:send({"cid": ecis[0] },"fan","new_status")
         with attrs = {
+          "state" : "on"
         };
     } 
   }
@@ -58,6 +59,7 @@ ruleset fanCollection {
     {
       event:send({"cid": ecis[1] },"fan","new_status")
         with attrs = {
+          "state" : "on"
         };
     } 
   }
@@ -70,6 +72,7 @@ ruleset fanCollection {
     {
       event:send({"cid": ecis[0] },"fan","new_status")
         with attrs = {
+          "state" : "off"
         };
     } 
   }
@@ -83,6 +86,7 @@ ruleset fanCollection {
     {
       event:send({"cid": ecis[1] },"fan","new_status")
         with attrs = {
+          "state" : "off"
         };
     } 
   }
