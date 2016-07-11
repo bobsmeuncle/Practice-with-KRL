@@ -26,7 +26,7 @@ ruleset closetCollection {
     inside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
       temp = wrangler:skyQuery(ecis[0],lastTemperature,"");
-      temp{"temperatureF"}
+      temp
     };
     temp_thresholds = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
