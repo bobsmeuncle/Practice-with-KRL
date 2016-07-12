@@ -21,7 +21,7 @@ ruleset closetCollection {
     };
     outside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_outside_temp").klog("ecis: ");
-      temp = wrangler:skyQuery(ecis[0],"b507888x4.dev","lastTemperature",{});
+      temp = wrangler:skyQuery(ecis[0],"b507888x4.dev","lastTemperature",{}).klog("tempf: ");
       temp{"skyCloudReturnValue"}
     };
     inside_temp = function (){
@@ -91,7 +91,7 @@ ruleset closetCollection {
       log "failed to turn on its to hot outside."
     }
   }
-/*
+  /*
     rule logicallyFanOff {
     select when esproto threshold_violation where threshold eq lower_threshold()
     pre {
@@ -100,7 +100,7 @@ ruleset closetCollection {
       airflow_level = 0;
       fan_driver = fan_collection_eci();
     }
-    {
+    if()then{
       event:send({"cid": fan_driver[0] },"fan","airflow")
         with attrs = {
           "level" : airflow_level
@@ -112,5 +112,5 @@ ruleset closetCollection {
     else {
     }
   }
-*/
+  */
 }
