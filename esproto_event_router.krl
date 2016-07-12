@@ -41,9 +41,9 @@ ruleset esproto_router {
     }
     
     lastTemperature = function() {
-      temp = ent:lastTemperature[0];
-      tempf = temp{"temperatureF"};
-      tempf
+      temp = ent:lastTemperature[0].klog("lastTemperature: ");
+      tempf = temp{"temperatureF"}.klog("lastTemperatureF: ");
+      tempf.klog("return: ")
     }
     
     lastPressure = function() {
