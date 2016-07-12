@@ -17,7 +17,7 @@ ruleset fanController {
     fan_state = function (){
       json_from_url = http:get(ent:pin_state).pick("$.content").decode();
       return = json_from_url{"value"};
-      return
+      return.encode();
     };
     //private
 }
