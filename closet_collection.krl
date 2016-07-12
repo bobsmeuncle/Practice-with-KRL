@@ -17,22 +17,22 @@ ruleset closetCollection {
     fan_states = function (){
       ecis = Ecis("subscriber_role","fan_level_driver");
       return = wrangler:skyQuery(ecis[0],"b507888x1.dev","fanStates",{});
-      return{"skyCloudReturnValue"}
+      return
     };
     outside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_outside_temp").klog("ecis: ");
       temp = wrangler:skyQuery(ecis[0],"b507888x4.dev","lastTemperature",{}).klog("tempf: ");
-      temp{"skyCloudReturnValue"}
+      temp
     };
     inside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
       temp = wrangler:skyQuery(ecis[0],"b507888x4.dev","lastTemperature",{});
-      temp{"skyCloudReturnValue"}
+      temp
     };
     temp_thresholds = function (){
       ecis = Ecis("subscriber_role","transmit_inside_temp");
       return = wrangler:skyQuery(ecis[0],"b507888x2.dev","thresholds",{ "threshold_type" : "temperature" });
-      return{"skyCloudReturnValue"}
+      return
     };
     lower_threshold = function (){
       thresholds = temp_thresholds();
