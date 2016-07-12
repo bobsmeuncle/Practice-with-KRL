@@ -21,8 +21,8 @@ ruleset fanCollection {
       fan_a = wrangler:skyQuery(ecis[0],"b507888x0.dev","fan_state",{});
       fan_b = wrangler:skyQuery(ecis[1],"b507888x0.dev","fan_state",{});
       {
-        "fan_a" : fan_a,
-        "fan_b" : fan_b
+        "fan_a" : fan_a{"skyCloudReturnValue"},
+        "fan_b" : fan_b{"skyCloudReturnValue"}
       }
 
     };
