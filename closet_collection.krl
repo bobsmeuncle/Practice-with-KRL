@@ -66,11 +66,11 @@ ruleset closetCollection {
     pre {
       ecis = Ecis("subscriber_role","transmit_inside_temp");
     }
-    if(not threshold_type.isnull()) then {
+    {
       event:send({"cid": ecis[0] },"esproto","new_threshold")
         with attrs = event:attrs();
     }
-    fired {
+    always {
       log "Setting threshold value for inside_temp";
     }
   }
