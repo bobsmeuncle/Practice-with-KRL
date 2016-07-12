@@ -84,7 +84,7 @@ ruleset closetCollection {
       thresholds = temp_thresholds().klog("inside temp thresholds: ");
       thresholds_upper = thresholds{["limits","upper"]}.klog("upper_threshold: ");
       thresholds_diff = inside - thresholds_upper;
-      airflow_level = (thresholds_diff > 1.3) => 2 | 1; // change flow level threshold
+      airflow_level = (thresholds_diff > 3) => 2 | 1;
       fan_driver = fan_collection_eci();
     }
     if (inside > outside) then
