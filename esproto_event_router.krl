@@ -41,7 +41,7 @@ ruleset esproto_router {
     }
     
     lastTemperature = function() {
-      ent:lastTemperature
+      ent:lastTemperature[0]
     }
     
     lastPressure = function() {
