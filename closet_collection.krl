@@ -61,6 +61,19 @@ ruleset closetCollection {
       ecis
     };
 }
+  rule save_inside_threshold {
+    select when esproto new_threshold
+    pre {
+      ecis = Ecis("subscriber_role","transmit_inside_temp");
+    }
+    if(not threshold_type.isnull()) then {
+      event:send({"cid": ecis[0] },"esproto","new_threshold")
+        with attrs = event:attrs();
+    }
+    fired {
+      log "Setting threshold value for inside_temp";
+    }
+  }
 
   rule logicallyFanOn {
     select when esproto threshold_violation threshold_bound re#upper#
