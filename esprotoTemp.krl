@@ -100,7 +100,8 @@ ruleset esproto_device {
       fired {
   raise esproto event "threshold_violation" attributes
     {"reading": reading.encode(),
-     "threshold": under => lower_threshold | upper_threshold
+     "threshold": under => lower_threshold | upper_threshold,
+     "threshold_bound": under => "lower" | "upper"
     // "message": "threshold violation: #{msg} for #{sensor_name}"
     }       
 
