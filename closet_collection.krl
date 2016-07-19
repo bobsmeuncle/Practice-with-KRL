@@ -19,6 +19,15 @@ ruleset closetCollection {
       return = wrangler:skyQuery(ecis[0],"b507888x1.dev","fanStates",{});
       return
     };
+    temps = function (){
+      inside = inside_temp();
+      outside = outside_temp();
+      {
+        "inside": inside,
+        "outside": outside
+      }
+    };
+
     outside_temp = function (){
       ecis = Ecis("subscriber_role","transmit_outside_temp").klog("ecis: ");
       temp = wrangler:skyQuery(ecis[0],"b507888x4.dev","lastTemperature",{}).klog("tempf: ");
