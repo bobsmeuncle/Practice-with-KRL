@@ -18,8 +18,8 @@ ruleset fanCollection {
       // wrapper for fanA and fanB state calls
       // returns an jason object with fan states keyed to there names
       ecis = collectionEcis();
-      fan_a = wrangler:skyQuery(ecis[0],"b507888x0.dev","fan_state",{});
-      fan_b = wrangler:skyQuery(ecis[1],"b507888x0.dev","fan_state",{});
+      fan_a = wrangler:skyQuery(ecis[0],"b507888x0.dev","fan_state",{}).decode();
+      fan_b = wrangler:skyQuery(ecis[1],"b507888x0.dev","fan_state",{}).decode();
       return1 = fan_a;
       return2 = fan_b;
       {
