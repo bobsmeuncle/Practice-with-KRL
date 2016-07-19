@@ -10,7 +10,7 @@ ruleset closetCollection {
     logging on
     
     sharing on
-    provides fan_states,outside_temp,inside_temp,temp_thresholds
+    provides fan_states,outside_temp,inside_temp,temp_thresholds,temps
   }
 
   global {
