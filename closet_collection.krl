@@ -84,7 +84,7 @@ ruleset closetCollection {
     }
   }
   rule configure_inside_threshold {
-    select when esproto configure_threshold
+    select when explicit configure_threshold
     pre {
       outside = outside_temp().klog("outside temp: ");
       upper_threshold = outside + 2.5;
