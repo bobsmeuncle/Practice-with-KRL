@@ -20,8 +20,11 @@ ruleset esproto_device {
       threshold_type.isnull() => ent:thresholds
                                | ent:thresholds{threshold_type}
     }
-
     //private
+    locations = function(location_type){
+      location_type.isnull() => ent:location
+                              | ent:location{location_type}
+    }
     event_map = {
       "new_temperature_reading" : "temperature",
       "new_humidity_reading" : "humidity",
@@ -61,12 +64,26 @@ ruleset esproto_device {
       threshold_type = event:attr("threshold_type");
       threshold_value = {"limits": {"upper": event:attr("upper_limit"),
                                     "lower": event:attr("lower_limit")
-           }};
+                                   }
+                        };
     }
     if(not threshold_type.isnull()) then noop();
     fired {
       log "Setting threshold value for #{threshold_type}";
       set ent:thresholds{threshold_type} threshold_value;
+    }
+  }
+
+  rule save_location {
+    select when esproto new_location
+    pre {
+      location_type = event:attr("location_type");
+      location_value = {"location": event:attr("location")};
+    }
+    if(not location_type.isnull()) then noop();
+    fired {
+      log "Setting threshold value for #{threshold_type}";
+      set ent:location{location_type} location_value;
     }
   }
 
@@ -83,6 +100,7 @@ ruleset esproto_device {
   threshold_map = thresholds(threshold_type).klog("Thresholds: ");
   lower_threshold = threshold_map{["limits","lower"]}.klog("Lower threshold: ");
   upper_threshold = threshold_map{["limits","upper"]};
+  location_map = locations(location_type).klog("locations: "); 
 
         // sensor readings
   data = reading.klog("Reading from #{threshold_type}: ");
@@ -98,13 +116,13 @@ ruleset esproto_device {
       }
       if(  under || over ) then noop();
       fired {
-  raise esproto event "threshold_violation" attributes
-    {"reading": reading.encode(),
-     "threshold": under => lower_threshold | upper_threshold,
-     "threshold_bound": under => "lower" | "upper"
-    // "message": "threshold violation: #{msg} for #{sensor_name}"
-    }       
-
+        raise esproto event "threshold_violation" attributes
+          {"reading": reading.encode(),
+           "threshold": under => lower_threshold | upper_threshold,
+           "threshold_bound": under => "lower" | "upper",
+           "location": location_map
+          // "message": "threshold violation: #{msg} for #{sensor_name}"
+          }.klog("threshold_violation attrs: ")       
       }
   }
 

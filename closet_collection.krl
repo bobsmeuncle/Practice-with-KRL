@@ -53,6 +53,7 @@ ruleset closetCollection {
       thresholds_upper = thresholds{["limits","upper"]};
       thresholds_upper
     };
+
     //private
     Ecis = function (collection,collection_value) { 
       return = wrangler:subscriptions(unknown,collection,collection_value); 
@@ -84,7 +85,7 @@ ruleset closetCollection {
     }
   }
   rule configure_inside_threshold {
-    select when explicit configure_threshold
+    select when esproto threshold_violation location re#outside#
     pre {
       outside = outside_temp().klog("outside temp: ");
       upper_threshold = outside + 2.5;
@@ -105,6 +106,7 @@ ruleset closetCollection {
   }
   rule logicallyFanOn {
     select when esproto threshold_violation threshold_bound re#upper#
+                                        and location re#inside#
     pre {
       data = event:attr("reading").klog("data: ").decode();
       inside = data{"temperatureF"}.klog("inside temp: ");
@@ -132,6 +134,7 @@ ruleset closetCollection {
 
     rule logicallyFanOff {
     select when esproto threshold_violation threshold_bound re#lower#
+                                        and location re#inside#
     pre {
       airflow_level = 0;
       fan_driver = fan_collection_eci();
