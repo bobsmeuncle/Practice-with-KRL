@@ -83,7 +83,26 @@ ruleset closetCollection {
       log "Setting threshold value for inside_temp";
     }
   }
-
+  rule configure_inside_threshold {
+    select when esproto configure_threshold
+    pre {
+      outside = outside_temp().klog("outside temp: ");
+      upper_threshold = outside + 2.5;
+      lower_threshold = outside + 2;
+      event_attributes = {
+        "upper_limit" : upper_threshold,
+        "lower_limit" : lower_threshold
+      };
+    }
+    {
+      noop();
+    }
+    always {
+      raise esproto event "new_threshold"
+            attributes event_attributes;
+      log "configuring threshold value for inside_temp from outside_temp " + outside;
+    }
+  }
   rule logicallyFanOn {
     select when esproto threshold_violation threshold_bound re#upper#
     pre {
