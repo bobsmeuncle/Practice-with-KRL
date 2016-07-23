@@ -88,8 +88,8 @@ ruleset closetCollection {
     select when esproto threshold_violation location re#outside#
     pre {
       outside = outside_temp().klog("outside temp: ");
-      upper_threshold = outside + 1.5;
-      lower_threshold = outside + 1;
+      upper_threshold = outside + 3.5;
+      lower_threshold = outside + 3;
       event_attributes = {
         "threshold_type" : "temperature",
         "upper_limit" : upper_threshold,
