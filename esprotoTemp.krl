@@ -101,6 +101,7 @@ ruleset esproto_device {
   lower_threshold = threshold_map{["limits","lower"]}.klog("Lower threshold: ");
   upper_threshold = threshold_map{["limits","upper"]};
   location_map = locations(threshold_type).klog("locations: "); 
+  location = location_map{"location"};
 
         // sensor readings
   data = reading.klog("Reading from #{threshold_type}: ");
@@ -120,7 +121,7 @@ ruleset esproto_device {
           {"reading": reading.encode(),
            "threshold": under => lower_threshold | upper_threshold,
            "threshold_bound": under => "lower" | "upper",
-           "location": location_map
+           "location": location
           // "message": "threshold violation: #{msg} for #{sensor_name}"
           }.klog("threshold_violation attrs: ")       
       }
