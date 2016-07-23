@@ -91,6 +91,7 @@ ruleset closetCollection {
       upper_threshold = outside + 2.5;
       lower_threshold = outside + 2;
       event_attributes = {
+        "threshold_type" : "temperature",
         "upper_limit" : upper_threshold,
         "lower_limit" : lower_threshold
       };
