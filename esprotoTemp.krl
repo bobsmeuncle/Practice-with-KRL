@@ -100,7 +100,7 @@ ruleset esproto_device {
   threshold_map = thresholds(threshold_type).klog("Thresholds: ");
   lower_threshold = threshold_map{["limits","lower"]}.klog("Lower threshold: ");
   upper_threshold = threshold_map{["limits","upper"]};
-  location_map = locations(location_type).klog("locations: "); 
+  location_map = locations(threshold_type).klog("locations: "); 
 
         // sensor readings
   data = reading.klog("Reading from #{threshold_type}: ");
