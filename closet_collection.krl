@@ -88,8 +88,8 @@ ruleset closetCollection {
     select when esproto threshold_violation location re#outside#
     pre {
       outside = outside_temp().klog("outside temp: ");
-      upper_threshold = outside + .5;
-      lower_threshold = outside ;
+      upper_threshold = outside + 1.5;
+      lower_threshold = outside + 1;
       event_attributes = {
         "threshold_type" : "temperature",
         "upper_limit" : upper_threshold,
@@ -115,7 +115,7 @@ ruleset closetCollection {
       thresholds = temp_thresholds().klog("inside temp thresholds: ");
       thresholds_upper = thresholds{["limits","upper"]}.klog("upper_threshold: ");
       thresholds_diff = inside - thresholds_upper;
-      airflow_level = (thresholds_diff > 2) => 2 | 1;
+      airflow_level = (thresholds_diff > 1) => 2 | 1;
       fan_driver = fan_collection_eci();
     }
     if (inside > outside) then
