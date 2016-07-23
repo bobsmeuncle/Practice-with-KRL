@@ -106,7 +106,7 @@ ruleset closetCollection {
   }
   rule logicallyFanOn {
     select when esproto threshold_violation threshold_bound re#upper#
-                                        and location re#inside#
+      and esproto threshold_violation location re#inside#
     pre {
       data = event:attr("reading").klog("data: ").decode();
       inside = data{"temperatureF"}.klog("inside temp: ");
@@ -134,7 +134,7 @@ ruleset closetCollection {
 
     rule logicallyFanOff {
     select when esproto threshold_violation threshold_bound re#lower#
-                                        and location re#inside#
+            and esproto threshold_violation location re#inside#
     pre {
       airflow_level = 0;
       fan_driver = fan_collection_eci();

@@ -82,7 +82,7 @@ ruleset esproto_device {
     }
     if(not location_type.isnull()) then noop();
     fired {
-      log "Setting threshold value for #{threshold_type}";
+      log "Setting location value for #{location_type}";
       set ent:location{location_type} location_value;
     }
   }
