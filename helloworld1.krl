@@ -1,5 +1,5 @@
 
-ruleset HelloWorld1 {
+ruleset HelloWorld2 {
   meta {
     name "Hello World"
     description <<
