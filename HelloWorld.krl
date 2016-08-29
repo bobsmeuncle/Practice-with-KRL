@@ -15,7 +15,7 @@ ruleset HelloWorld1 {
       ent:name 
     };
   }
-  rule HelloWorld {
+rule HelloWorld {
     select when test1 update_name
     pre {
       name = event:attr("name").klog("our pass in name ");
