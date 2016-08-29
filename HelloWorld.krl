@@ -31,7 +31,8 @@ rule HelloWorld {
     select when test eventOne
             and test eventTwo
     pre {
-      attrs = event:attrs().klog("attrs:");
+      attrs = event:attrs().klog("current attrs:");
+      last = ent:lastAttrs.klog("last attrs:")
       cheat = attrs.pset(ent:lastAttrs);
     }
     {
