@@ -1,0 +1,63 @@
+{
+      "meta" : {
+                "discription": "test prototype"
+                },
+                
+      "rids": [ 
+                 "b507901x1.prod",
+                "b507901x3.prod", 
+                "b16x29.prod", 
+                "b507901x2.prod" 
+                 
+              ],
+      "channels" : [{
+                      "name"       : "testPrototypChannel",
+                      "type"       : "ProtoType",
+                      "attributes" : "prototypes test attrs",
+                      "policy"     : "not implemented"
+                    },
+                    {
+                      "name"       : "test2PrototypChannel",
+                      "type"       : "ProtoType",
+                      "attributes" : "prototypes test attrs",
+                      "policy"     : "not implemented"
+                    }
+                    ], 
+      "prototypes" : [],
+      "subscriptions_request": [{
+                                  "name"          : "basePrototypeName",
+                                  "name_space"    : "basePrototypeNameSpace",
+                                  "my_role"       : "son",
+                                  "subscriber_role"     : "test",
+                                  "subscriber_eci"    : "1654165",
+                                  "channel_type"  : "ProtoType",
+                                  "attrs"         : "nogiven"
+                                }],
+      "Prototype_events" : [{
+                              "domain": 'wrangler',
+                              'type'  : 'base_prototype_event1',
+                              'attrs' : {'attr1':'1',
+                                          'attr2':'2'
+                                        }
+                            }
+                            ], 
+      "PDS" : {
+                "profile" : {
+                            "name":"base",
+                            "description":"discription of the general pds created",
+                            "location":"40.252683,-111.657486",
+                            "model":"unknown",
+                            "model_description":"no model at this time",
+                            "photo":"https://geo1.ggpht.com/cbk?panoid=gsb1YUyceEtoOLMIVk2TQA&output=thumbnail&cb_client=search.TACTILE.gps&thumb=2&w=408&h=256&yaw=87.31411&pitch=0"
+                            },
+                "general" : {"test":{"subtest":"just a test"}},
+                "settings": {"b507901x1.prod":{
+                                              "name":"wrangler",
+                                              "keyed_rid" :"b507901x1.prod",
+                                              "schema":["im","a","schema"],
+                                              "data_key":"first_key",
+                                              "value":"first_value"
+                                              }
+                            }
+              }
+  }
