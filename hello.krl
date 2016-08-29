@@ -28,13 +28,13 @@ A first ruleset for the Quickstart version:2
         name;
     };
 
-    user = function(full_name){
+    heyYo = function(full_name){
       all_users = users();
-      filtered_users = all_users.filter( function(user_id){
+      filtered_users = all_users.filter( function(user_id, val){
         constructed_name = all_users{[user_id,"name","first"]} + " " + all_users{[user_id,"name","last"]};
         (constructed_name eq full_name);
         });
-      user_id = filtered_users.keys().head().defaultsTo("_0","no user found").klog("user_id: ");
+      user_id = filtered_users.keys().head().defaultsTo("_0","no user found").klog("user_id: "); 
       user = all_users{user_id}.klog("user : ");
       user_hash = {}.put([user_id],user).klog("user_hash: ");
       user_hash;
@@ -62,6 +62,21 @@ A first ruleset for the Quickstart version:2
     }
     always{
       set ent:name{[id]} new_user;
+    }
+  }
+
+  rule autoAccept {
+    select when wrangler inbound_pending_subscription_added 
+    pre{
+      attributes = event:attrs().klog("subcription :");
+      }
+      {
+      noop();
+      }
+    always{
+      raise wrangler event 'pending_subscription_approval'
+          attributes attributes;        
+          log "auto accepted subcription." ;
     }
   }
 
