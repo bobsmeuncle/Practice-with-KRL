@@ -32,13 +32,13 @@ rule HelloWorld {
             and test eventTwo
     pre {
       attrs = event:attrs().klog("attrs:");
+      cheat = attrs.pset(ent:lastAttrs);
     }
     {
       noop();
     }
     always{
       log(ent:lastAttrs);
-      set ent:lastAttrs attrs;
     }
   }
 }
