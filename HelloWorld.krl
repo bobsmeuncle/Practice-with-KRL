@@ -27,4 +27,17 @@ ruleset HelloWorld1 {
       set ent:name name;
     }
   }
+    rule eventConCat {
+    select when test eventOne
+            and test eventTwo
+    pre {
+      attrs = event:attrs().klog("attrs:");
+    }
+    {
+      noop();
+    }
+    always{
+      log(attrs);
+    }
+  }
 }
