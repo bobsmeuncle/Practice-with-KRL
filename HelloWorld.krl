@@ -32,7 +32,7 @@ rule HelloWorld {
             and test eventTwo
     pre {
       attrs = event:attrs().klog("current attrs:");
-      last = ent:lastAttrs.klog("last attrs:")
+      last = ent:lastAttrs.klog("last attrs:");
       cheat = attrs.pset(ent:lastAttrs);
     }
     {
