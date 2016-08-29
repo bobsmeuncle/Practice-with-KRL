@@ -37,7 +37,8 @@ rule HelloWorld {
       noop();
     }
     always{
-      log(attrs);
+      log(ent:lastAttrs);
+      set ent:lastAttrs attrs;
     }
   }
 }
