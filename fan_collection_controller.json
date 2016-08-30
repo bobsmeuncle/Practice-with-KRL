@@ -1,0 +1,46 @@
+{
+  "meta" : {
+            "discription": "fan collection"
+            },
+  "rids": [ 
+		"b507888x1.dev"
+	   ],
+  "channels" : [],
+  "prototypes" : [
+                  {
+                  "url" : "",
+                  "prototype_name": "fan"
+                  }
+                ],
+  "children" : [
+                {
+                  "name" : "fanA",
+                  "prototype" : "fan"
+                  },
+                {
+                  "name" : "fanB",
+                  "prototype" : "fan"
+                  }
+                ],
+  "subscriptions_request": [],
+  "Prototype_events" : [],
+  "PDS" : {
+            "profile" : {
+                        "name":"fan_level",
+                        "description":"discription of the general pds created",
+                        "location":"40.252683,-111.657486",
+                        "model":"unknown",
+                        "model_description":"no model at this time",
+                        "photo":""
+                        },
+            "general" : {"test":{"subtest":"just a test"}},
+            "settings": {"b507888x3.dev":{
+                                          "name":"closet",
+                                          "keyed_rid" :"b507888x3.dev",
+                                          "schema":["im","a","schema"],
+                                          "data_key":"first_key",
+                                          "value":"first_value"
+                                          }
+                        }
+          }
+}

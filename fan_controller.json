@@ -1,0 +1,32 @@
+{
+  "meta" : {
+            "discription": "fan controller"
+            },
+  "rids": [ 
+		"b507888x0.dev"
+	   ],
+  "channels" : [],
+  "prototypes" : [],
+  "children" : [],
+  "subscriptions_request": [],
+  "Prototype_events" : [], //update driver api 
+  "PDS" : {
+            "profile" : {
+                        "name":"fan_controller",
+                        "description":"controlls a fan driver",
+                        "location":"40.252683,-111.657486",
+                        "model":"unknown",
+                        "model_description":"no model at this time",
+                        "photo":""
+                        },
+            "general" : {"test":{"subtest":"just a test"}},
+            "settings": {"b507888x3.dev":{
+                                          "name":"closet",
+                                          "keyed_rid" :"b507888x3.dev",
+                                          "schema":["im","a","schema"],
+                                          "data_key":"first_key",
+                                          "value":"first_value"
+                                          }
+                        }
+          }
+}
