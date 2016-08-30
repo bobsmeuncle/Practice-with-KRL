@@ -34,10 +34,10 @@
                                   "attrs"         : "nogiven"
                                 }],
       "Prototype_events" : [{
-                              "domain": 'wrangler',
-                              'type'  : 'base_prototype_event1',
-                              'attrs' : {'attr1':'1',
-                                          'attr2':'2'
+                              "domain": "wrangler",
+                              "type"  : "base_prototype_event1",
+                              "attrs" : {"attr1":"1",
+                                          "attr2":"2"
                                         }
                             }
                             ], 
