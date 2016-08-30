@@ -5,31 +5,14 @@
   "rids": [ 
 		"b507888x2.dev","b507888x4.dev"
 	   ],
-  "channels" : [],
-  "prototypes" : [
-                  {
-                  "url" : "",
-                  "prototype_name": "fan_level"
-                  },
-                  {
-                  "url" : "",
-                  "prototype_name": "esproto"
-                  }
-                ],
-  "children" : [
-                {
-                  "name" : "fan_level",
-                  "prototype" : "base_add_test"
-                  },
-                {
-                  "name" : "inside_esproto",
-                  "prototype" : "esproto"
-                  },
-                {
-                  "name" : "outside_esproto",
-                  "prototype" : "esproto"
-                  }
-                ],
+  "channels" : [{
+                      "name"       : "incoming_temp",
+                      "type"       : "closet_collection",
+                      "attributes" : "wrangler test attrs",
+                      "policy"     : "not implemented"
+                    }],
+  "prototypes" : [],
+  "children" : [],
   "subscriptions_request": [],
   "Prototype_events" : [],
   "PDS" : {

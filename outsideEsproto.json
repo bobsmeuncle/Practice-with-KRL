@@ -1,33 +1,24 @@
 {
   "meta" : {
-            "discription": "fan collection"
+            "discription": "esproto pico"
             },
   "rids": [ 
-		"b507888x1.dev"
+		"b507888x2.dev","b507888x4.dev"
 	   ],
-  "channels" : [],
-  "prototypes" : [
-                  {
-                  "url" : "https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/fan_controller.json",
-                  "prototype_name": "fan"
-                  }
-                ],
-  "children" : [
-                {
-                  "name" : "fanA",
-                  "prototype" : "fan"
-                  },
-                {
-                  "name" : "fanB",
-                  "prototype" : "fan"
-                  }
-                ],
+  "channels" : [{
+                      "name"       : "incoming_temp",
+                      "type"       : "closet_collection",
+                      "attributes" : "wrangler test attrs",
+                      "policy"     : "not implemented"
+                    }],
+  "prototypes" : [],
+  "children" : [],
   "subscriptions_request": [],
   "Prototype_events" : [],
   "PDS" : {
             "profile" : {
                         "name":"fan_level",
-                        "description":"controls a collection of fan picos",
+                        "description":"discription of the general pds created",
                         "location":"40.252683,-111.657486",
                         "model":"unknown",
                         "model_description":"no model at this time",
