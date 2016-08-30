@@ -3,9 +3,37 @@
             "discription": "closet collection"
             },
   "rids": [ 
-		b507888x3.dev
+		"b507888x3.dev"
 	   ],
   "channels" : [],
+  "prototypes" : [
+                  {
+                  "url" : "https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/fan_collection_controller.json",
+                  "prototype_name": "fan_level"
+                  },
+                  {
+                  "url" : "https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/insideesproto.json",
+                  "prototype_name": "insideEsproto"
+                  },
+                                    {
+                  "url" : "https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/outsideEsproto.json",
+                  "prototype_name": "outsideEsproto"
+                  }
+                ],
+  "children" : [
+                {
+                  "name" : "fan_level",
+                  "prototype" : "fan_level"
+                  },
+                {
+                  "name" : "inside_esproto",
+                  "prototype" : "insideEsproto"
+                  },
+                {
+                  "name" : "outside_esproto",
+                  "prototype" : "outsideEsproto"
+                  }
+                ],
   "subscriptions_request": [],
   "Prototype_events" : [],
   "PDS" : {
