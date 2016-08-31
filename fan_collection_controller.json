@@ -8,21 +8,33 @@
   "channels" : [],
   "prototypes" : [
                   {
-                  "url" : "https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/fan_controller.json",
-                  "prototype_name": "fan"
+                  "url" : "https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/fanA_controller.json",
+                  "prototype_name": "fanA"
+                  },
+                  {
+                  "url" : "https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/fanB_controller.json",
+                  "prototype_name": "fanB"
                   }
                 ],
   "children" : [
                 {
                   "name" : "fanA",
-                  "prototype" : "fan"
+                  "prototype" : "fanA"
                   },
                 {
                   "name" : "fanB",
-                  "prototype" : "fan"
+                  "prototype" : "fanB"
                   }
                 ],
-  "subscriptions_request": [],
+  "subscriptions_request": [{
+                                  "name"          : "fan_level",
+                                  "name_space"    : "closet_collection",
+                                  "my_role"       : "fan_level_driver",
+                                  "subscriber_role"     : "fan_level_controller",
+                                  "subscriber_eci"    : ["owner","closet"],
+                                  "channel_type"  : "ProtoType",
+                                  "attrs"         : "nogiven"
+                                }],
   "Prototype_events" : [],
   "PDS" : {
             "profile" : {

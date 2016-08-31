@@ -1,32 +1,27 @@
 {
   "meta" : {
-            "discription": "esproto pico"
+            "discription": "fan controller"
             },
   "rids": [ 
-		"b507888x2.dev","b507888x4.dev"
+		"b507888x0.dev"
 	   ],
-  "channels" : [{
-                      "name"       : "incoming_temp",
-                      "type"       : "closet_collection",
-                      "attributes" : "wrangler test attrs",
-                      "policy"     : "not implemented"
-                    }],
+  "channels" : [],
   "prototypes" : [],
   "children" : [],
   "subscriptions_request": [{
-                                  "name"          : "outside_temp_api",
+                                  "name"          : "fan_b",
                                   "name_space"    : "closet_collection",
-                                  "my_role"       : "transmit_outside_temp",
-                                  "subscriber_role"     : "receive_temp",
-                                  "subscriber_eci"    : ["owner","closet"],
+                                  "my_role"       : "fan_controller",
+                                  "subscriber_role"     : "fan_driver",
+                                  "subscriber_eci"    : ["owner","closet","fan_level"],
                                   "channel_type"  : "ProtoType",
                                   "attrs"         : "nogiven"
                                 }],
-  "Prototype_events" : [],
+  "Prototype_events" : [], //update driver api 
   "PDS" : {
             "profile" : {
-                        "name":"fan_level",
-                        "description":"discription of the general pds created",
+                        "name":"fan_controller",
+                        "description":"controlls a fan driver",
                         "location":"40.252683,-111.657486",
                         "model":"unknown",
                         "model_description":"no model at this time",

@@ -13,7 +13,15 @@
                     }],
   "prototypes" : [],
   "children" : [],
-  "subscriptions_request": [],
+  "subscriptions_request": [{
+                                  "name"          : "inside_temp_api",
+                                  "name_space"    : "closet_collection",
+                                  "my_role"       : "transmit_inside_temp",
+                                  "subscriber_role"     : "receive_temp",
+                                  "subscriber_eci"    : ["owner","closet"],
+                                  "channel_type"  : "ProtoType",
+                                  "attrs"         : "nogiven"
+                                }],
   "Prototype_events" : [],
   "PDS" : {
             "profile" : {

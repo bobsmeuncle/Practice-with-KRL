@@ -8,7 +8,15 @@
   "channels" : [],
   "prototypes" : [],
   "children" : [],
-  "subscriptions_request": [],
+  "subscriptions_request": [{
+                                  "name"          : "fan_a",
+                                  "name_space"    : "closet_collection",
+                                  "my_role"       : "fan_controller",
+                                  "subscriber_role"     : "fan_driver",
+                                  "subscriber_eci"    : ["owner","closet","fan_level"],
+                                  "channel_type"  : "ProtoType",
+                                  "attrs"         : "nogiven"
+                                }],
   "Prototype_events" : [], //update driver api 
   "PDS" : {
             "profile" : {
