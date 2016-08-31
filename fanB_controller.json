@@ -17,7 +17,7 @@
                                   "channel_type"  : "ProtoType",
                                   "attrs"         : "nogiven"
                                 }],
-  "Prototype_events" : [], //update driver api 
+  "Prototype_events" : [], 
   "PDS" : {
             "profile" : {
                         "name":"fan_controller",
