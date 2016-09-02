@@ -13,7 +13,7 @@
                                   "name_space"    : "closet_collection",
                                   "my_role"       : "fan_controller",
                                   "subscriber_role"     : "fan_driver",
-                                  "subscriber_eci"    : ["owner","closet","fan_level"],
+                                  "subscriber_eci"    : ["owner","__Oedipus_","fan_level"],
                                   "channel_type"  : "ProtoType",
                                   "attrs"         : "nogiven"
                                 }],
@@ -29,7 +29,7 @@
                         },
             "general" : {"test":{"subtest":"just a test"}},
             "settings": {"b507888x3.dev":{
-                                          "name":"closet",
+                                          "name":"fan",
                                           "keyed_rid" :"b507888x3.dev",
                                           "schema":["im","a","schema"],
                                           "data_key":"first_key",

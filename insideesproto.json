@@ -18,7 +18,7 @@
                                   "name_space"    : "closet_collection",
                                   "my_role"       : "transmit_inside_temp",
                                   "subscriber_role"     : "receive_temp",
-                                  "subscriber_eci"    : ["owner","closet"],
+                                  "subscriber_eci"    : ["owner","__Oedipus_"],
                                   "channel_type"  : "ProtoType",
                                   "attrs"         : "nogiven"
                                 }],

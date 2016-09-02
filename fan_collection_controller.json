@@ -31,7 +31,7 @@
                                   "name_space"    : "closet_collection",
                                   "my_role"       : "fan_level_driver",
                                   "subscriber_role"     : "fan_level_controller",
-                                  "subscriber_eci"    : ["owner","closet"],
+                                  "subscriber_eci"    : ["owner","__Oedipus_"],
                                   "channel_type"  : "ProtoType",
                                   "attrs"         : "nogiven"
                                 }],
