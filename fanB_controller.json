@@ -29,7 +29,7 @@
                         },
             "general" : {"test":{"subtest":"just a test"}},
             "settings": {"b507888x3.dev":{
-                                          "name":"closet",
+                                          "name":"fan",
                                           "keyed_rid" :"b507888x3.dev",
                                           "schema":["im","a","schema"],
                                           "data_key":"first_key",
