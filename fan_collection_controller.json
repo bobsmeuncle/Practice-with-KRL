@@ -3,7 +3,7 @@
             "discription": "fan collection"
             },
   "rids": [ 
-		"b507888x1.dev"
+		"b507888x1.dev","b507901x4.prod"
 	   ],
   "channels" : [],
   "prototypes" : [
@@ -35,7 +35,13 @@
                                   "channel_type"  : "ProtoType",
                                   "attrs"         : "nogiven"
                                 }],
-  "Prototype_events" : [],
+  "Prototype_events" : [{
+                              "domain": "wrangler",
+                              "type"  : "add_auto_accept",
+                              "attrs" : {"key":"namespace",
+                                          "value":"closet_collection"
+                                        }
+                            }],
   "PDS" : {
             "profile" : {
                         "name":"fan_level",
