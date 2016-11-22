@@ -60,7 +60,7 @@ Primary ruleset for manifold owner pico
         always {
           raise wrangler event "add_prototype" 
             with prototype_name = '_manifold_proto'
-             and url = 'manifold_Proto url ';// ----------------------------------------------needs url to prototype. ---------------------------------------------------------
+             and url = 'https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/manifold/manifoldPrototype.json';// ----------------------------------------------needs url to prototype. ---------------------------------------------------------
           raise wrangler event "child_creation" 
             with name = '_manifold'
              and prototype = '_manifold_proto';

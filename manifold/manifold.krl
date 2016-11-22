@@ -24,7 +24,7 @@ Primary ruleset for manifold pico
     rule createManifoldPicoChannel {
       select when manifold create_wellKnown_app_eci
         pre {
-          response = http:get('prototype_url', {});// ----------------------------------------------needs url to prototype. ---------------------------------------------------------
+          response = http:get('https://raw.githubusercontent.com/burdettadam/Practice-with-KRL/master/manifold/manifoldPrototype.json', {});// ----------------------------------------------needs url to prototype. ---------------------------------------------------------
           response_content = response{"content"}.decode();
           channel_options = response_content{'channels'}.head().klog('channel options');
         }
