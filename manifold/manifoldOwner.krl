@@ -17,12 +17,15 @@ Primary ruleset for manifold owner pico
       root_children = Wrangler:children();
       children = root_children{"children"};
       manifold_pico = children.filter(function(rec){rec{"name"} eq "_manifold"})
-                              .head();
+                              .klog("filtered")
+                              .head()
+                              .klog("manifold eci")
+                              ;
       manifold_channel = (manifold_pico.isnull()) => "no_manifold_child"| Wrangler:skyQuery(manifold_pico,meta:host(),"manifold.prod","wellKnownAppEci",noParam);
       {
         'status': (manifold_channel),
         'manifold_eci': manifold_channel
-      };
+      }.klog("results");
     }
   }
 /*
