@@ -80,9 +80,10 @@ Primary ruleset for manifold owner pico
           children = root_children{"children"};
           manifold_pico = children.filter(function(rec){rec{"name"} eq "_manifold"})
                                   .head();
+          manifold_eci = manifold_pico{"eci"}.klog("eci");
         }
         {
-          event:send({'eci': manifold_pico}, "manifold", "create_wellKnown_app_eci") // send request
+          event:send({'eci': manifold_eci}, "manifold", "create_wellKnown_app_eci") // send request
             with attrs = event:attrs();
         }
         always {
