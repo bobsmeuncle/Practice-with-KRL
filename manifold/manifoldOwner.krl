@@ -27,7 +27,7 @@ Primary ruleset for manifold owner pico
       manifold_chan = (manifold_pico.isnull()) => "no_manifold_child" | manifold_channel{"channels"};
       {
         'status': (manifold_pico.isnull() eq false),
-        'manifold_eci': manifold_chan
+        'manifoldChannel': manifold_chan
       }.klog("results");
     }
   }
