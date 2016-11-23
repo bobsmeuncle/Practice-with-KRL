@@ -22,10 +22,11 @@ Primary ruleset for manifold owner pico
                               .klog("manifold pico")
                               ;
       manifold_eci = manifold_pico{"eci"}.klog("eci");
-      manifold_channel = (manifold_pico.isnull()) => "no_manifold_child"| Wrangler:skyQuery(manifold_eci,"b507901x6.prod","wellKnownAppEci",{},null,null,null);
+      manifold_channel_return = (manifold_pico.isnull()) => "no_manifold_child"| Wrangler:skyQuery(manifold_eci,"b507901x6.prod","wellKnownAppEci",{},null,null,null);
+      manifold_channel = (manifold_pico.isnull()) => "no_manifold_child" | manifold_channel_return{"manifold_eci"};
       {
-        'status': (manifold_channel),
-        'manifold_eci': manifold_channel{"manifold_eci"}
+        'status': (manifold_pico.isnull() eq false),
+        'manifold_eci': manifold_channel
       }.klog("results");
     }
   }
