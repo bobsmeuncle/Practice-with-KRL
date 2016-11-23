@@ -19,9 +19,9 @@ Primary ruleset for manifold owner pico
       manifold_pico = children.filter(function(rec){rec{"name"} eq "_manifold"})
                               .klog("filtered")
                               .head()
-                              .klog("manifold eci")
+                              .klog("manifold pico")
                               ;
-      manifold_eci = manifold_pico{"eci"};
+      manifold_eci = manifold_pico{"eci"}.klog("eci");
       manifold_channel = (manifold_pico.isnull()) => "no_manifold_child"| Wrangler:skyQuery(manifold_eci,meta:host(),"manifold.prod","wellKnownAppEci",noParam);
       {
         'status': (manifold_channel),
