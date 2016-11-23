@@ -22,7 +22,7 @@ Primary ruleset for manifold owner pico
                               .klog("manifold pico")
                               ;
       manifold_eci = manifold_pico{"eci"}.klog("eci");
-      manifold_channel = (manifold_pico.isnull()) => "no_manifold_child"| Wrangler:skyQuery(manifold_eci,meta:host(),"b507901x6.prod","wellKnownAppEci",noParam);
+      manifold_channel = (manifold_pico.isnull()) => "no_manifold_child"| Wrangler:skyQuery(manifold_eci,"b507901x6.prod","wellKnownAppEci",{},null,null,null);
       {
         'status': (manifold_channel),
         'manifold_eci': manifold_channel
