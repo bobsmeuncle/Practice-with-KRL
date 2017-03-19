@@ -16,7 +16,7 @@ ruleset Subscriptions {
        wrangler:myself() // must be wrapped in a function
     }
     createSubscriptionChannel = function(options){
-      subsID = null.uuid();
+      //subsID = null.uuid();
       logs = options.klog("parameters ");
       self = getSelf().klog("self");
       id = self.id;
@@ -25,7 +25,7 @@ ruleset Subscriptions {
       eci = channel.id;
       {"eci": eci, "name": options.name,"type": options.eci_type, "attributes": options.attributes }
     }
-    
+
     
     getSubscriptions = function(){
       ent:subscriptions.defaultsTo({})
