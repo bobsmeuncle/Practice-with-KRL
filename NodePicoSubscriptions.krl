@@ -254,7 +254,7 @@ ruleset Subscriptions {
   }
 
 
-rule approvePendingSubscription { 
+rule approveInboundPendingSubscription { 
     select when wrangler pending_subscription_approval
     pre{
       logs = event:attrs().klog("attrs")
@@ -273,7 +273,7 @@ rule approvePendingSubscription {
           })
     fired 
     {
-      logs.klog(standardOut("success >>"));
+      logs.klog(standardOut(">> Sent accepted subscription events >>"));
       raise wrangler event "pending_subscription_approved"   
         with channel_name = channel_name
              status = "inbound"
@@ -281,9 +281,11 @@ rule approvePendingSubscription {
     } 
     else 
     {
-      logs.klog(standardOut(">> failure >>"))
+      logs.klog(standardOut(">> Failed to send accepted subscription events >>"))
     }
   }
+
+
 
 
   rule addOutboundSubscription { 
