@@ -54,7 +54,7 @@ ruleset Subscriptions {
         });
         name = names{"unique"} || [];
 
-        unique_name =  name.head().defaultsTo("",standardError("unique name failed")).klog("uniqueName")
+        unique_name =  name.head().defaultsTo("",standardError("unique name failed")).klog("uniqueName");
         (unique_name)
     }
     checkSubscriptionName = function(name , name_space, subscriptions){
