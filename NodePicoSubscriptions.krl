@@ -6,12 +6,46 @@ ruleset Subscriptions {
     >>
     author "CS462 TA"
     use module io.picolabs.pico alias wrangler
-    provides getSubscriptions, createSubscriptionChannel , klogtesting
-    shares getSubscriptions, createSubscriptionChannel ,klogtesting
+    provides getSubscriptions, createSubscriptionChannel , klogtesting, skyQuery
+    shares getSubscriptions, createSubscriptionChannel , klogtesting, skyQuery
     logging on
   }
 
  global{
+
+    skyQuery = function(eci, mod, func, params,_host,_path,_root_url) { // path must start with "/""
+      //.../sky/cloud/<eci>/<rid>/<name>?name0=value0&...&namen=valuen
+      createRootUrl = function (_host,_path){
+        host = _host || "localhost:8080" || meta:host();// <-------------hard coded host------------
+        path = _path || "/sky/cloud/";
+        root_url = "http://"+host+path; //<==================================hard coded http not https========
+        root_url
+      };
+      root_url = _root_url || createRootUrl(_host,_path) || _root_url ;
+      web_hook = root_url + eci + "/"+mod+"/" + func;
+
+      response = http:get(web_hook.klog("URL"), {}.put(params)).klog("response ");
+      status = response{"status_code"};// pass along the status 
+      error_info = {
+        "error": "sky query request was unsuccesful.",
+        "httpStatus": {
+            "code": status,
+            "message": response{"status_line"}
+        }
+      };
+      // clean up http return
+      response_content = response{"content"}.decode();
+      response_error = (response_content.typeof() == "Map" && response_content{"error"}) => response_content{"error"} | 0;
+      response_error_str = (response_content.typeof() == "Map" && response_content{"error_str"}) => response_content{"error_str"} | 0;
+      error = error_info.put({"skyQueryError": response_error,
+                              "skyQueryErrorMsg": response_error_str, 
+                              "skyQueryReturnValue": response_content});
+      is_bad_response = (response_content.isnull() || response_content == "null" || response_error || response_error_str);
+      // if HTTP status was OK & the response was not null and there were no errors...
+      (status == 200 && not is_bad_response ) => response_content | error
+    }
+
+
     getSelf = function(){
        wrangler:myself() // must be wrapped in a function
     }
