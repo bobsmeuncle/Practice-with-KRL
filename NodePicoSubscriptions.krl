@@ -26,6 +26,20 @@ ruleset Subscriptions {
       {"eci": eci, "name": options.name,"type": options.eci_type, "attributes": options.attributes }
     }
 
+    createSubscriptionChannel = defaction(options){
+      subsID = null.uuid()
+      logs = options.klog("parameters ")
+      self = getSelf().klog("self")
+      id = self.id
+      channel = engine:newChannel(
+        { "name": options.name, "type": options.eci_type, "pico_id": id }).klog("newchannel")
+      eci = channel.id
+      newSubscription = {"eci": eci, "name": options.name,"type": options.eci_type, "attributes": options.attributes }
+      null = ent:subscriptions.pset(getSubscriptions().put([newSubscription.name] , newSubscription.put(["attributes"],{"sid" : newSubscription.name})))
+      send_directive("subscription created") with
+        subscription = newSubscription
+    }
+
     
     getSubscriptions = function(){
       ent:subscriptions.defaultsTo({})
