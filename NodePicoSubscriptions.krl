@@ -59,7 +59,7 @@ ruleset Subscriptions {
       eci = channel.id;
       {"eci": eci, "name": options.name,"type": options.eci_type, "attributes": options.attributes }
     }
-
+/*
     createSubscriptionChannel = defaction(options){
       subsID = null.uuid()
       logs = options.klog("parameters ")
@@ -72,9 +72,9 @@ ruleset Subscriptions {
       null = ent:subscriptions.pset(getSubscriptions().put([newSubscription.name] , newSubscription.put(["attributes"],{"sid" : newSubscription.name})))
       send_directive("subscription created") with
         subscription = newSubscription
-    }
 
-    
+    }
+    */
     getSubscriptions = function(){
       ent:subscriptions.defaultsTo({})
     }
@@ -101,7 +101,6 @@ ruleset Subscriptions {
           (subscriptions{name_space + ":" + name}) => "unique" | "taken"
         });
         name = names{"unique"} || [];
-
         unique_name =  name.head().defaultsTo("",standardError("unique name failed")).klog("uniqueName");
         (unique_name)
     }
@@ -306,7 +305,7 @@ rule approveInboundPendingSubscription {
     select when wrangler pending_subscription_approval
     pre{
       logs = event:attrs().klog("attrs")
-      subscription_name = event:attr("subscription_name").klog("sub name")
+      subscription_name = event:attr("subscription_name").defaultsTo(event:attr("channel_name"), "channel_name used ")
       subs = getSubscriptions().klog("subscriptions")
       inbound_eci = subs{[subscription_name,"eci"]}.klog("subscription inbound") //{[subscription_name,"eci"]}
       outbound_eci = subs{[subscription_name,"attributes","outbound_eci"]}.klog("subscriptions outbound")
@@ -384,7 +383,7 @@ rule addInboundSubscription {
             or  wrangler inbound_subscription_rejection
             or  wrangler outbound_subscription_cancellation
     pre{
-      subscription_name = event:attr("subscription_name")//.defaultsTo( "No channel_name", standardError("channel_name"))
+      subscription_name = event:attr("subscription_name").defaultsTo(event:attr("channel_name"), "channel_name used ") //.defaultsTo( "No channel_name", standardError("channel_name"))
       subs = getSubscriptions()
       outbound_eci = subs{[subscription_name,"attributes","outbound_eci"]}.klog("outboundEci")
     }
