@@ -35,3 +35,12 @@ return{
  	}
  }
 };
+/*
+        type: mkKRLfn([ ], function(args, ctx, callback){
+            callback(null, _.get(ctx, ["event", "type"], null));
+        }),
+        domain: mkKRLfn([ ], function(args, ctx, callback){
+            callback(null, _.get(ctx, ["event", "domain"], null));
+        }),
+
+*/
