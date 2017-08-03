@@ -39,7 +39,7 @@ ruleset io.manifold.owner {
     pre {
       manifoldPico =  getManifoldPico()
     }
-    if not manifoldPico == "No Manifold Pico" then
+    if manifoldPico == "No Manifold Pico" then
       engine:registerRuleset(config{"URI"}.klog("URI used:"),meta:rulesetURI.klog("Path used"))
     fired {
       raise wrangler event "new_child_request" // HEY HEY!!!! check event api
