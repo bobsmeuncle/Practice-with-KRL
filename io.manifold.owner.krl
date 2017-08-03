@@ -7,12 +7,16 @@ ruleset io.manifold.owner {
     __testing =
       { "queries": [ { "name": "__testing", "name":"getManifoldPico" } ],
         "events": [ { "domain": "manifold", "type": "channel_needed",
-                      "attrs": [ "eci_to_manifold_child" ] } ] }
+                      "attrs": [ "eci_to_manifold_child" ] } , 
+                    { "domain": "wrangler", "type": "ruleset_added",
+                      "attrs": [  ] }
+                   ] }
 
     config={"pico_name" : "Manifold", "URI" : ["io.manifold.manifold.krl"], "rids": ["io.manifold.manifold"]};
-
+     
     getManifoldPico = function(){
-      wrangler:children(config{"pico_name"}) // wrangler will return null on invalid...
+      child = wrangler:children(config{"pico_name"}){"children"};
+      child.length() > 0 =>  child[0] | "No Manifold Pico"
     }
 
   }
@@ -35,7 +39,7 @@ ruleset io.manifold.owner {
     pre {
       manifoldPico =  getManifoldPico()
     }
-    if not manifoldPico then
+    if not manifoldPico == "No Manifold Pico" then
       engine:registerRuleset(config{"URI"}.klog("URI used:"),meta:rulesetURI.klog("Path used"))
     fired {
       raise wrangler event "new_child_request" // HEY HEY!!!! check event api
