@@ -35,7 +35,7 @@ ruleset io.manifold.owner {
   }
 
   rule initialization {
-    select when wrangler ruleset_added rids >< meta:rid 
+    select when wrangler ruleset_added where rids.klog("rids") >< meta:rid.klog("meta rid")
     pre {
       manifoldPico =  getManifoldPico()
     }
