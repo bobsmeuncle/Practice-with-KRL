@@ -35,7 +35,7 @@ ruleset io.manifold.owner {
   }
 
   rule initialization {
-    select when wrangler ruleset_added  // HEY!!!! make sure this corresponds with wrangler install rid event
+    select when wrangler ruleset_added rids >< meta:rid 
     pre {
       manifoldPico =  getManifoldPico()
     }
