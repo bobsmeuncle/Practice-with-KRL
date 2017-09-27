@@ -1,3 +1,4 @@
+
 let spec = {
 	address: 0x60,
     steppers: [],
@@ -5,6 +6,13 @@ let spec = {
     servos: []
 };
 var motorHat = require('motor-hat')(spec); // should singletons for modules be done in KRL or JS? 
+process.on('exit', (code) => {
+  console.log(`stop all motors: ${code}`);
+  motorHat.dcs[0].stop();
+  motorHat.dcs[1].stop();
+  motorHat.dcs[2].stop();
+  motorHat.dcs[3].stop();
+});
 module.exports = {
 /*
     initialize: {
