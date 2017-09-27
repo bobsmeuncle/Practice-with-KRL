@@ -10,7 +10,7 @@ var motorHat = require('motor-hat')(spec); // should singletons for modules be d
 var ON_DEATH = require('death');
 
 ON_DEATH(function(signal, err) {
-  console.log(`stop all motors`);
+  console.log(`\rstoping all motors\r`);
   motorHat.dcs[0].stop();
   motorHat.dcs[1].stop();
   motorHat.dcs[2].stop();
