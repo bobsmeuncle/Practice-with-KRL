@@ -15,6 +15,7 @@ ON_DEATH(function(signal, err) {
   motorHat.dcs[1].stop();
   motorHat.dcs[2].stop();
   motorHat.dcs[3].stop();
+  process.exit();
 })
 
 module.exports = {
