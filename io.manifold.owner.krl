@@ -7,12 +7,16 @@ ruleset io.manifold.owner {
     __testing =
       { "queries": [ { "name": "__testing", "name":"getManifoldPico" } ],
         "events": [ { "domain": "manifold", "type": "channel_needed",
-                      "attrs": [ "eci_to_manifold_child" ] } ] }
+                      "attrs": [ "eci_to_manifold_child" ] } ,
+                    { "domain": "wrangler", "type": "ruleset_added",
+                      "attrs": [  ] }
+                   ] }
 
     config={"pico_name" : "Manifold", "URI" : ["io.manifold.manifold.krl"], "rids": ["io.manifold.manifold"]};
 
     getManifoldPico = function(){
-      wrangler:children(config{"pico_name"}) // wrangler will return null on invalid...
+      child = wrangler:children(config{"pico_name"}){"children"};
+      child.length() > 0 =>  child[0] | "No Manifold Pico"
     }
 
   }
@@ -31,14 +35,14 @@ ruleset io.manifold.owner {
   }
 
   rule initialization {
-    select when wrangler ruleset_added  // HEY!!!! make sure this corresponds with wrangler install rid event
+    select when wrangler ruleset_added rids >< meta:rid
     pre {
       manifoldPico =  getManifoldPico()
     }
-    if not manifoldPico then
-      engine:registerRuleset(config{"URI"}.klog("URI used:"),meta:rulesetURI.klog("Path used")).klog("attempted registration ")
+    if manifoldPico == "No Manifold Pico" then
+      engine:registerRuleset(config{"URI"}[0].klog("URI used:"),meta:rulesetURI.klog("Path used"))
     fired {
-      raise wrangler event "new_child_request" // HEY HEY!!!! check event api
+      raise wrangler event "child_creation" // HEY HEY!!!! check event api
         attributes { "name": config{"pico_name"}, "color": "#7FFFD4", "rids": config{"rids"} } // check child creation api
     }
   }
